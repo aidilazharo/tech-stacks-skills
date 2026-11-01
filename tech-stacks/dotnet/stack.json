@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "id": "dotnet",
+  "name": ".NET",
+  "label": ".NET",
+  "accent": "#15946c",
+  "runtime": ".NET 10",
+  "language": "C#",
+  "framework": "ASP.NET Core / EF Core",
+  "buildTool": "dotnet CLI",
+  "unit": [
+    "xUnit",
+    "FluentAssertions",
+    "NSubstitute"
+  ],
+  "integration": [
+    "WebApplicationFactory"
+  ],
+  "e2e": [],
+  "notes": "Use approved .NET and Entity Framework Core package versions.",
+  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/dotnet/scaffold"
+}

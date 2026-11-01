@@ -1,0 +1,13 @@
+schema: 1
+id: requirement-review
+steps:
+  - upload
+  - map-12
+  - ai-review
+  - generate-requirements
+  - preview-save
+  - approve-requirements
+  - jira-preview
+  - approve-preview
+  - publish-jira
+policy: approved-revisions-immutable-and-publish-human-confirmed

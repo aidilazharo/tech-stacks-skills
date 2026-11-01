@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "id": "angular",
+  "name": "Angular",
+  "label": "ANGULARJS",
+  "accent": "#e99a0a",
+  "runtime": "Angular 22",
+  "language": "TypeScript",
+  "framework": "Angular 22",
+  "buildTool": "Angular CLI",
+  "unit": [
+    "Vitest",
+    "Angular TestBed"
+  ],
+  "integration": [
+    "axe-core"
+  ],
+  "e2e": [
+    "Playwright"
+  ],
+  "notes": "Modern Angular 22, not legacy AngularJS 1.x; validate dependency compatibility.",
+  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/angular/scaffold"
+}

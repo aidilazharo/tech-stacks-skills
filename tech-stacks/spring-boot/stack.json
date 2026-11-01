@@ -1,0 +1,22 @@
+{
+  "schema": 1,
+  "id": "spring-boot",
+  "name": "Java Spring Boot",
+  "label": "JAVA SPRING BOOT",
+  "accent": "#df0047",
+  "runtime": "Java 25",
+  "language": "Java",
+  "framework": "Spring Boot 3",
+  "buildTool": "Maven",
+  "unit": [
+    "JUnit 5",
+    "AssertJ",
+    "Mockito"
+  ],
+  "integration": [
+    "Spring Cloud Contract"
+  ],
+  "e2e": [],
+  "notes": "Validate Java 25 support against the selected Spring Boot 3.x release and approved BOM.",
+  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/spring-boot/scaffold"
+}

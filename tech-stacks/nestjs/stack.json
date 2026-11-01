@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "id": "nestjs",
+  "name": "NestJS",
+  "label": "NESTJS",
+  "accent": "#2475ec",
+  "runtime": "Node.js 26",
+  "language": "TypeScript",
+  "framework": "NestJS 11",
+  "buildTool": "npm",
+  "unit": [
+    "Vitest",
+    "Supertest"
+  ],
+  "integration": [
+    "Jest OpenAPI"
+  ],
+  "e2e": [],
+  "notes": "Validate Node.js 26 support with the selected NestJS 11 release before install.",
+  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/nestjs/scaffold"
+}

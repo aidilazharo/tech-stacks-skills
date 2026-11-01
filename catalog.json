@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "version": "1.0.0",
+  "sourceBranch": "main",
+  "roles": [
+    "business-analyst",
+    "project-manager",
+    "solution-architect",
+    "software-developer",
+    "qa-engineer",
+    "product-owner",
+    "scrum-master",
+    "ux-designer",
+    "security-engineer",
+    "data-engineer",
+    "uat-tester",
+    "technical-writer",
+    "operations-support",
+    "release-manager",
+    "technical-lead",
+    "business-owner",
+    "ai-ml-engineer",
+    "compliance-officer"
+  ],
+  "techStacks": [
+    "spring-boot",
+    "nestjs",
+    "dotnet",
+    "react",
+    "angular"
+  ],
+  "designSystems": [
+    "aia-qi"
+  ],
+  "description": "Read-only skill, stack and design-asset catalog for ATGV"
+}

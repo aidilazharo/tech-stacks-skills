@@ -1,0 +1,10 @@
+schema: 1
+id: change-impact
+steps:
+  - detect-changed-input
+  - validate-approved-revision
+  - inspect-dependent-artifacts
+  - propose-selective-drafts
+  - obtain-human-approval
+  - publish-approved-scope
+policy: no-silent-overwrite-or-automatic-remote-deletion

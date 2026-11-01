@@ -1,0 +1,9 @@
+schema: 1
+id: design-review
+steps:
+  - load-approved-business-requirements
+  - apply-aia-qi-guidance
+  - generate-draft-mockups
+  - validate-accessibility
+  - request-human-review
+  - record-approved-design-revision

@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "id": "react",
+  "name": "ReactJS",
+  "label": "REACTJS",
+  "accent": "#27a1b8",
+  "runtime": "React 19",
+  "language": "TypeScript",
+  "framework": "React 19",
+  "buildTool": "Vite",
+  "unit": [
+    "Vitest",
+    "Testing Library"
+  ],
+  "integration": [
+    "axe-core"
+  ],
+  "e2e": [
+    "Playwright"
+  ],
+  "notes": "Accessible React frontend; validate UI with axe-core and Playwright.",
+  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/react/scaffold"
+}
