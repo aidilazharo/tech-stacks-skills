@@ -3,19 +3,28 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "build": "tsc",
+    "dev": "ts-node -P tsconfig.json src/main.ts",
     "start": "node dist/main.js",
-    "test": "node -e \"console.log('Add Vitest unit tests before CI approval')\""
+    "build": "tsc -p tsconfig.json",
+    "test": "node --test test/static.test.mjs",
+    "db:migrate": "ts-node -P tsconfig.json src/migrate.ts"
   },
   "dependencies": {
     "@nestjs/common": "^11.0.0",
     "@nestjs/core": "^11.0.0",
     "@nestjs/platform-express": "^11.0.0",
     "reflect-metadata": "^0.2.2",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "@nestjs/swagger": "^11.0.0",
+    "@libsql/client": "^0.15.0",
+    "drizzle-orm": "^0.44.0",
+    "class-validator": "^0.14.0",
+    "class-transformer": "^0.5.1",
+    "swagger-ui-express": "^5.0.0"
   },
   "devDependencies": {
     "typescript": "^5.9.0",
-    "@types/node": "^24.0.0"
+    "@types/node": "^24.0.0",
+    "ts-node": "^10.9.2"
   }
 }

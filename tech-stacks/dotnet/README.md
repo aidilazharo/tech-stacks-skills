@@ -1,11 +1,6 @@
-# .NET
+# ASP.NET Core + Entity Framework Core + SQLite
 
-- Runtime: .NET 10
-- Language: C#
-- Framework: ASP.NET Core / EF Core
-- Build: dotnet CLI
-- Unit tests: xUnit, FluentAssertions, NSubstitute
-- Integration: WebApplicationFactory
-- End-to-end: select based on project
+Remote starter for .NET 10 REST API with EF Core, health, task CRUD, Swagger and SQLite.
+`dotnet restore` → `dotnet test tests/Atgv.Tests/Atgv.Tests.csproj` → `dotnet build` → `dotnet run`
 
-Review exact versions for enterprise compatibility. This scaffold is an illustrative starting point, not a security-approved production skeleton. No dependencies are installed by catalog sync.
+Migrations: starter creates first local SQLite schema; switch to versioned EF Core migration before deployment.

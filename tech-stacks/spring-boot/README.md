@@ -1,11 +1,6 @@
-# Java Spring Boot
+# Spring Boot REST API + Spring Data JPA + SQLite
 
-- Runtime: Java 25
-- Language: Java
-- Framework: Spring Boot 3
-- Build: Maven
-- Unit tests: JUnit 5, AssertJ, Mockito
-- Integration: Spring Cloud Contract
-- End-to-end: select based on project
+Remote-only Java 25 / Spring Boot 3.5 REST starter with SQLite, health endpoint, task CRUD and Swagger.
+`mvn test` → `mvn package` → `mvn spring-boot:run`
 
-Review exact versions for enterprise compatibility. This scaffold is an illustrative starting point, not a security-approved production skeleton. No dependencies are installed by catalog sync.
+Migrations: local starter uses Hibernate ddl-auto; replace with Flyway before production.

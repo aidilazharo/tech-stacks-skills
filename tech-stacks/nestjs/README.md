@@ -1,11 +1,7 @@
-# NestJS
+# NestJS + Drizzle ORM + SQLite
 
-- Runtime: Node.js 26
-- Language: TypeScript
-- Framework: NestJS 11
-- Build: npm
-- Unit tests: Vitest, Supertest
-- Integration: Jest OpenAPI
-- End-to-end: select based on project
+Remote-delivered NestJS 11 REST API starter, Swagger `/api/docs`, health `/api/health`, task CRUD and idempotent SQL schema initializer.
 
-Review exact versions for enterprise compatibility. This scaffold is an illustrative starting point, not a security-approved production skeleton. No dependencies are installed by catalog sync.
+`npm install` → `npm run db:migrate` → `npm test` → `npm run build` → `npm run dev`
+
+Do not commit the SQLite database. Add authentication, production migrations and authorization before deployment.

@@ -18,5 +18,15 @@
   ],
   "e2e": [],
   "notes": "Use approved .NET and Entity Framework Core package versions.",
-  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/dotnet/scaffold"
+  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/dotnet/scaffold",
+  "scaffold": "scaffold/",
+  "accessManual": "manual.md",
+  "previewUrl": "http://127.0.0.1:5111/api/health",
+  "apiBaseUrl": "http://127.0.0.1:5111",
+  "database": "SQLite",
+  "orm": "Entity Framework Core",
+  "stackType": "backend",
+  "runCommand": "dotnet run",
+  "testCommand": "dotnet test tests/Atgv.Tests/Atgv.Tests.csproj",
+  "buildCommand": "dotnet build"
 }

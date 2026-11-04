@@ -19,5 +19,15 @@
     "Playwright"
   ],
   "notes": "Modern Angular 22, not legacy AngularJS 1.x; validate dependency compatibility.",
-  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/angular/scaffold"
+  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/angular/scaffold",
+  "scaffold": "scaffold/",
+  "accessManual": "manual.md",
+  "previewUrl": "http://127.0.0.1:4200/",
+  "apiBaseUrl": "http://127.0.0.1:3001",
+  "database": "SQLite",
+  "orm": "Drizzle ORM",
+  "stackType": "frontend",
+  "runCommand": "npm run dev",
+  "testCommand": "npm test",
+  "buildCommand": "npm run build"
 }

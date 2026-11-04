@@ -1,23 +1,33 @@
-# ATGV SDLC Skills & Technology Stacks
+# ATGV SDLC Skills, Technology Stacks and Design Catalog
 
-This private repository is the **pull-only central asset catalog** for ATGV AIATECH Assist. Approved branch: **main**. Do not use this repository for project source code, credentials, Jira exports or confidential business documents.
-
-Contents: 18 role-based skills, 5 technology-stack descriptors and minimal editable scaffold references, reusable workflows/document templates, and an **AIA Qi-informed** UI/UX starter. Official AIA Qi token values and licensed component source were not publicly provided; the starter marks all sample tokens as provisional, not official AIA brand specifications.
+**This GitHub repository's `main` branch is the single source of truth.**
+The VS Code extension ships no hardcoded technology scaffold, role skill, or design template.
 
 ## Layout
 
-- `catalog.json`: catalog schema 1, semantic version and required asset IDs
-- `roles/<role-id>/SKILL.md`: person-neutral SDLC role guidance; names describe responsibilities rather than people
-- `tech-stacks/<id>/stack.json`: extension-compatible validated descriptors
-- `tech-stacks/<id>/scaffold/`: baseline examples, subject to dependency review before any production use
-- `shared/workflows/`: planning, review and authorization steps
-- `shared/document-templates/`: reusable drafts
-- `shared/design-systems/aia-qi/`: provisional tokens, guidance and mockup template
+- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.0`
+- `roles/<id>/SKILL.md`: 18 role skills
+- `tech-stacks/<id>/stack.json`: five stack descriptors
+- `tech-stacks/<id>/scaffold/`: runnable project starter, API, ORM and SQLite examples
+- `tech-stacks/<id>/manual.md`: component access, API queries, local SQLite and test instructions
+- `shared/design-systems/<id>/`: design tokens, guidance, mockup HTML template
+- `shared/workflows/`: approved workflow references
+- `shared/document-templates/`: optional document skeletons
 
-## Extension
+## Publish an update
 
-In VS Code open Settings → GitHub — SDLC Catalog. The default repository is `https://github.com/aidilazharo/tech-stacks-skills`; connect with VS Code GitHub sign-in (private repository requires access). Test Connection → Pull Catalog. The extension pins exact Git commit+blob hashes, activates safe workspace assets and uses the selected stack and design guidance. It does not push to this repository.
+1. Review all stack and design files and CI changes in a GitHub pull request.
+2. Merge approved changes to **main** and update the semantic `VERSION` and `catalog.json` version.
+3. In ATGV Settings or Solution Architect My Work, click **Check Updates**, then **Pull & Update**.
+4. ATGV downloads, validates and pins the exact Git SHA, and stores a versioned offline copy.
+5. Existing project source and previous approved artifacts are preserved. **Save Stack** only generates into a safe new bootstrap branch.
 
-Existing authored project files and customized workspace tech-stack JSON override remote examples. An updated main commit requires a new Pull to activate; check-for-update does not silently replace assets.
+## Security
 
-Source: https://design.aia.com/aia-qi-design-system (general Qi design goals: consistency, efficiency and scalability). All sample tokens are illustrative until approved by the AIA design owner.
+Catalog pulls are **read-only** and never push to this source repository. Clone/pull tokens are stored in VS Code SecretStorage. Never publish secrets or SQLite data.
+Scaffold code is executable and must be reviewed before npm/dotnet/Maven runs; dependency versions, native SQLite drivers and external package sources must be approved by your organization.
+
+## Notes
+
+React/Angular demo APIs use Express + Drizzle ORM + SQLite in the same npm app for one-click local startup. NestJS uses Drizzle + SQLite, .NET uses EF Core SQLite, and Spring uses Spring Data JPA SQLite.
+These are development starter examples, not production-reviewed templates. Live dependency download and compiler verification should be completed in your approved CI environment.
