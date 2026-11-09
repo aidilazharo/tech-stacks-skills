@@ -1,0 +1,12 @@
+{
+  "name":"qi-inspired-ai-ui-kit",
+  "version":"1.0.0",
+  "description":"Unofficial dependency-free CSS/JS design starter, mockups and AI instructions inspired by publicly described Qi principles",
+  "main":"js/qi.js",
+  "style":"css/qi.css",
+  "files":["css","js","tokens","ai","skills","examples","docs","NOTICE.md","LICENSE","README.md"],
+  "scripts":{"test":"node tests/verify.js"},
+  "keywords":["design-system","ui-kit","css","design-tokens","ai","responsive","accessibility"],
+  "license":"MIT",
+  "private":true
+}

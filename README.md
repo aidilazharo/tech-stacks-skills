@@ -5,12 +5,13 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.0`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.1`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `tech-stacks/<id>/stack.json`: five stack descriptors
 - `tech-stacks/<id>/scaffold/`: runnable project starter, API, ORM and SQLite examples
 - `tech-stacks/<id>/manual.md`: component access, API queries, local SQLite and test instructions
 - `shared/design-systems/<id>/`: design tokens, guidance, mockup HTML template
+- `shared/design-systems/aia-qi/kit/`: independent Qi-inspired UI kit v1.0.0, 34 component definitions, CSS/JS, docs, examples and MIT license. AIATECH renders component names safely from this verified repository snapshot; repository HTML/JS is not executed inside a privileged webview.
 - `shared/workflows/`: approved workflow references
 - `shared/document-templates/`: optional document skeletons
 

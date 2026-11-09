@@ -1,0 +1,11 @@
+{
+  "project": {"name":"Insurance Self-Service Portal (fictional example)","targetFrontend":"HTML","languages":["en-MY","ms-MY"],"persona":"Policyholder"},
+  "designSystem": {"name":"Qi-inspired AI UI Kit","version":"1.0.0","official":false,"tokenPath":"tokens/tokens.json","cssPath":"css/qi.css"},
+  "requirements": [{"id":"BR-DEMO-001","summary":"Policyholders need to view active coverage and submit a claim.","approvalState":"approved"}],
+  "screens": [
+    {"id":"SCR-001","title":"Policy overview","route":"/dashboard","purpose":"Review coverage and outstanding tasks","requirementIds":["BR-DEMO-001"],"components":["qi-shell","qi-card","qi-badge-success","qi-table","qi-btn-primary"],"states":["default","empty","loading","success","error"],"actions":[{"label":"New claim","behavior":"Open claim dialog then guided claim form","requiresConfirmation":false,"prototypeOnly":true}],"responsive":[375,768,1024,1440],"dataContracts":["GET /api/policies","GET /api/claims"],"accessibilityChecks":["One H1","Landmarks","Keyboard nav","Status text with color"]},
+    {"id":"SCR-002","title":"Submit claim","route":"/claims/new","purpose":"Collect details, documents and confirmation","requirementIds":["BR-DEMO-001"],"components":["qi-steps","qi-field","qi-input","qi-select","qi-textarea","qi-alert"],"states":["default","focus","error","confirmation","success"],"actions":[{"label":"Continue","behavior":"Validate current step then advance","requiresConfirmation":false,"prototypeOnly":true},{"label":"Submit","behavior":"Collect explicit review confirmation before submit","requiresConfirmation":true,"prototypeOnly":true}],"responsive":[375,768,1024,1440],"dataContracts":["POST /api/claims (placeholder only)"],"accessibilityChecks":["Required labels","Visible errors","No auto upload","Confirmation"]}
+  ],
+  "review": {"state":"proposed","assumptions":["All names, policies and figures are fictional demonstration data"],"questions":["Which claim types and upload restrictions apply in production?"],"criteria":["All steps respond to keyboard","Mobile layout has no horizontal clipping","All actions are labeled as demo when not production-connected"],"approvedBy":null,"approvedAt":null},
+  "traceability": {"jiraIds":[],"approvedBRRevision":"EXAMPLE-NOT-REAL","tokenVersion":"1.0.0","generationHash":""}
+}

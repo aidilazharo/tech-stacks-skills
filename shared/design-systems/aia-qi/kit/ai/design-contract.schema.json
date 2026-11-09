@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.invalid/qi-inspired/design-contract.schema.json",
+  "title": "Qi-inspired AI Design Contract",
+  "description": "The design plan a coding agent must prepare before generating screen mockups or full UI.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["project", "designSystem", "requirements", "screens", "review"],
+  "properties": {
+    "project": {"type":"object","required":["name","targetFrontend","languages"],"properties":{"name":{"type":"string","minLength":1},"targetFrontend":{"enum":["HTML","React","Angular","Vue","Other"]},"languages":{"type":"array","minItems":1,"items":{"type":"string"}},"persona":{"type":"string"}}},
+    "designSystem": {"type":"object","required":["name","version","official"],"properties":{"name":{"const":"Qi-inspired AI UI Kit"},"version":{"type":"string"},"official":{"const":false},"tokenPath":{"const":"tokens/tokens.json"},"cssPath":{"const":"css/qi.css"}}},
+    "requirements": {"type":"array","minItems":1,"items":{"type":"object","required":["id","summary"],"properties":{"id":{"type":"string"},"summary":{"type":"string"},"approvalState":{"enum":["draft","approved","unknown"]}}}},
+    "screens": {"type":"array","minItems":1,"items":{"type":"object","additionalProperties":false,"required":["id","title","route","purpose","requirementIds","components","states","actions","responsive"],"properties":{"id":{"type":"string"},"title":{"type":"string"},"route":{"type":"string"},"purpose":{"type":"string"},"requirementIds":{"type":"array","minItems":1,"items":{"type":"string"}},"components":{"type":"array","items":{"type":"string"}},"states":{"type":"array","minItems":1,"items":{"enum":["default","hover","focus","loading","empty","success","warning","error","disabled","confirmation"]}},"actions":{"type":"array","items":{"type":"object","required":["label","behavior"],"properties":{"label":{"type":"string"},"behavior":{"type":"string"},"requiresConfirmation":{"type":"boolean"},"prototypeOnly":{"type":"boolean"}}}},"responsive":{"type":"array","items":{"enum":[375,768,1024,1440]},"uniqueItems":true,"minItems":3},"dataContracts":{"type":"array","items":{"type":"string"}},"accessibilityChecks":{"type":"array","items":{"type":"string"}}}}},
+    "review": {"type":"object","required":["state","assumptions","questions","criteria"],"properties":{"state":{"enum":["proposed","needs-changes","approved","rejected"]},"assumptions":{"type":"array","items":{"type":"string"}},"questions":{"type":"array","items":{"type":"string"}},"criteria":{"type":"array","items":{"type":"string"}},"approvedBy":{"type":["string","null"]},"approvedAt":{"type":["string","null"],"format":"date-time"}}},
+    "traceability": {"type":"object","properties":{"jiraIds":{"type":"array","items":{"type":"string"}},"approvedBRRevision":{"type":"string"},"tokenVersion":{"type":"string"},"generationHash":{"type":"string"}}}
+  }
+}

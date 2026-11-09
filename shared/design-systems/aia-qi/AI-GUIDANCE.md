@@ -9,3 +9,7 @@ Design UI mockups in the spirit of AIA Qi: consistency, reuse, efficiency, scala
 - Generate structured screen specifications first. Treat previews as drafts, not functioning services.
 - Do not include production data, confidential records, proprietary logos or unlicensed artwork in mockups.
 - Prefer supplied AIA-authorized Figma/Qi assets when available; they supersede these examples.
+
+## Component inventory
+
+Use `kit/ai/component-catalog.json` from the same pinned main-branch catalog snapshot for components, classes and supported states. Do not invent official Qi API or corporate brand compliance. The catalogue is a local *independent, unofficial* adaptation and requires design-owner review before production.

@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "1.1.0",
+  "version": "1.1.1",
   "sourceBranch": "main",
   "roles": [
     "business-analyst",
@@ -32,5 +32,16 @@
   "designSystems": [
     "aia-qi"
   ],
-  "description": "GitHub main is the single source of truth for technology skeletons, role skills, design templates and access manuals."
+  "description": "GitHub main is the single source of truth for technology skeletons, role skills, design templates and access manuals.",
+  "designSystemCatalogs": {
+    "aia-qi": {
+      "components": "shared/design-systems/aia-qi/kit/ai/component-catalog.json",
+      "showcase": "shared/design-systems/aia-qi/kit/docs/index.html",
+      "css": "shared/design-systems/aia-qi/kit/css/qi.css",
+      "tokens": "shared/design-systems/aia-qi/kit/tokens/tokens.json",
+      "license": "shared/design-systems/aia-qi/kit/LICENSE",
+      "kitVersion": "1.0.0",
+      "status": "unofficial Qi-inspired adaptation"
+    }
+  }
 }

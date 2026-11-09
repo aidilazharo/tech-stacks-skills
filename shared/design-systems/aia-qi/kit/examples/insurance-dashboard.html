@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#d31145">
+  <title>PolicyHub — Insurance Portal Example · Qi-inspired UI Kit</title>
+  <link rel="stylesheet" href="../css/qi.css">
+  <style>
+    .top-icon{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+    .user-avatar{width:34px;height:34px;border-radius:50%;background:#f8e4eb;color:#9a1438;display:grid;place-items:center;font-size:12px;font-weight:800}
+    .quick-action{display:flex;align-items:center;gap:12px;padding:15px 12px;border:1px solid var(--qi-color-border);background:var(--qi-color-surface);border-radius:12px;text-decoration:none;color:var(--qi-color-ink);font-weight:700;font-size:.82rem;min-height:68px}
+    .quick-action:hover{border-color:var(--qi-color-primary);color:var(--qi-color-primary)}
+    .quick-icon{display:grid;place-items:center;flex:none;width:38px;height:38px;background:var(--qi-color-primary-soft);color:var(--qi-color-primary);border-radius:12px}
+    .bar-chart{height:178px;display:flex;gap:13px;align-items:end;padding:20px 0 0;border-bottom:1px solid var(--qi-color-border)}
+    .bar-group{flex:1;display:flex;align-items:end;justify-content:center;gap:4px;height:100%}.bar-group>i{display:block;width:44%;height:var(--h);background:var(--qi-red-200);border-radius:5px 5px 0 0}
+    .bar-group>i:last-child{background:var(--qi-color-primary)}
+    .bar-axis{display:flex;justify-content:space-around;color:var(--qi-color-muted);font-size:.7rem;margin-top:10px}
+    .timeline{list-style:none;margin:0;padding:0;}.timeline li{display:flex;gap:12px;position:relative;padding-bottom:20px}
+    .timeline li:not(:last-child)::after{content:"";position:absolute;top:20px;bottom:0;left:10px;width:1px;background:var(--qi-color-border)}
+    .timeline-dot{width:21px;height:21px;display:grid;place-items:center;background:var(--qi-green-50);border:2px solid #65b38e;border-radius:50%;flex:none;z-index:1;margin-top:1px}
+    .timeline li:last-child .timeline-dot{background:var(--qi-red-50);border-color:var(--qi-red-400)}
+    .hero-strip{border-radius:18px;overflow:hidden;background:linear-gradient(115deg,#6d0d2c,#d31145);color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:26px 30px;position:relative}
+    .hero-strip::after{content:"";width:220px;height:220px;border:1px solid #ffffff30;border-radius:50%;position:absolute;right:80px;top:-120px;box-shadow:0 0 0 30px #ffffff07,0 0 0 65px #ffffff06;pointer-events:none}
+    .hero-strip .qi-btn{position:relative;z-index:1;background:#fff;color:#92203d}
+    .dot-red{width:8px;height:8px;display:inline-block;background:var(--qi-color-primary);border-radius:50%}
+    .sidebar-bottom{margin-top:48px;padding:16px;border-radius:14px;background:var(--qi-color-bg)}
+    @media(max-width:767px){.hero-strip{align-items:start;flex-direction:column;padding:22px}.hero-strip::after{right:-130px;top:-60px}}
+  </style>
+</head>
+<body>
+  <svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true">
+    <symbol id="ic-home" viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10H3z"/><path d="M9 20v-7h6v7"/></symbol>
+    <symbol id="ic-shield" viewBox="0 0 24 24"><path d="m12 2 8 4v6c0 5-3 8-8 10-5-2-8-5-8-10V6z"/><path d="m9 12 2 2 4-4"/></symbol>
+    <symbol id="ic-file" viewBox="0 0 24 24"><path d="M6 2h8l4 4v16H6z"/><path d="M14 2v5h5M9 12h6M9 16h6"/></symbol>
+    <symbol id="ic-chart" viewBox="0 0 24 24"><path d="M4 20V4M4 20h16M8 16v-6M13 16V7M18 16v-9"/></symbol>
+    <symbol id="ic-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 2-2.5 2-2.5 4m0 3v.1"/></symbol>
+    <symbol id="ic-bell" viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></symbol>
+    <symbol id="ic-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="ic-arrow" viewBox="0 0 24 24"><path d="m5 12h14m-6-6 6 6-6 6"/></symbol>
+    <symbol id="ic-plus" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></symbol>
+    <symbol id="ic-heart" viewBox="0 0 24 24"><path d="M20.8 8.6c0 4.4-8.8 10.1-8.8 10.1S3.2 13 3.2 8.6a4.4 4.4 0 0 1 8.8 0 4.4 4.4 0 0 1 8.8 0z"/></symbol>
+  </svg>
+  <div class="qi-shell">
+    <header class="qi-shell-top">
+      <div class="qi-flex qi-align-center qi-gap-3">
+        <button class="qi-btn qi-btn-secondary qi-btn-icon qi-mobile-nav-toggle" data-qi-nav-toggle aria-controls="main-sidebar" aria-expanded="false" aria-label="Toggle main navigation"><svg class="top-icon"><use href="#ic-menu"/></svg></button>
+        <a class="qi-brand" href="#dashboard"><span class="qi-brand-mark">P</span><span>PolicyHub <span class="qi-text-muted qi-text-xs" style="font-weight:500">/ Demo</span></span></a>
+      </div>
+      <div class="qi-flex qi-align-center qi-gap-3"><span class="qi-text-sm qi-text-muted qi-hide-mobile">Support: 1800 888 000</span>
+        <button class="qi-btn qi-btn-secondary qi-btn-icon" data-qi-theme-toggle aria-label="Switch to dark theme" aria-pressed="false" title="Switch theme">◐</button>
+        <button class="qi-btn qi-btn-secondary qi-btn-icon" data-qi-toast="You are all caught up with notifications." aria-label="Notifications"><svg class="top-icon"><use href="#ic-bell"/></svg></button>
+        <span class="user-avatar" aria-label="Demo profile">AL</span>
+      </div>
+    </header>
+    <aside class="qi-shell-sidebar" id="main-sidebar" aria-label="Main navigation">
+      <p class="qi-sidebar-label">Workspace</p>
+      <nav class="qi-nav"><a href="#dashboard" class="qi-nav-link qi-active" aria-current="page"><svg class="top-icon"><use href="#ic-home"/></svg> Overview</a>
+      <a href="#policies" class="qi-nav-link"><svg class="top-icon"><use href="#ic-shield"/></svg> My policies</a>
+      <a href="#claims" class="qi-nav-link"><svg class="top-icon"><use href="#ic-file"/></svg> Claims <span class="qi-badge" style="margin-left:auto">2</span></a>
+      <a href="#coverage" class="qi-nav-link"><svg class="top-icon"><use href="#ic-chart"/></svg> Coverage insights</a></nav>
+      <p class="qi-sidebar-label qi-mt-8">Help</p>
+      <nav class="qi-nav"><a href="#support" class="qi-nav-link"><svg class="top-icon"><use href="#ic-help"/></svg> Support centre</a></nav>
+      <div class="sidebar-bottom"><div class="qi-flex qi-align-center qi-gap-2"><span class="dot-red"></span><strong style="font-size:.8rem">Your policy is active</strong></div><p class="qi-text-xs qi-text-muted qi-mt-2">Your protection summary is updated daily in this demonstration.</p></div>
+    </aside>
+    <main class="qi-shell-main" id="dashboard">
+      <nav aria-label="Breadcrumb"><ol class="qi-breadcrumb"><li><a href="#dashboard">Home</a></li><li aria-current="page">Overview</li></ol></nav>
+      <div class="qi-section-header qi-mt-4" style="margin-bottom:26px">
+        <div><div class="qi-flex qi-align-center qi-gap-2 qi-mb-2"><span class="qi-badge qi-badge-success">● All policies active</span><span class="qi-text-xs qi-text-muted">Updated 30 October 2026</span></div><h1>Good morning, Alex</h1><p class="qi-text-muted qi-mt-2">Your protection, benefits and claims at a glance.</p></div>
+        <button class="qi-btn qi-btn-primary" data-qi-modal-open="new-claim"><svg class="top-icon"><use href="#ic-plus"/></svg> New claim</button>
+      </div>
+      <section class="hero-strip qi-mb-6" aria-label="Suggested next step"><div><div style="font-size:.73rem;letter-spacing:.12em;font-weight:800;opacity:.85">YOUR NEXT STEP</div><h2 style="font-size:1.47rem;margin-top:8px">Get more from your protection</h2><p style="font-size:.84rem;margin-top:8px;opacity:.9;max-width:550px">Review your benefits and keep your details up to date in a few simple steps.</p></div><button class="qi-btn" data-qi-toast="Benefits review opened (demo).">Review benefits <svg class="top-icon"><use href="#ic-arrow"/></svg></button></section>
+      <section aria-label="Protection summary" id="coverage" class="qi-mb-6">
+        <div class="qi-row">
+          <div class="qi-col-12 qi-col-md-4"><div class="qi-card"><div class="qi-flex qi-justify-between qi-align-center qi-mb-4"><span class="qi-kpi-label">ACTIVE POLICIES</span><span class="qi-badge qi-badge-success">Healthy</span></div><div class="qi-kpi">03</div><div class="qi-text-muted qi-text-sm qi-mt-3">Life, medical and critical illness</div></div></div>
+          <div class="qi-col-12 qi-col-md-4"><div class="qi-card"><div class="qi-flex qi-justify-between qi-align-center qi-mb-4"><span class="qi-kpi-label">TOTAL COVERAGE</span><span style="color:var(--qi-color-primary);font-weight:800">↗</span></div><div class="qi-kpi">RM 850k</div><div class="qi-text-muted qi-text-sm qi-mt-3">Combined coverage across plans</div></div></div>
+          <div class="qi-col-12 qi-col-md-4"><div class="qi-card"><div class="qi-flex qi-justify-between qi-align-center qi-mb-4"><span class="qi-kpi-label">OPEN CLAIMS</span><span class="qi-badge qi-badge-warning">In review</span></div><div class="qi-kpi">02</div><div class="qi-text-muted qi-text-sm qi-mt-3">One awaiting your documents</div></div></div>
+        </div>
+      </section>
+      <section id="policies" class="qi-mb-6"><div class="qi-section-header"><div><h2>Your cover at a glance</h2><p class="qi-text-muted qi-text-sm qi-mt-1">A simple view of your policy portfolio</p></div><button class="qi-btn qi-btn-secondary qi-btn-sm" data-qi-toast="Showing all policies (demo).">View all policies <svg class="top-icon"><use href="#ic-arrow"/></svg></button></div>
+      <div class="qi-row"><div class="qi-col-12 qi-col-lg-8"><div class="qi-card" style="height:100%"><div class="qi-flex qi-align-center qi-justify-between qi-mb-4"><h3>Policy overview</h3><span class="qi-tag">Demo data</span></div>
+        <div class="qi-table-wrap"><table class="qi-table"><thead><tr><th>Policy</th><th>Coverage</th><th>Renewal</th><th>Status</th></tr></thead><tbody>
+          <tr><td><div class="qi-font-bold">Life Protect Plus</div><div class="qi-text-muted qi-text-xs">LPP-2408</div></td><td>RM 500,000</td><td>10 Jan 2027</td><td><span class="qi-badge qi-badge-success">Active</span></td></tr>
+          <tr><td><div class="qi-font-bold">HealthCare Prime</div><div class="qi-text-muted qi-text-xs">HCP-1043</div></td><td>RM 250,000</td><td>22 Feb 2027</td><td><span class="qi-badge qi-badge-success">Active</span></td></tr>
+          <tr><td><div class="qi-font-bold">CriticalCare Assist</div><div class="qi-text-muted qi-text-xs">CCA-2102</div></td><td>RM 100,000</td><td>15 Mar 2027</td><td><span class="qi-badge qi-badge-success">Active</span></td></tr>
+        </tbody></table></div>
+        <div class="qi-card-footer qi-flex qi-justify-between qi-align-center"><small class="qi-text-muted">3 policies shown</small><a href="#claims" class="qi-text-sm qi-font-bold">Manage policies →</a></div>
+      </div></div>
+      <div class="qi-col-12 qi-col-lg-4"><div class="qi-card" style="height:100%"><div class="qi-card-header"><h3>Coverage mix</h3><span class="qi-tag">RM 850k</span></div>
+       <div class="qi-statbar qi-mb-4" aria-label="Life 59%, medical 29%, critical illness 12%"><span style="width:59%;background:#d31145"></span><span style="width:29%;background:#6953a8"></span><span style="width:12%;background:#d66e66"></span></div>
+       <div class="qi-stack qi-gap-4"><div class="qi-flex qi-justify-between qi-align-center"><span class="qi-text-sm"><span style="color:#d31145">●</span> Life cover</span><strong class="qi-text-sm">59%</strong></div><div class="qi-flex qi-justify-between qi-align-center"><span class="qi-text-sm"><span style="color:#6953a8">●</span> Medical cover</span><strong class="qi-text-sm">29%</strong></div><div class="qi-flex qi-justify-between qi-align-center"><span class="qi-text-sm"><span style="color:#d66e66">●</span> Critical illness</span><strong class="qi-text-sm">12%</strong></div></div>
+       <hr class="qi-divider"><p class="qi-text-xs qi-text-muted">Coverage percentages illustrate composition, not financial recommendations.</p>
+      </div></div></div></section>
+      <section class="qi-row" id="claims"><div class="qi-col-12 qi-col-lg-7"><div class="qi-card"><div class="qi-card-header"><div><h3>Quick actions</h3><p class="qi-text-muted qi-text-sm qi-mt-1">The things you need, right here.</p></div></div><div class="qi-grid qi-grid-2"><a class="quick-action" href="claims-flow.html"><span class="quick-icon"><svg class="top-icon"><use href="#ic-file"/></svg></span><span>Submit a claim</span>→</a><a class="quick-action" href="#policies"><span class="quick-icon"><svg class="top-icon"><use href="#ic-shield"/></svg></span><span>View policies</span>→</a><button class="quick-action" data-qi-toast="Profile update opened (demo)."><span class="quick-icon"><svg class="top-icon"><use href="#ic-heart"/></svg></span><span>Update profile</span>→</button><button class="quick-action" data-qi-toast="Document centre opened (demo)."><span class="quick-icon"><svg class="top-icon"><use href="#ic-file"/></svg></span><span>Documents</span>→</button></div></div></div>
+      <div class="qi-col-12 qi-col-lg-5"><div class="qi-card" style="height:100%"><div class="qi-card-header"><h3>Recent claim activity</h3><span class="qi-badge qi-badge-info">2 updates</span></div>
+       <ol class="timeline"><li><span class="timeline-dot"></span><div><strong class="qi-text-sm">Medical claim submitted</strong><p class="qi-text-xs qi-text-muted qi-mt-1">24 October 2026 · Claim CL-104</p></div></li><li><span class="timeline-dot"></span><div><strong class="qi-text-sm">Review started</strong><p class="qi-text-xs qi-text-muted qi-mt-1">26 October 2026 · In progress</p></div></li><li><span class="timeline-dot"></span><div><strong class="qi-text-sm">Additional document needed</strong><p class="qi-text-xs qi-text-muted qi-mt-1">Upload a receipt to continue your review.</p><a href="claims-flow.html" class="qi-text-xs qi-font-bold">Complete request →</a></div></li></ol>
+      </div></div></section>
+      <footer class="qi-text-xs qi-text-muted qi-mt-8" id="support">PolicyHub demonstration — fictional data. Unofficial Qi-inspired AI UI Kit; not an AIA product or the official Qi library.</footer>
+    </main>
+  </div>
+  <div class="qi-modal-backdrop" id="new-claim" hidden><div class="qi-modal" role="dialog" aria-modal="true" aria-labelledby="new-claim-title"><div class="qi-modal-head"><h2 id="new-claim-title" style="font-size:1.35rem">Start a new claim</h2><button class="qi-modal-close" aria-label="Close" data-qi-dismiss="modal">×</button></div><p class="qi-text-muted qi-mt-3">Choose how you'd like to begin. You can save your progress as you go.</p><div class="qi-stack qi-gap-3 qi-mt-6"><a href="claims-flow.html" class="qi-btn qi-btn-primary qi-btn-full">Start claim form</a><button class="qi-btn qi-btn-secondary qi-btn-full" data-qi-dismiss="modal">Maybe later</button></div></div></div>
+  <script src="../js/qi.js"></script>
+</body></html>
