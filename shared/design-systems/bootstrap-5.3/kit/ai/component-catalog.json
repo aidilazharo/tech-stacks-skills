@@ -1,0 +1,631 @@
+{
+  "schema": 1,
+  "framework": "Bootstrap",
+  "version": "5.3.6",
+  "license": "MIT",
+  "source": "Bootstrap Authors; compiled assets copied from local installed Bootstrap 5.3.6 distribution",
+  "components": [
+    {
+      "name": "Grid",
+      "category": "layout",
+      "classes": [
+        "row",
+        "col",
+        "col-md-6",
+        "g-3"
+      ],
+      "use": "Use responsive rows, 12-column grids and breakpoint modifiers.",
+      "api": "CSS",
+      "states": [
+        "Responsive columns",
+        "spacing and wrapping"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Container",
+      "category": "layout",
+      "classes": [
+        "container",
+        "container-fluid",
+        "container-lg"
+      ],
+      "use": "Center layouts with horizontal gutters.",
+      "api": "CSS",
+      "states": [
+        "Fixed or full-width containers"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Gutters",
+      "category": "layout",
+      "classes": [
+        "gx-3",
+        "gy-4",
+        "g-0"
+      ],
+      "use": "Control vertical and horizontal layout spacing.",
+      "api": "CSS",
+      "states": [
+        "Responsive gutters"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Utilities",
+      "category": "layout",
+      "classes": [
+        "d-flex",
+        "gap-3",
+        "justify-content-between",
+        "mt-4"
+      ],
+      "use": "Apply spacing, display, alignment and sizing.",
+      "api": "CSS",
+      "states": [
+        "Responsive utility modifiers"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Typography",
+      "category": "layout",
+      "classes": [
+        "display-6",
+        "lead",
+        "text-body-secondary"
+      ],
+      "use": "Use semantic text hierarchy and readable copy.",
+      "api": "CSS",
+      "states": [
+        "Heading styles"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Color modes",
+      "category": "layout",
+      "classes": [
+        "data-bs-theme",
+        "text-bg-primary",
+        "bg-body"
+      ],
+      "use": "Support light/dark theme tokens and contrast.",
+      "api": "CSS",
+      "states": [
+        "Light",
+        "dark and automatic"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Navbar",
+      "category": "navigation",
+      "classes": [
+        "navbar",
+        "navbar-expand-lg",
+        "navbar-toggler"
+      ],
+      "use": "Primary responsive navigation with toggler.",
+      "api": "Collapse",
+      "states": [
+        "Collapsed",
+        "expanded",
+        "active"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Navs and tabs",
+      "category": "navigation",
+      "classes": [
+        "nav",
+        "nav-tabs",
+        "nav-link"
+      ],
+      "use": "Switch navigational sections and panes.",
+      "api": "Tab",
+      "states": [
+        "Active",
+        "disabled",
+        "selected"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Breadcrumb",
+      "category": "navigation",
+      "classes": [
+        "breadcrumb",
+        "breadcrumb-item"
+      ],
+      "use": "Indicate hierarchical navigation with aria-label.",
+      "api": "CSS",
+      "states": [
+        "Current page aria-current"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Pagination",
+      "category": "navigation",
+      "classes": [
+        "pagination",
+        "page-item",
+        "page-link"
+      ],
+      "use": "Browse paginated data sets.",
+      "api": "CSS",
+      "states": [
+        "Active",
+        "disabled"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Dropdown",
+      "category": "navigation",
+      "classes": [
+        "dropdown",
+        "dropdown-toggle",
+        "dropdown-menu"
+      ],
+      "use": "Offer contextual actions and menus.",
+      "api": "Dropdown",
+      "states": [
+        "Open",
+        "closed",
+        "disabled"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Offcanvas",
+      "category": "navigation",
+      "classes": [
+        "offcanvas",
+        "offcanvas-header",
+        "offcanvas-body"
+      ],
+      "use": "Offer responsive side navigation and drawers.",
+      "api": "Offcanvas",
+      "states": [
+        "Shown",
+        "hidden",
+        "backdrop"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Button",
+      "category": "actions",
+      "classes": [
+        "btn",
+        "btn-primary",
+        "btn-outline-secondary",
+        "btn-sm"
+      ],
+      "use": "Trigger actions with clear label and correct button type.",
+      "api": "CSS",
+      "states": [
+        "Active",
+        "disabled",
+        "focus",
+        "loading"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Button group",
+      "category": "actions",
+      "classes": [
+        "btn-group",
+        "btn-group-vertical"
+      ],
+      "use": "Present related actions and choice sets.",
+      "api": "CSS",
+      "states": [
+        "Active",
+        "disabled"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Close button",
+      "category": "actions",
+      "classes": [
+        "btn-close"
+      ],
+      "use": "Close dismissible UI with aria-label.",
+      "api": "CSS",
+      "states": [
+        "Hover",
+        "focus",
+        "disabled"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Form controls",
+      "category": "forms",
+      "classes": [
+        "form-control",
+        "form-label",
+        "form-text"
+      ],
+      "use": "Build accessible inputs with labels and help.",
+      "api": "CSS",
+      "states": [
+        "Valid",
+        "invalid",
+        "disabled",
+        "read-only"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Select",
+      "category": "forms",
+      "classes": [
+        "form-select"
+      ],
+      "use": "Choose one or many options.",
+      "api": "CSS",
+      "states": [
+        "Disabled",
+        "valid",
+        "invalid"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Checks and radios",
+      "category": "forms",
+      "classes": [
+        "form-check",
+        "form-check-input",
+        "form-check-label"
+      ],
+      "use": "Use checkboxes, radios and switches.",
+      "api": "CSS",
+      "states": [
+        "Checked",
+        "unchecked",
+        "disabled"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Input group",
+      "category": "forms",
+      "classes": [
+        "input-group",
+        "input-group-text"
+      ],
+      "use": "Combine labels/add-ons with an input.",
+      "api": "CSS",
+      "states": [
+        "Focus",
+        "disabled"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Floating labels",
+      "category": "forms",
+      "classes": [
+        "form-floating"
+      ],
+      "use": "Pair floating labels with form controls.",
+      "api": "CSS",
+      "states": [
+        "Focus",
+        "valid",
+        "invalid"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Validation",
+      "category": "forms",
+      "classes": [
+        "was-validated",
+        "is-invalid",
+        "invalid-feedback"
+      ],
+      "use": "Provide inline validation with accessible messages.",
+      "api": "CSS",
+      "states": [
+        "Valid",
+        "invalid"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Range",
+      "category": "forms",
+      "classes": [
+        "form-range"
+      ],
+      "use": "Collect numeric values over a range.",
+      "api": "CSS",
+      "states": [
+        "Disabled",
+        "focus"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Card",
+      "category": "display",
+      "classes": [
+        "card",
+        "card-header",
+        "card-body",
+        "card-footer"
+      ],
+      "use": "Group related content and actions.",
+      "api": "CSS",
+      "states": [
+        "Stacked",
+        "horizontal",
+        "disabled content"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Table",
+      "category": "display",
+      "classes": [
+        "table",
+        "table-striped",
+        "table-hover",
+        "table-responsive"
+      ],
+      "use": "Show tabular information responsively.",
+      "api": "CSS",
+      "states": [
+        "Striped",
+        "hover",
+        "responsive"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Badge",
+      "category": "display",
+      "classes": [
+        "badge",
+        "text-bg-success",
+        "rounded-pill"
+      ],
+      "use": "Show succinct counts and status.",
+      "api": "CSS",
+      "states": [
+        "Pill",
+        "status"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "List group",
+      "category": "display",
+      "classes": [
+        "list-group",
+        "list-group-item",
+        "list-group-item-action"
+      ],
+      "use": "Display grouped items and choices.",
+      "api": "CSS",
+      "states": [
+        "Active",
+        "disabled"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Accordion",
+      "category": "display",
+      "classes": [
+        "accordion",
+        "accordion-item",
+        "accordion-button"
+      ],
+      "use": "Reveal collapsible regions with labelled buttons.",
+      "api": "Collapse",
+      "states": [
+        "Expanded",
+        "collapsed"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Collapse",
+      "category": "display",
+      "classes": [
+        "collapse",
+        "show"
+      ],
+      "use": "Disclose content with trigger buttons.",
+      "api": "Collapse",
+      "states": [
+        "Expanded",
+        "collapsed"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Carousel",
+      "category": "display",
+      "classes": [
+        "carousel",
+        "carousel-item",
+        "carousel-control-next"
+      ],
+      "use": "Cycle through slides with controls and indicators.",
+      "api": "Carousel",
+      "states": [
+        "Active slide",
+        "paused"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Alert",
+      "category": "feedback",
+      "classes": [
+        "alert",
+        "alert-success",
+        "alert-dismissible"
+      ],
+      "use": "Present status and feedback.",
+      "api": "Alert",
+      "states": [
+        "Visible",
+        "dismissed"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Modal",
+      "category": "feedback",
+      "classes": [
+        "modal",
+        "modal-dialog",
+        "modal-content"
+      ],
+      "use": "Request focused confirmation with focus management.",
+      "api": "Modal",
+      "states": [
+        "Shown",
+        "hidden",
+        "backdrop"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Toast",
+      "category": "feedback",
+      "classes": [
+        "toast",
+        "toast-header",
+        "toast-body"
+      ],
+      "use": "Show transient notifications.",
+      "api": "Toast",
+      "states": [
+        "Shown",
+        "hidden"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Progress",
+      "category": "feedback",
+      "classes": [
+        "progress",
+        "progress-bar"
+      ],
+      "use": "Express determinate completion with accessible values.",
+      "api": "CSS",
+      "states": [
+        "Determinate",
+        "stacked",
+        "striped"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Spinner",
+      "category": "feedback",
+      "classes": [
+        "spinner-border",
+        "spinner-grow"
+      ],
+      "use": "Indicate indeterminate loading; supply readable status.",
+      "api": "CSS",
+      "states": [
+        "Active",
+        "visually-hidden text"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Tooltip",
+      "category": "feedback",
+      "classes": [
+        "data-bs-toggle=tooltip",
+        "tooltip"
+      ],
+      "use": "Supplement labels without hiding essential information.",
+      "api": "Tooltip",
+      "states": [
+        "Shown",
+        "hidden"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Popover",
+      "category": "feedback",
+      "classes": [
+        "data-bs-toggle=popover",
+        "popover"
+      ],
+      "use": "Display supplementary interactive context.",
+      "api": "Popover",
+      "states": [
+        "Shown",
+        "hidden"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Image",
+      "category": "media",
+      "classes": [
+        "img-fluid",
+        "rounded",
+        "img-thumbnail"
+      ],
+      "use": "Make imagery responsive and accessible.",
+      "api": "CSS",
+      "states": [
+        "Responsive",
+        "thumbnail"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Ratio",
+      "category": "media",
+      "classes": [
+        "ratio",
+        "ratio-16x9",
+        "ratio-4x3"
+      ],
+      "use": "Provide consistent aspect ratios for embedded media.",
+      "api": "CSS",
+      "states": [
+        "Aspect-ratio variants"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    },
+    {
+      "name": "Placeholder",
+      "category": "media",
+      "classes": [
+        "placeholder",
+        "placeholder-glow"
+      ],
+      "use": "Provide skeleton loading placeholders.",
+      "api": "CSS",
+      "states": [
+        "Loading",
+        "animated"
+      ],
+      "semantic": "Use semantic HTML, accessible names and WAI-ARIA only as needed."
+    }
+  ]
+}

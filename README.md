@@ -32,3 +32,7 @@ Scaffold code is executable and must be reviewed before npm/dotnet/Maven runs; d
 
 React/Angular demo APIs use Express + Drizzle ORM + SQLite in the same npm app for one-click local startup. NestJS uses Drizzle + SQLite, .NET uses EF Core SQLite, and Spring uses Spring Data JPA SQLite.
 These are development starter examples, not production-reviewed templates. Live dependency download and compiler verification should be completed in your approved CI environment.
+
+## Design systems · v1.1.2
+
+The catalogue now includes **AIA Qi** and **Bootstrap v5.3**. Both offer a pinned component inventory, CSS, tokens, licence, and AI guidance. Bootstrap includes 5.3.6 compiled CSS + JS. ATGV displays the catalogue-selected design systems dynamically; no remote scripts run inside the privileged VS Code webview.
