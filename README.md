@@ -23,6 +23,10 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 4. ATGV downloads, validates and pins the exact Git SHA, and stores a versioned offline copy.
 5. Existing project source and previous approved artifacts are preserved. **Save Stack** only generates into a safe new bootstrap branch.
 
+## Example repository URLs
+
+The `templateRepository` fields in `tech-stacks/*/stack.json` are **dummy documentation examples** (`example-org`) and are not cloneable sources. ATGV bootstraps from the activated catalog snapshot's local `scaffold/` assets, not from these example URLs. Configure your real SDLC Catalog in ATGV Extension Settings.
+
 ## Security
 
 Catalog pulls are **read-only** and never push to this source repository. Clone/pull tokens are stored in VS Code SecretStorage. Never publish secrets or SQLite data.
