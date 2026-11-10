@@ -17,7 +17,7 @@
   ],
   "e2e": [],
   "notes": "Validate Node.js 26 support with the selected NestJS 11 release before install.",
-  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/nestjs/scaffold",
+  "templateRepository": "https://github.com/example-org/tech-stacks-skills/tree/main/tech-stacks/nestjs/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",
   "previewUrl": "http://127.0.0.1:3000/api/health",
