@@ -18,7 +18,7 @@
   ],
   "e2e": [],
   "notes": "Use approved .NET and Entity Framework Core package versions.",
-  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/dotnet/scaffold",
+  "templateRepository": "https://github.com/example-org/tech-stacks-skills/tree/main/tech-stacks/dotnet/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",
   "previewUrl": "http://127.0.0.1:5111/api/health",
