@@ -19,7 +19,7 @@
     "Playwright"
   ],
   "notes": "Accessible React frontend; validate UI with axe-core and Playwright.",
-  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/react/scaffold",
+  "templateRepository": "https://github.com/example-org/tech-stacks-skills/tree/main/tech-stacks/react/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",
   "previewUrl": "http://127.0.0.1:5173/",
