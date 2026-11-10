@@ -19,7 +19,7 @@
     "Playwright"
   ],
   "notes": "Modern Angular 22, not legacy AngularJS 1.x; validate dependency compatibility.",
-  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/angular/scaffold",
+  "templateRepository": "https://github.com/example-org/tech-stacks-skills/tree/main/tech-stacks/angular/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",
   "previewUrl": "http://127.0.0.1:4200/",
