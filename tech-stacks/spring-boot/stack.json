@@ -18,7 +18,7 @@
   ],
   "e2e": [],
   "notes": "Validate Java 25 support against the selected Spring Boot 3.x release and approved BOM.",
-  "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/spring-boot/scaffold",
+  "templateRepository": "https://github.com/example-org/tech-stacks-skills/tree/main/tech-stacks/spring-boot/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",
   "previewUrl": "http://127.0.0.1:8080/api/health",
