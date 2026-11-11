@@ -1,13 +1,26 @@
-# React + REST API + Drizzle ORM + SQLite
+# React 19 + TypeScript 5.9 — ATGV runnable scaffold
 
-This **remote-only** skeleton is copied from the verified GitHub catalog, not from VS Code extension source. API and frontend share one npm project for one-click bootstrap.
+This scaffold is supplied by the catalog and copied to a **project** branch by ATGV. Install packages in the generated project directory, **not** in the catalog root.
 
-- `npm install` (review dependencies before executing)
-- `npm run db:migrate` — create `data/app.db`
-- `npm run dev` — frontend and REST API
-- `npm test` — SQLite CRUD integration test
-- `npm run build` — production frontend
-- API `http://127.0.0.1:3001/api/health`, Swagger `http://127.0.0.1:3001/api/docs`
-- SQLite `sqlite3 data/app.db "SELECT * FROM tasks;"`
+```sh
+npm install
+npm run db:migrate
+npm test
+npm run build
+npm run dev
+```
+Browser E2E + axe accessibility checks require a browser install once per machine:
+```sh
+npx playwright install chromium
+npm run test:e2e
+```
 
-For production, replace the starter's idempotent SQL initializer with versioned migrations and add authentication, role authorization, audit logging and CI checks.
+**macOS/Linux npm cache permission fallback (no sudo):**
+```sh
+mkdir -p "$HOME/.cache/atgv-npm"
+npm_config_cache="$HOME/.cache/atgv-npm" npm install
+```
+
+For Windows PowerShell, use `$env:npm_config_cache = Join-Path $HOME '.cache\atgv-npm'` before `npm install`.
+See `../../docs/STACK-READINESS.md` for preflight checks, Node constraints, and lockfile-generation instructions.
+The initial SQLite schema is an idempotent example rather than a production migration system.

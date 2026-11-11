@@ -14,10 +14,10 @@
     "Mockito"
   ],
   "integration": [
-    "Spring Cloud Contract"
+    "MockMvc (controller test)"
   ],
   "e2e": [],
-  "notes": "Validate Java 25 support against the selected Spring Boot 3.x release and approved BOM.",
+  "notes": "Spring Boot 3.5.x / Java 25 skeleton. JUnit 5, AssertJ, Mockito and MockMvc come from spring-boot-starter-test. Spring Cloud Contract is not configured.",
   "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/spring-boot/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",

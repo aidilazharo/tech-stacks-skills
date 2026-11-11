@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.1`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.3`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `tech-stacks/<id>/stack.json`: five stack descriptors
 - `tech-stacks/<id>/scaffold/`: runnable project starter, API, ORM and SQLite examples
@@ -33,6 +33,10 @@ Scaffold code is executable and must be reviewed before npm/dotnet/Maven runs; d
 React/Angular demo APIs use Express + Drizzle ORM + SQLite in the same npm app for one-click local startup. NestJS uses Drizzle + SQLite, .NET uses EF Core SQLite, and Spring uses Spring Data JPA SQLite.
 These are development starter examples, not production-reviewed templates. Live dependency download and compiler verification should be completed in your approved CI environment.
 
-## Design systems · v1.1.2
+## Design systems · v1.1.3
 
 The catalogue now includes **AIA Qi** and **Bootstrap v5.3**. Both offer a pinned component inventory, CSS, tokens, licence, and AI guidance. Bootstrap includes 5.3.6 compiled CSS + JS. ATGV displays the catalogue-selected design systems dynamically; no remote scripts run inside the privileged VS Code webview.
+
+## Scaffold readiness · v1.1.3
+
+Use `node scripts/validate-catalog.mjs` for an offline structural check. See [`docs/STACK-READINESS.md`](docs/STACK-READINESS.md) for per-stack test/build instructions, npm cache permission handling and lockfile-generation guidance. The three npm-based starter projects contain real unit/API tests, with browser/E2E tests in the React and Angular scaffolds. Runtime compilation and dependency-resolution checks require access to the approved npm, Maven and NuGet registries and supported Node/Java/.NET runtimes.

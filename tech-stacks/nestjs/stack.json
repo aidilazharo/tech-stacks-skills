@@ -9,14 +9,14 @@
   "framework": "NestJS 11",
   "buildTool": "npm",
   "unit": [
-    "Vitest",
-    "Supertest"
+    "Vitest"
   ],
   "integration": [
-    "Jest OpenAPI"
+    "Supertest",
+    "SQLite HTTP integration"
   ],
   "e2e": [],
-  "notes": "Validate Node.js 26 support with the selected NestJS 11 release before install.",
+  "notes": "NestJS 11 TypeScript starter; Vitest validation tests and Supertest live API/SQLite integration tests. OpenAPI docs served via Swagger.",
   "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/nestjs/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",
@@ -27,5 +27,7 @@
   "stackType": "backend",
   "runCommand": "npm run dev",
   "testCommand": "npm test",
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "testApiCommand": "npm run test:api",
+  "installCommand": "npm install"
 }

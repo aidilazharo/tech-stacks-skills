@@ -10,15 +10,16 @@
   "buildTool": "Vite",
   "unit": [
     "Vitest",
-    "Testing Library"
+    "React Testing Library"
   ],
   "integration": [
-    "axe-core"
+    "Node test runner (SQLite API)",
+    "axe-core (browser accessibility)"
   ],
   "e2e": [
     "Playwright"
   ],
-  "notes": "Accessible React frontend; validate UI with axe-core and Playwright.",
+  "notes": "TypeScript + Vite scaffold with Vitest/Testing Library, Node API integration, Playwright/axe browser checks. Browser binaries must be installed separately.",
   "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/react/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",
@@ -29,5 +30,8 @@
   "stackType": "frontend",
   "runCommand": "npm run dev",
   "testCommand": "npm test",
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "e2eCommand": "npm run test:e2e",
+  "testApiCommand": "npm run test:api",
+  "installCommand": "npm install"
 }

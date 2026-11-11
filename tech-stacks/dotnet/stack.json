@@ -9,15 +9,11 @@
   "framework": "ASP.NET Core / EF Core",
   "buildTool": "dotnet CLI",
   "unit": [
-    "xUnit",
-    "FluentAssertions",
-    "NSubstitute"
+    "xUnit"
   ],
-  "integration": [
-    "WebApplicationFactory"
-  ],
+  "integration": [],
   "e2e": [],
-  "notes": "Use approved .NET and Entity Framework Core package versions.",
+  "notes": "ASP.NET Core 10 + EF Core SQLite with xUnit starter test. FluentAssertions, NSubstitute and WebApplicationFactory are not included; add them when introducing corresponding tests.",
   "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/dotnet/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",

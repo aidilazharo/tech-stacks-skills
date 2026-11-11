@@ -9,3 +9,9 @@
 7. `npm test` and `npm run build` verify source and compile types.
 
 ORM: Drizzle + libSQL SQLite driver. Upgrade starter tests to live DB integration tests before production.
+
+## Catalog 1.1.3 test commands
+
+- `npm test` — Vitest unit + Supertest SQLite API integration
+- `npm run build` — compile scaffold
+- `npm_config_cache="$HOME/.cache/atgv-npm" npm install` — macOS/Linux fallback when the default npm cache is not writable

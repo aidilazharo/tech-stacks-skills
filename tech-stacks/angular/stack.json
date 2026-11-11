@@ -2,7 +2,7 @@
   "schema": 1,
   "id": "angular",
   "name": "Angular",
-  "label": "ANGULARJS",
+  "label": "ANGULAR",
   "accent": "#e99a0a",
   "runtime": "Angular 22",
   "language": "TypeScript",
@@ -13,12 +13,13 @@
     "Angular TestBed"
   ],
   "integration": [
-    "axe-core"
+    "Node test runner (SQLite API)",
+    "axe-core (browser accessibility)"
   ],
   "e2e": [
     "Playwright"
   ],
-  "notes": "Modern Angular 22, not legacy AngularJS 1.x; validate dependency compatibility.",
+  "notes": "Angular 22 requires Node 22.22.3+ (or supported 24/26) and TypeScript >=6.0 <6.1; use Angular CLI Vitest runner and Playwright browser tests.",
   "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/angular/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",
@@ -29,5 +30,8 @@
   "stackType": "frontend",
   "runCommand": "npm run dev",
   "testCommand": "npm test",
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "e2eCommand": "npm run test:e2e",
+  "testApiCommand": "npm run test:api",
+  "installCommand": "npm install"
 }
