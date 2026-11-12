@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "1.1.4",
+  "version": "1.1.6",
   "sourceBranch": "main",
   "roles": [
     "business-analyst",
@@ -31,7 +31,7 @@
   ],
   "designSystems": [
     "aia-qi",
-    "bootstrap-5.3"
+    "bootstrap-5-3"
   ],
   "description": "GitHub main is the single source of truth for technology skeletons, role skills, design templates and access manuals.",
   "designSystemCatalogs": {
@@ -45,14 +45,14 @@
       "status": "unofficial Qi-inspired adaptation",
       "label": "AIA QI"
     },
-    "bootstrap-5.3": {
+    "bootstrap-5-3": {
       "label": "Bootstrap v5.3",
-      "components": "shared/design-systems/bootstrap-5.3/kit/ai/component-catalog.json",
-      "showcase": "shared/design-systems/bootstrap-5.3/kit/docs/index.html",
-      "css": "shared/design-systems/bootstrap-5.3/kit/css/bootstrap.min.css",
-      "js": "shared/design-systems/bootstrap-5.3/kit/js/bootstrap.bundle.min.js",
-      "tokens": "shared/design-systems/bootstrap-5.3/kit/tokens/tokens.json",
-      "license": "shared/design-systems/bootstrap-5.3/kit/LICENSE",
+      "components": "shared/design-systems/bootstrap-5-3/kit/ai/component-catalog.json",
+      "showcase": "shared/design-systems/bootstrap-5-3/kit/docs/index.html",
+      "css": "shared/design-systems/bootstrap-5-3/kit/css/bootstrap.min.css",
+      "js": "shared/design-systems/bootstrap-5-3/kit/js/bootstrap.bundle.min.js",
+      "tokens": "shared/design-systems/bootstrap-5-3/kit/tokens/tokens.json",
+      "license": "shared/design-systems/bootstrap-5-3/kit/LICENSE",
       "kitVersion": "5.3.6",
       "status": "Official Bootstrap MIT distribution with independent ATGV AI guidance"
     }

@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.1.6 — 2026-11-12
+
+- Fix inconsistent version metadata in the uploaded 1.1.5 archive (catalog.json still 1.1.4).
+- Correct the Bootstrap design-system ID and referenced paths to `bootstrap-5-3`, matching the catalog directory and the extension normalization.
+- Add read-only bootstrap manifest audit utility and regression checks.
+- Reinforce catalog validation, scaffold path safety checks, and GitHub CI checks.
+- Retain 1.1.4 Windows SQLite cleanup correction for React and Angular starters.
+- Do not silently repair or rewrite existing application checkout files.
+
+## 1.1.5 — uploaded archive
+
+- VERSION had been advanced without aligning catalog.json and release notes. This inconsistency is corrected in 1.1.6.
+
 ## 1.1.4 — 2026-11-12
 
 - React and Angular SQLite API scaffold tests: await database client closure and retry temporary database deletion on Windows when SQLite file handles remain briefly busy (`EBUSY` / `EPERM`).

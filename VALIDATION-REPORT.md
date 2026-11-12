@@ -1,24 +1,22 @@
-# Catalog 1.1.3 — local verification report
+# Catalog 1.1.6 — validation report
 
-Date: 2026-11-11
+Date: 2026-11-12
 
-## Passed offline checks
+## Checks passed locally (Linux)
 
-- All 24 JSON files parse successfully.
-- Catalog `VERSION`, catalog manifest, and the five stack descriptors agree.
-- npm script references and advertised testing dependencies pass `node scripts/validate-catalog.mjs`.
-- All shipped `.mjs` files pass `node --check`.
-- Existing NestJS static test passes with Node's built-in test runner.
-- Spring Boot POM parses as XML.
-- React TypeScript entry and Angular Vitest target exist; Playwright test files exist for React and Angular.
+- `node scripts/validate-catalog.mjs`: five stacks, 18 roles, two design systems; no errors.
+- ATGV v0.3.07 extension `inspectManifest`: passed using the updated catalog tree.
+- All 24 catalog JSON files parsed.
+- `node --test tests/catalog-bootstrap-audit.test.mjs`: 5 tests passed.
+- `node --test tech-stacks/nestjs/scaffold/test/static.test.mjs`: 1 test passed.
+- `node shared/design-systems/aia-qi/kit/tests/verify.js`: passed.
+- `node --check` for catalog scripts and React/Angular API server/test `.mjs`: passed.
+- Distribution archive verified using CRC and safe-path checks after packaging.
 
-## Checks not possible here
+## Warnings
 
-The build environment cannot reach `registry.npmjs.org`; npm package installation, package-lock generation, TypeScript compilation, Angular/NestJS integration tests and Playwright browser tests were **not run**. .NET and Maven toolchains were not installed here. The catalog is structurally validated, **not certified to compile/run** until tests are executed in an approved connected environment.
+- React, Angular and NestJS `package-lock.json` files are absent; create them from a supported Node environment with approved npm registry access before enforcing `npm ci`.
+- No live npm dependency resolution, complete application builds, browser runs, .NET or Maven builds, or native Windows SQLite test execution were performed here.
+- The project's existing `atgv.bootstrap.json` has not been inspected; catalog updates alone cannot reconcile it.
 
-## Remaining release gates
-
-1. Generate complete npm lockfiles in React, Angular and NestJS scaffolds using a connected registry and commit them.
-2. Execute `npm ci`, `npm test`, `npm run build` (and browser e2e for frontend stacks) using supported Node versions.
-3. Execute `dotnet restore && dotnet test && dotnet build`, and `mvn test && mvn package`.
-4. Verify the consuming ATGV extension handles a writable npm cache, final install exit codes, and TDD readiness. These behaviors are not controlled by the catalog alone.
+The new GitHub Actions workflow supplies offline checks on both Linux and Windows **after** it is committed to the repository. Its presence in this archive is not evidence of a completed Windows CI run.

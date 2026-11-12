@@ -1,30 +1,89 @@
-import { readFileSync, existsSync } from 'node:fs';
+/** Structural/metadata validation of the GitHub SDLC catalog. No npm install. */
+import { readFileSync, existsSync, lstatSync, readdirSync } from 'node:fs';
 import { fileURLToPath } from 'node:url';
-import { dirname, join, resolve } from 'node:path';
+import { dirname, join, resolve, relative, sep } from 'node:path';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const readJSON = (relative) => JSON.parse(readFileSync(join(root, relative), 'utf8'));
 const errors = [];
-const warn = [];
+const warnings = [];
 const assert = (ok, message) => { if (!ok) errors.push(message); };
+const readJSON = (relativePath) => JSON.parse(readFileSync(join(root, relativePath), 'utf8'));
+const validPath = (item) => typeof item === 'string' && item.length > 0 && item.length <= 450 && !item.includes('\\') && !item.includes('\0') && !item.startsWith('/') && !item.endsWith('/') && item.split('/').every((s) => s && s !== '.' && s !== '..' && /^[a-zA-Z0-9_.@-]+$/.test(s));
 const catalog = readJSON('catalog.json');
 const version = readFileSync(join(root, 'VERSION'), 'utf8').trim();
+assert(catalog.schema === 1, 'Catalog schema must equal 1');
+assert(/^\d+\.\d+\.\d+$/.test(version), 'VERSION must be a semantic version');
 assert(catalog.version === version, 'catalog.json and VERSION mismatch');
+assert(catalog.sourceBranch === 'main', 'Catalog sourceBranch must be main');
+assert(Array.isArray(catalog.techStacks) && catalog.techStacks.length > 0, 'No technology stacks declared');
+assert(Array.isArray(catalog.roles) && catalog.roles.length > 0, 'No role skills declared');
+assert(Array.isArray(catalog.designSystems) && catalog.designSystems.length > 0, 'No design systems declared');
 
-for (const id of catalog.techStacks) {
+const catalogFiles = [];
+function walk(folder, prefix = '') {
+  for (const entry of readdirSync(folder, { withFileTypes: true })) {
+    if (entry.name === '.git' || entry.name === 'node_modules' || entry.name === '.DS_Store') continue;
+    const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
+    assert(validPath(rel), `Unsafe path: ${rel}`);
+    if (!validPath(rel)) continue;
+    if (entry.isSymbolicLink()) { errors.push(`Symlink not supported: ${rel}`); continue; }
+    if (entry.isDirectory()) walk(join(folder, entry.name), rel);
+    else if (entry.isFile()) {
+      catalogFiles.push(rel);
+      if ((rel.startsWith('tech-stacks/') || rel.startsWith('shared/')) && lstatSync(join(root, rel)).size > 1024 * 1024)
+        errors.push(`Catalog asset exceeds 1 MiB: ${rel}`);
+    } else errors.push(`Unsupported filesystem entry: ${rel}`);
+  }
+}
+walk(root);
+const paths = new Set(catalogFiles);
+assert(catalogFiles.length < 600, 'Catalog exceeds 600-file limit');
+assert(catalogFiles.reduce((total, f) => total + lstatSync(join(root, f)).size, 0) < 24 * 1024 * 1024, 'Catalog exceeds 24 MiB limit');
+const lowerPaths = new Set();
+for (const file of catalogFiles) {
+  const lower = file.toLowerCase();
+  if (lowerPaths.has(lower)) errors.push('Case-insensitive file name collision (Windows): ' + file);
+  lowerPaths.add(lower);
+}
+for (const group of ['roles', 'techStacks', 'designSystems']) {
+  const ids = catalog[group];
+  if (!Array.isArray(ids)) continue;
+  assert(new Set(ids).size === ids.length, `${group}: duplicate IDs`);
+  assert(ids.every((id) => typeof id === 'string' && /^[a-z0-9][a-z0-9_.-]{0,79}$/i.test(id)), `${group}: invalid ID`);
+}
+for (const role of catalog.roles ?? []) assert(paths.has(`roles/${role}/SKILL.md`), `Missing role SKILL.md: ${role}`);
+for (const id of catalog.designSystems ?? []) {
+  assert(paths.has(`shared/design-systems/${id}/AI-GUIDANCE.md`), `Missing design guidance: ${id}`);
+  const kit = catalog.designSystemCatalogs?.[id];
+  assert(kit && typeof kit === 'object', `Missing designSystemCatalogs entry: ${id}`);
+  if (kit && typeof kit === 'object') {
+    for (const field of ['components', 'showcase', 'css', 'tokens', 'license', ...(kit.js ? ['js'] : [])]) {
+      const file = kit[field];
+      assert(validPath(file) && file.startsWith(`shared/design-systems/${id}/`) && paths.has(file), `${id}: missing or unsafe ${field}`);
+    }
+  }
+}
+for (const id of catalog.techStacks ?? []) {
   const base = `tech-stacks/${id}`;
+  assert(paths.has(`${base}/stack.json`), `${id}: stack.json missing`);
+  if (!paths.has(`${base}/stack.json`)) continue;
   const cfg = readJSON(`${base}/stack.json`);
   assert(cfg.id === id, `${id}: metadata id mismatch`);
-  for (const entry of [cfg.scaffold, cfg.accessManual]) assert(existsSync(join(root, base, entry)), `${id}: missing ${entry}`);
+  assert(['frontend', 'backend'].includes(cfg.stackType), `${id}: unsupported stackType`);
+  for (const entry of [cfg.scaffold, cfg.accessManual]) {
+    assert(validPath(entry) || (typeof entry === 'string' && entry.endsWith('/') && validPath(entry.slice(0, -1))), `${id}: invalid path in stack metadata`);
+    if (typeof entry === 'string') assert(existsSync(join(root, base, entry)), `${id}: missing ${entry}`);
+  }
+  const scaffold = `${base}/scaffold`;
+  assert(catalogFiles.some((rel) => rel.startsWith(`${scaffold}/`)), `${id}: empty scaffold`);
+  assert(!paths.has(`${scaffold}/atgv.bootstrap.json`), `${id}: atgv.bootstrap.json must be generated by ATGV, never included in scaffold`);
   if (['react', 'angular', 'nestjs'].includes(id)) {
-    const scaffold = `${base}/scaffold`;
     const pkg = readJSON(`${scaffold}/package.json`);
     for (const [key, scriptName] of [['test', cfg.testCommand], ['build', cfg.buildCommand], ['run', cfg.runCommand], ['e2e', cfg.e2eCommand]]) {
-      if (scriptName) {
-        assert(scriptName.startsWith('npm run ') || scriptName === 'npm test', `${id}: unexpected ${key} command`);
-        const name = scriptName === 'npm test' ? 'test' : scriptName.slice('npm run '.length);
-        assert(Boolean(pkg.scripts[name]), `${id}: missing npm script ${name}`);
-      }
+      if (!scriptName) continue;
+      assert(scriptName.startsWith('npm run ') || scriptName === 'npm test', `${id}: unexpected ${key} command`);
+      const name = scriptName === 'npm test' ? 'test' : scriptName.slice('npm run '.length);
+      assert(Boolean(pkg.scripts?.[name]), `${id}: missing npm script ${name}`);
     }
     const dev = pkg.devDependencies ?? {};
     const all = { ...pkg.dependencies, ...dev };
@@ -34,20 +93,27 @@ for (const id of catalog.techStacks) {
     }
     if (cfg.e2e?.includes('Playwright')) {
       assert(Boolean(dev['@playwright/test']), `${id}: missing Playwright dependency`);
-      assert(existsSync(join(root, `${scaffold}/e2e/smoke.spec.ts`)), `${id}: missing Playwright smoke test`);
-      assert(Boolean(dev['@axe-core/playwright']), `${id}: missing @axe-core/playwright`);
+      assert(paths.has(`${scaffold}/e2e/smoke.spec.ts`), `${id}: missing Playwright smoke test`);
+      assert(Boolean(dev['@axe-core/playwright']), `${id}: missing axe-core Playwright dependency`);
     }
-    if (!existsSync(join(root, `${scaffold}/package-lock.json`))) warn.push(`${id}: lockfile absent (generate via npm registry before CI use)`);
+    if (!paths.has(`${scaffold}/package-lock.json`)) warnings.push(`${id}: npm lockfile absent (generate via approved registry before npm ci)`);
   }
 }
-const react = readJSON('tech-stacks/react/stack.json');
-assert(react.language === 'TypeScript', 'React language should be TypeScript');
-assert(existsSync(join(root, 'tech-stacks/react/scaffold/src/main.tsx')), 'React main.tsx missing');
-assert(!existsSync(join(root, 'tech-stacks/react/scaffold/src/main.jsx')), 'Stale React JSX entry exists');
+assert(paths.has('tech-stacks/react/scaffold/src/main.tsx'), 'React main.tsx missing');
+assert(!paths.has('tech-stacks/react/scaffold/src/main.jsx'), 'Stale React main.jsx entry');
 const ng = readJSON('tech-stacks/angular/scaffold/angular.json');
 assert(Boolean(ng.projects?.['atgv-app']?.architect?.test), 'Angular test builder missing');
-
-for (const message of warn) console.warn('WARN', message);
-for (const message of errors) console.error('FAIL', message);
+for (const id of ['react', 'angular']) {
+  const testPath = `tech-stacks/${id}/scaffold/server/api.test.mjs`;
+  assert(paths.has(testPath), `${id}: SQLite API test missing`);
+  if (paths.has(testPath)) {
+    const source = readFileSync(join(root, testPath), 'utf8');
+    assert(source.includes('await client.close()'), `${id}: SQLite cleanup must await the client close`);
+    assert(/maxRetries\s*:\s*\d+/.test(source), `${id}: SQLite cleanup should retry Windows file locks`);
+    assert(source.includes('server.close('), `${id}: SQLite test must shut down HTTP server`);
+  }
+}
+for (const warning of warnings) console.warn('WARN', warning);
+for (const problem of errors) console.error('FAIL', problem);
 if (errors.length) { console.error(`${errors.length} catalog validation failure(s)`); process.exitCode = 1; }
-else console.log(`PASS catalog ${version}: ${catalog.techStacks.length} stack descriptors, ${warn.length} lockfile warning(s)`);
+else console.log(`PASS catalog ${version}: ${catalog.techStacks.length} stacks, ${catalog.roles.length} roles, ${catalog.designSystems.length} design systems, ${warnings.length} warning(s)`);

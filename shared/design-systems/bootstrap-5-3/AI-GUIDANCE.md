@@ -21,4 +21,4 @@ Source: tech-stacks-skills/main. Framework: official Bootstrap 5.3.6 compiled CS
 
 ## Output
 - For every screen, provide user flow, wireframe, responsive screen mockup, interactive prototype and developer handoff with required components and behaviors.
-- Record selected framework ID `bootstrap-5.3`, catalogue revision and toolkit version in output metadata.
+- Record selected framework ID `bootstrap-5-3`, catalogue revision and toolkit version in output metadata.

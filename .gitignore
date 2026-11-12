@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+.vscode/
+*.log
+*.db
+*.db-shm
+*.db-wal
+.env
+.env.local
+**/dist/
+**/coverage/
+**/test-results/
+**/playwright-report/
