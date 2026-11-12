@@ -12,5 +12,13 @@ test('SQLite-backed task API supports create/list/delete',async()=>{
   const task=await created.json();assert.equal(task.title,'Example task');
   const all=await(await fetch(base+'/api/tasks')).json();assert.ok(all.some(t=>t.id===task.id));
   assert.equal((await fetch(base+'/api/tasks/'+task.id,{method:'DELETE'})).status,204);
- }finally{await new Promise(r=>server.close(r));client.close();await rm(folder,{recursive:true,force:true});}
+ } finally {
+  // Close active connections before removing the SQLite database on Windows.
+  await new Promise((resolve, reject) => {
+   server.close(error => error ? reject(error) : resolve());
+  });
+  await client.close();
+  // Windows may briefly retain SQLite file handles after the client closes.
+  await rm(folder, {recursive:true, force:true, maxRetries:10, retryDelay:200});
+ }
 });

@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.4 — 2026-11-12
+
+- React and Angular SQLite API scaffold tests: await database client closure and retry temporary database deletion on Windows when SQLite file handles remain briefly busy (`EBUSY` / `EPERM`).
+- Retain real test failures and existing acceptance assertions; no tests are disabled or bypassed.
+- Existing generated project repositories are not modified by downloading this catalog update; apply the same patch to an existing `server/api.test.mjs` as needed.
+- Windows integration execution remains necessary to confirm the EBUSY fix in the target environment.
+
 ## 1.1.3 — 2026-11-11
 
 - React: convert JSX starter to TypeScript/TSX; add Vitest + React Testing Library, Playwright and axe-core tests.
