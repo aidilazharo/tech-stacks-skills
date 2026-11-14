@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "id": "atgv-approved-webview-libraries",
+  "version": "1.0.0",
+  "description": "Trusted offline webview editor and document UI dependencies. SHA-256 values verified by the ATGV trusted runtime before activation.",
+  "assets": [
+    {
+      "path": "codemirror/LICENSE.txt",
+      "bytes": 1151,
+      "sha256": "957f8d2783be643a5c528e5d632b770f833343d2f159286a2ed7ca666ad5eab8"
+    },
+    {
+      "path": "codemirror/addon/edit/closebrackets.js",
+      "bytes": 6792,
+      "sha256": "27e21e6907753f85aa748e8135b2c8890f10bb395ec72c214a62eb15de07da0d"
+    },
+    {
+      "path": "codemirror/addon/edit/matchbrackets.js",
+      "bytes": 6626,
+      "sha256": "2bb0fa2c8f676ceffe5ea85f1031dcbce2f4908c5835fce7f1a1729cf3aa0c76"
+    },
+    {
+      "path": "codemirror/lib/codemirror.css",
+      "bytes": 8722,
+      "sha256": "d30aa41229dacba5a631fd45ea0544bfdb07c78992820b67900b109b57095fb2"
+    },
+    {
+      "path": "codemirror/lib/codemirror.js",
+      "bytes": 398123,
+      "sha256": "6bb54e40daf6a348791102d7a8e5a13bcc0f85a6afce2c21a6a3fc29ed20c9c0"
+    },
+    {
+      "path": "codemirror/mode/clike/clike.js",
+      "bytes": 37026,
+      "sha256": "01111b5fd832b6f63ff7367062fb73599cb7b4cc9ab0b06268ac19280fa0a42e"
+    },
+    {
+      "path": "codemirror/mode/css/css.js",
+      "bytes": 40434,
+      "sha256": "2d5d61e774cb7c364ee9a0d76b0be0d437879d1b3bcf2cc20167f0b8f112bcb9"
+    },
+    {
+      "path": "codemirror/mode/htmlmixed/htmlmixed.js",
+      "bytes": 5684,
+      "sha256": "926ee07e08e1b9a1174922e246556915d1396b837411263db7f9b1320d6b3886"
+    },
+    {
+      "path": "codemirror/mode/javascript/javascript.js",
+      "bytes": 37854,
+      "sha256": "66d254d4a7afb93c25c0469ecc09ea2a13315651c66cd3ff5f0e0296671bdd88"
+    },
+    {
+      "path": "codemirror/mode/markdown/markdown.js",
+      "bytes": 31340,
+      "sha256": "641813f9c481bdfb2a132d5fd037141a0c9e7c063e85f4f0d6b92009f9acc210"
+    },
+    {
+      "path": "codemirror/mode/meta.js",
+      "bytes": 15902,
+      "sha256": "c1882cf356cb363253c82659fd00309759d929a67edc947469799aa34fd78789"
+    },
+    {
+      "path": "codemirror/mode/xml/xml.js",
+      "bytes": 13217,
+      "sha256": "d1883da36e31238858c9f53c53b1b384d173f71988fcb4f22bd1fb6bb1955876"
+    },
+    {
+      "path": "codemirror/mode/yaml/yaml.js",
+      "bytes": 3736,
+      "sha256": "4347a984e82dd43cf3c6728df6e0831008737f3b2995c632cb7008f85d3a75b2"
+    },
+    {
+      "path": "frappe-gantt/LICENSE",
+      "bytes": 1095,
+      "sha256": "f0ee9b1340ea287eacdc522f04f85b80304c2009c237809920ff9cf7684fc4f1"
+    },
+    {
+      "path": "frappe-gantt/VERSION",
+      "bytes": 6,
+      "sha256": "c62a5cc61ac4525935753f5ec284c0a052a4b1da4b3a3580dce2b7d77a2154ae"
+    },
+    {
+      "path": "frappe-gantt/frappe-gantt.css",
+      "bytes": 6848,
+      "sha256": "74ccfd2390849e729cda95a358439f003b79b94770ff732713217bc8045e7a69"
+    },
+    {
+      "path": "frappe-gantt/frappe-gantt.umd.js",
+      "bytes": 48175,
+      "sha256": "f5b9de3b618b72e675dfa7f159f2091fcf2055e62826309dfc4604d7ca649e41"
+    },
+    {
+      "path": "quill/LICENSE",
+      "bytes": 1561,
+      "sha256": "395c12b616d6f58238b4be39284d4d9221b58dd6e1f1e34d9ab537e34abbb022"
+    },
+    {
+      "path": "quill/VERSION",
+      "bytes": 6,
+      "sha256": "be695fc8092ad3706d7d7d3b5104e1eaf8fe69666e5958e375c9952a06fa9514"
+    },
+    {
+      "path": "quill/quill.js",
+      "bytes": 209274,
+      "sha256": "f6157c72ac9b3f51cdead426335688a027b12405d9d6a4daadd38a676b2d7ff2"
+    },
+    {
+      "path": "quill/quill.snow.css",
+      "bytes": 24606,
+      "sha256": "1c7948cd13aa92fac6390319bc1e5e461823da171519d3a768db56164f871636"
+    }
+  ]
+}

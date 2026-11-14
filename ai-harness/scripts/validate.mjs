@@ -69,6 +69,21 @@ for (const rel of Object.values(manifest.workflows ?? {})) {
   for (const step of wf.steps || []) for (const id of step.skills || [])
     assert(Boolean(manifest.skills?.[id]), 'Unknown step skill: '+id+' in '+wf.id);
 }
+const qualityRel='ai-harness/evals/agent-quality-suite.json';
+assert(manifest.evals?.includes(qualityRel),'Agent quality suite must be in harness manifest');
+const quality=json(qualityRel);
+assert(quality.schema===1,'Agent quality suite schema must be 1');
+assert(file(quality.traceContract),'Agent trace contract missing');
+const qualityChecks=quality.categories?.map(c=>c.id)||[];
+for(const category of ['context','tools','loop','governance','completion','recovery','tdd','observability','handoff','safety'])
+  assert(qualityChecks.includes(category),'Missing agent quality category: '+category);
+assert(quality.policy?.executeModel===false && quality.policy?.executeRepositoryCode===false,'Agent quality checks must not execute model or catalog code');
+for (const scenario of quality.scenarios||[]) {
+  assert(typeof scenario.id==='string' && /^[a-z0-9-]+$/.test(scenario.id), 'Unsafe scenario ID');
+  assert(typeof scenario.file==='string' && /^[a-z0-9-]+\.json$/.test(scenario.file), 'Unsafe scenario file');
+  if (typeof scenario.file==='string' && /^[a-z0-9-]+\.json$/.test(scenario.file)) file(quality.fixtures+scenario.file);
+  assert(['passed','failed','blocked'].includes(scenario.expected),'Unknown expected scenario outcome: '+scenario.id);
+}
 const gitFlow=json('ai-harness/workflows/library-contribution.json');
 assert(gitFlow.git?.directPushMain === false, 'Git agent cannot directly push to main');
 assert(gitFlow.git?.writeRequiresExplicitUserApproval === true, 'Git agent requires explicit write approval');

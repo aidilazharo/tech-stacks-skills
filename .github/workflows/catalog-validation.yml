@@ -42,3 +42,5 @@ jobs:
           node --check tech-stacks/react/scaffold/server/api.test.mjs
           node --check tech-stacks/angular/scaffold/server/index.mjs
           node --check tech-stacks/angular/scaffold/server/api.test.mjs
+      - name: Verify approved browser library bundle
+        run: node scripts/validate-webview-libraries.mjs

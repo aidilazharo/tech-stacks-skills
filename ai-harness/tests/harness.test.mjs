@@ -20,7 +20,7 @@ test('developer workflow protects TDD and preview',()=>{
 test('read-only plan reflects manifest and TDD workflow',()=>{
  const raw=execFileSync(process.execPath,[join(root,'ai-harness/scripts/plan.mjs'),'developer-tdd'],{encoding:'utf8'});
  const plan=JSON.parse(raw);assert.equal(plan.kind,'read-only-harness-plan');
- assert.equal(plan.harness.version,'0.2.0');assert.ok(plan.steps.includes('verify'));
+ assert.equal(plan.harness.version,'0.3.0');assert.ok(plan.steps.includes('verify'));
 });
 test('404 evaluation requires real endpoint checks and preserves locked tests',()=>{
  const e=j('ai-harness/evals/http-create-404.json');

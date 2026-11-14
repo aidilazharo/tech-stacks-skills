@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "atgv-sdlc-ai-harness",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "compatibleCatalogSchema": 1,
   "runtime": "atgv-core",
   "entrypoint": "ai-harness/manifest.json",
@@ -69,7 +69,8 @@
     "ai-harness/policies/guardrails.json"
   ],
   "evals": [
-    "ai-harness/evals/http-create-404.json"
+    "ai-harness/evals/http-create-404.json",
+    "ai-harness/evals/agent-quality-suite.json"
   ],
   "security": {
     "downloadedCodeAutoExecuted": false,
@@ -85,12 +86,14 @@
     "dry-run-plan",
     "git-pr-contributions",
     "github-actions-validation",
-    "local-skill-overrides"
+    "local-skill-overrides",
+    "agent-quality-evaluation-trace-contract"
   ],
   "status": "candidate-partial-extension-adapter",
   "contracts": {
     "run": "ai-harness/contracts/run.json",
-    "episode": "ai-harness/contracts/episode.json"
+    "episode": "ai-harness/contracts/episode.json",
+    "agentQualityTrace": "ai-harness/contracts/agent-quality-trace.json"
   },
   "tools": "ai-harness/tools/registry.json",
   "context": "ai-harness/context/selection.json"

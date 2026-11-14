@@ -21,4 +21,13 @@ jobs:
       - name: Run offline read-only validation
         run: |
           node ai-harness/scripts/validate.mjs
-                    node --test ai-harness/tests/harness.test.mjs
+          node --test ai-harness/tests/harness.test.mjs ai-harness/tests/agent-quality.test.mjs
+      - name: Evaluate synthetic agent quality traces (offline)
+        run: node ai-harness/scripts/run-agent-quality-suite.mjs --out agent-quality-report.json
+      - name: Upload redacted agent quality report
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent-quality-synthetic-report
+          path: agent-quality-report.json
+          if-no-files-found: error
+          retention-days: 14

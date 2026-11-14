@@ -1,3 +1,24 @@
+## 1.1.12 — Verified webview libraries
+
+- Added CodeMirror, Quill and Frappe Gantt browser assets under shared/libraries/webview with a versioned SHA-256 manifest.
+- Support runtime download, integrity verification, caching and no-npm use in ATGV v0.3.31.
+- Existing catalog resources, agents, skills, tests and scaffolds are preserved.
+
+## 1.1.11 — AI Agent Quality Tests
+
+- AI Harness v0.3.0 adds a read-only, offline, ten-category Agent Quality evaluator and sixteen synthetic test fixtures: four requested failure modes plus six supporting dimensions.
+- Distinguishes failed checks from blocked checks (e.g. missing permissions or tool availability).
+- Adds a normalized agent-trace contract, validation checks and GitHub Actions test coverage.
+- Preserves existing catalog skills, tech stacks and trusted ATGV runtime boundaries. No extension changes or live model inference in this release.
+
+## 1.1.10 (2026-11-14) — Library repository cleanup
+
+- Remove seven obsolete root-level audit, validation snapshot and historical release-note Markdown files. Their release history is retained in `CHANGELOG.md` and prior Git commits.
+- Update README references to the retained changelog.
+- Preserve all role skills, harness workflows, SDLC templates, technology-stack scaffolds, design-system assets, licenses, tests and GitHub Actions.
+- Do not deduplicate identical stack scaffold files because each scaffold must remain independently deployable.
+- No extension runtime or AI skill behavior changes.
+
 ## 1.1.9 (2026-11-13)
 
 - Add Git Agent, contribution workflow, four Git skills, and GitHub Actions validation workflows.

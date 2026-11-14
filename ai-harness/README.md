@@ -37,3 +37,16 @@ This first revision is a **validated configuration and skill scaffold**. It does
 ## Runtime contracts and observability
 
 The optional `contracts/run.json` and `contracts/episode.json` describe the per-run skill/model pin and auditable TDD evidence. `tools/registry.json` names **capability identifiers only**—it contains no executable tool implementations or permission grant. `context/selection.json` specifies recommended context order and redaction exclusions; the actual permission and token-budget enforcement remains in ATGV core.
+
+## Agent Quality Evaluation (0.3.0)
+
+The `evals/agent-quality-suite.json` suite models four failure modes: **Context** (available but unused), **Tools** (wrong tool chosen), **Loop** (stalled or premature completion), and **Governance** (too many or too few permissions). Six additional categories check completion evidence, recovery, TDD integrity, observability, handoff, and instruction boundaries.
+
+The read-only evaluator consumes a **normalized, redacted trace** and reports `passed`, `failed`, or `blocked` with findings:
+
+```bash
+node ai-harness/scripts/evaluate-agent.mjs ai-harness/evals/fixtures/agent-quality/healthy.json
+node --test ai-harness/tests/agent-quality.test.mjs
+```
+
+The fixture tests are intentionally synthetic. Passing them proves the **evaluator detects the designed conditions**, not that a real AI agent satisfies them. The ATGV trusted runtime must emit verified traces, retain test evidence and pin catalog/skill/model versions before the UI can report live agent quality. No downloaded catalog scripts are auto-executed by the extension.

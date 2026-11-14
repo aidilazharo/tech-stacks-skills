@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "1.1.9",
+  "version": "1.1.12",
   "sourceBranch": "main",
   "roles": [
     "business-analyst",
@@ -59,7 +59,7 @@
   },
   "aiHarness": {
     "manifest": "ai-harness/manifest.json",
-    "version": "0.2.0",
+    "version": "0.3.0",
     "status": "candidate-requires-extension-adapter"
   },
   "libraryStudio": {
@@ -71,5 +71,9 @@
     "editPolicies": "ai-harness/policies/guardrails.json",
     "gitAgent": "ai-harness/agents/git-agent.json",
     "publication": "reviewed-pr-only"
+  },
+  "webviewLibraries": {
+    "manifest": "shared/libraries/webview/manifest.json",
+    "version": "1.0.0"
   }
 }
