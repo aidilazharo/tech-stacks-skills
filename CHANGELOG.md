@@ -1,4 +1,19 @@
+## 1.1.9 (2026-11-13)
+
+- Add Git Agent, contribution workflow, four Git skills, and GitHub Actions validation workflows.
+
+## 1.1.8 — Catalog AI Harness definitions (candidate)
+
+- Added optional AI harness manifest, four SDLC agent profiles, four workflows and seven independently versioned Developer skills.
+- Added read-only validation, plan inspection, guarded TDD 404 evaluation fixture and CI tests.
+- No ATGV runtime activation; requires a future extension adapter. No privileged downloaded JS execution.
+
 # Changelog
+
+## 1.1.7 — 2026-11-13
+- Replace React starter demo-specific UI assertions with an accessible application mount smoke test.
+- Do not treat the original task-list example as an acceptance criterion for unrelated Business Requirements.
+- Keep application-specific RED/GREEN tests mandatory in the ATGV Developer workflow.
 
 ## 1.1.6 — 2026-11-12
 

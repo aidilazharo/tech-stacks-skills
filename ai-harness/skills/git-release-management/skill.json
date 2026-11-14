@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "id": "git-release-management",
+  "version": "0.1.0",
+  "entrypoint": "ai-harness/skills/git-release-management/SKILL.md",
+  "status": "candidate",
+  "scope": [
+    "git-agent"
+  ],
+  "execute": "never",
+  "editableLocalOverride": true
+}

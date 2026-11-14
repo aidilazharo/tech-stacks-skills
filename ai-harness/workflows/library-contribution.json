@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "id": "library-contribution",
+  "version": "0.1.0",
+  "agent": "git-agent",
+  "steps": [
+    {
+      "id": "validate-local-resource",
+      "guard": "atgv-core",
+      "requiresEvidence": true,
+      "skills": []
+    },
+    {
+      "id": "compare-upstream-sha",
+      "guard": "atgv-core",
+      "requiresEvidence": true,
+      "skills": [
+        "git-conflict-analysis"
+      ]
+    },
+    {
+      "id": "prepare-isolated-branch",
+      "guard": "atgv-core",
+      "requiresEvidence": true,
+      "skills": [
+        "git-branch-management"
+      ]
+    },
+    {
+      "id": "user-approval",
+      "guard": "atgv-core",
+      "requiresEvidence": true,
+      "skills": []
+    },
+    {
+      "id": "create-draft-pr",
+      "guard": "atgv-core",
+      "requiresEvidence": true,
+      "skills": [
+        "git-pull-request"
+      ]
+    },
+    {
+      "id": "github-actions-review",
+      "guard": "atgv-core",
+      "requiresEvidence": true,
+      "skills": []
+    },
+    {
+      "id": "maintainer-merge-and-release",
+      "guard": "atgv-core",
+      "requiresEvidence": true,
+      "skills": [
+        "git-release-management"
+      ]
+    }
+  ],
+  "execution": {
+    "runtime": "atgv-core",
+    "catalogScriptsAutoExecute": false,
+    "pinRunSnapshot": true
+  },
+  "git": {
+    "protectedBranch": "main",
+    "directPushMain": false,
+    "defaultPRDraft": true,
+    "writeRequiresExplicitUserApproval": true,
+    "maintainerReviewRequired": true,
+    "requiredChecks": [
+      "catalog-validation",
+      "harness-validation",
+      "skill-validation",
+      "template-validation",
+      "tech-stack-test"
+    ],
+    "automaticMerge": false
+  }
+}

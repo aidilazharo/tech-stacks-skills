@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "id": "atgv-harness-context-selection",
+  "sources": [
+    "approved_br",
+    "accepted_ac",
+    "approved_stack",
+    "design_system",
+    "locked_tests",
+    "current_diff",
+    "last_passing_checkpoint",
+    "recent_failures",
+    "selected_skill_versions"
+  ],
+  "priority": [
+    "approved_br",
+    "locked_tests",
+    "approved_stack",
+    "current_failure",
+    "current_diff",
+    "skill_guidance"
+  ],
+  "neverInclude": [
+    "plaintext_tokens",
+    "credential_values",
+    "unapproved_private_documents"
+  ],
+  "strategy": "minimal-relevant-context",
+  "notes": "ATGV core decides actual access, redaction and token budget."
+}

@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "id": "git-agent",
+  "label": "Git Agent",
+  "roleSkill": "roles/software-developer/SKILL.md",
+  "kind": "shared-service",
+  "workflows": [
+    "library-contribution"
+  ],
+  "permissions": [
+    "read_catalog",
+    "inspect_local_diff",
+    "propose_branch",
+    "propose_pull_request"
+  ],
+  "execution": "atgv-core-only",
+  "userApprovalRequiredFor": [
+    "create_branch",
+    "commit_file",
+    "create_pull_request"
+  ],
+  "forbidden": [
+    "force_push",
+    "direct_push_main",
+    "change_branch_protection",
+    "secrets_access",
+    "run_untrusted_code_as_privileged"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "atgv-harness-run",
+  "requiredFields": [
+    "runId",
+    "projectId",
+    "brId",
+    "workflowId",
+    "catalogCommit",
+    "harnessVersion",
+    "skillsLoaded",
+    "actualModel",
+    "environment",
+    "permissions",
+    "startedAt"
+  ],
+  "skillsLoadedItem": [
+    "skillId",
+    "version",
+    "sha256",
+    "source"
+  ],
+  "state": [
+    "pending",
+    "running",
+    "needs-attention",
+    "passed",
+    "stopped"
+  ],
+  "notes": "Data contract for ATGV adapter; this file does not invoke a model or commands."
+}

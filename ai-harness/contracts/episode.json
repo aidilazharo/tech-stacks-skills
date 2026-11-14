@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "id": "atgv-harness-episode",
+  "requiredFields": [
+    "runId",
+    "acId",
+    "stepId",
+    "attempt",
+    "inputDigest",
+    "toolEvents",
+    "testResults",
+    "failureAttribution",
+    "checkpointHashes",
+    "model",
+    "skillsLoaded",
+    "timestamp"
+  ],
+  "redaction": {
+    "maskSecrets": true,
+    "omitFullSourceByDefault": true
+  },
+  "events": [
+    "model-call",
+    "tool-call",
+    "guardrail",
+    "test-run",
+    "checkpoint",
+    "repair",
+    "human-decision"
+  ],
+  "notes": "Read-only evidence schema. Runtime produces actual evidence."
+}

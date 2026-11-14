@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "ux-designer",
+  "label": "UIUX",
+  "roleSkill": "roles/ux-designer/SKILL.md",
+  "workflows": [
+    "uiux-design"
+  ],
+  "permissions": [
+    "read_br",
+    "read_catalog",
+    "write_project_artifacts"
+  ],
+  "loadSkills": "as-needed",
+  "tracing": "required"
+}

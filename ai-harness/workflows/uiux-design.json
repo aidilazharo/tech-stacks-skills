@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "uiux-design",
+  "version": "0.1.0",
+  "agent": "ux-designer",
+  "steps": [
+    {
+      "id": "load-approved-br",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "inspect-design-system",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "generate-flow",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "generate-prototype",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "approval",
+      "requiresEvidence": true,
+      "guard": "atgv-core"
+    }
+  ],
+  "execution": {
+    "runtime": "atgv-core",
+    "catalogScriptsAutoExecute": false,
+    "pinRunSnapshot": true
+  }
+}

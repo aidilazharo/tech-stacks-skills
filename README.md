@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.6`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.7`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `tech-stacks/<id>/stack.json`: five stack descriptors
 - `tech-stacks/<id>/scaffold/`: runnable project starter, API, ORM and SQLite examples
@@ -50,3 +50,11 @@ node scripts/audit-bootstrap-manifest.mjs "C:\\path\\to\\application"
 ```
 
 The command reports unsafe, duplicate, missing, no-longer-cataloged, and changed generated paths plus catalog version drift. It does not alter your Git checkout. See `AUDIT_1.1.6.md` and `RELEASE_1.1.6.md` for the upgrade limits and next steps.
+
+## React scaffold test change (1.1.7)
+
+The React starter `src/App.test.tsx` now checks that the application mounts; it no longer requires the demo-only `ATGV React` heading or `New task` textbox. Product-specific acceptance criteria must be tested by the Developer TDD pipeline. Existing projects must retain their own tests unless a verified migration is safe; the ATGV extension v0.3.10 handles the exact v1.1.6 demo-only fixture in isolated development worktrees.
+
+## AI harness catalog (1.1.8)
+
+`ai-harness/` introduces versioned agent profiles, specialized skills, workflow definitions, safeguards and read-only evaluation fixtures. Run `node ai-harness/scripts/validate.mjs` and `node --test ai-harness/tests/harness.test.mjs` to check it. The extension requires a new adapter to consume these definitions; catalog JavaScript is not automatically executed by ATGV. See `ai-harness/README.md`.

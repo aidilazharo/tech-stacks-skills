@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "sa-stack",
+  "version": "0.1.0",
+  "agent": "solution-architect",
+  "steps": [
+    {
+      "id": "load-approved-br",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "select-catalog-stack",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "bootstrap-worktree",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "run-server",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "approval",
+      "requiresEvidence": true,
+      "guard": "atgv-core"
+    }
+  ],
+  "execution": {
+    "runtime": "atgv-core",
+    "catalogScriptsAutoExecute": false,
+    "pinRunSnapshot": true
+  }
+}

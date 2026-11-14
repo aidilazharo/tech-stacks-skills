@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "id": "ba-requirements",
+  "version": "0.1.0",
+  "agent": "business-analyst",
+  "steps": [
+    {
+      "id": "load-br",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "map-discovery",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "ai-review",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "generate-br",
+      "requiresEvidence": false,
+      "guard": "atgv-core"
+    },
+    {
+      "id": "approval",
+      "requiresEvidence": true,
+      "guard": "atgv-core"
+    }
+  ],
+  "execution": {
+    "runtime": "atgv-core",
+    "catalogScriptsAutoExecute": false,
+    "pinRunSnapshot": true
+  }
+}

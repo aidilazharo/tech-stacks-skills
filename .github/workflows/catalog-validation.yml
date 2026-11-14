@@ -26,6 +26,10 @@ jobs:
         run: node scripts/validate-catalog.mjs
       - name: Verify catalog manifest diagnostic
         run: node --test tests/catalog-bootstrap-audit.test.mjs
+      - name: Validate AI Harness definitions and eval fixtures
+        run: |
+          node ai-harness/scripts/validate.mjs
+          node --test ai-harness/tests/harness.test.mjs
       - name: Verify NestJS static smoke test
         run: node --test tech-stacks/nestjs/scaffold/test/static.test.mjs
       - name: Verify AIA QI design kit

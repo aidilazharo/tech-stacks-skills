@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "id": "git-pull-request",
+  "version": "0.1.0",
+  "entrypoint": "ai-harness/skills/git-pull-request/SKILL.md",
+  "status": "candidate",
+  "scope": [
+    "git-agent"
+  ],
+  "execute": "never",
+  "editableLocalOverride": true
+}

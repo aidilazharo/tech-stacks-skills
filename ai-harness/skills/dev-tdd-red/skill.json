@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "id": "dev-tdd-red",
+  "version": "0.1.0",
+  "entrypoint": "ai-harness/skills/dev-tdd-red/SKILL.md",
+  "status": "candidate",
+  "scope": [
+    "software-developer"
+  ],
+  "execute": "never",
+  "editableLocalOverride": true
+}

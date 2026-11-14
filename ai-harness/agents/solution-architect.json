@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "solution-architect",
+  "label": "SA",
+  "roleSkill": "roles/solution-architect/SKILL.md",
+  "workflows": [
+    "sa-stack"
+  ],
+  "permissions": [
+    "read_br",
+    "read_catalog",
+    "write_project_artifacts"
+  ],
+  "loadSkills": "as-needed",
+  "tracing": "required"
+}

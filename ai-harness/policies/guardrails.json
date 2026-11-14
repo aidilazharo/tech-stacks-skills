@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "id": "atgv-harness-guardrails",
+  "version": "0.1.0",
+  "runtimeEnforced": true,
+  "nonOverridable": [
+    "approved_br",
+    "locked_acceptance_tests",
+    "jira_approval_state",
+    "credential_store",
+    "production_delivery_gates"
+  ],
+  "reviewRequiredFor": [
+    "tool_permission_changes",
+    "new_executable_dependencies",
+    "harness_runtime_code"
+  ],
+  "preview": {
+    "allowUntestedLocalPreview": true,
+    "mustDisplayUntested": true,
+    "cannotCompleteAC": true,
+    "cannotPublishProduction": true
+  },
+  "logs": {
+    "redactCredentials": true,
+    "includeActualModel": true,
+    "includeLoadedSkillVersions": true,
+    "includeCatalogCommit": true,
+    "includeHTTPRouteEvidence": true
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "schema": 1,
+  "id": "developer-tdd",
+  "version": "0.1.0",
+  "agent": "software-developer",
+  "steps": [
+    {
+      "id": "load-approved-br",
+      "requiresEvidence": false,
+      "guard": "atgv-core",
+      "skills": []
+    },
+    {
+      "id": "load-approved-stack",
+      "requiresEvidence": false,
+      "guard": "atgv-core",
+      "skills": []
+    },
+    {
+      "id": "plan-ac",
+      "requiresEvidence": false,
+      "guard": "atgv-core",
+      "skills": [
+        "dev-tdd-plan"
+      ]
+    },
+    {
+      "id": "red",
+      "requiresEvidence": true,
+      "guard": "atgv-core",
+      "skills": [
+        "dev-tdd-red"
+      ]
+    },
+    {
+      "id": "green",
+      "requiresEvidence": true,
+      "guard": "atgv-core",
+      "skills": [
+        "dev-tdd-green",
+        "dev-api-contract"
+      ]
+    },
+    {
+      "id": "repair-if-needed",
+      "requiresEvidence": false,
+      "guard": "atgv-core",
+      "skills": [
+        "dev-tdd-repair",
+        "dev-api-contract",
+        "dev-test-diagnostics"
+      ],
+      "activation": "only-when-green-fails"
+    },
+    {
+      "id": "refactor",
+      "requiresEvidence": false,
+      "guard": "atgv-core",
+      "skills": [
+        "dev-tdd-refactor"
+      ]
+    },
+    {
+      "id": "verify",
+      "requiresEvidence": true,
+      "guard": "atgv-core",
+      "skills": [
+        "dev-test-diagnostics"
+      ]
+    },
+    {
+      "id": "delivery",
+      "requiresEvidence": true,
+      "guard": "atgv-core",
+      "skills": []
+    }
+  ],
+  "execution": {
+    "runtime": "atgv-core",
+    "catalogScriptsAutoExecute": false,
+    "pinRunSnapshot": true
+  },
+  "tdd": {
+    "lockedTestsImmutable": true,
+    "keepLastPassingSource": true,
+    "quarantineFailedCandidates": true,
+    "attemptLimitPerAC": 6,
+    "previewMayBypassTests": true,
+    "previewCountsAsGreen": false
+  }
+}

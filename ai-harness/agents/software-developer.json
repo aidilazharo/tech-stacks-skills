@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "id": "software-developer",
+  "label": "DEV",
+  "roleSkill": "roles/software-developer/SKILL.md",
+  "workflows": [
+    "developer-tdd"
+  ],
+  "permissions": [
+    "read_br",
+    "read_catalog",
+    "write_worktree"
+  ],
+  "loadSkills": "as-needed",
+  "tracing": "required"
+}

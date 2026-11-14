@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "id": "atgv-sdlc-ai-harness",
+  "version": "0.2.0",
+  "compatibleCatalogSchema": 1,
+  "runtime": "atgv-core",
+  "entrypoint": "ai-harness/manifest.json",
+  "agents": {
+    "business-analyst": "ai-harness/agents/business-analyst.json",
+    "solution-architect": "ai-harness/agents/solution-architect.json",
+    "ux-designer": "ai-harness/agents/ux-designer.json",
+    "software-developer": "ai-harness/agents/software-developer.json",
+    "git-agent": "ai-harness/agents/git-agent.json"
+  },
+  "workflows": {
+    "ba-requirements": "ai-harness/workflows/ba-requirements.json",
+    "sa-stack": "ai-harness/workflows/sa-stack.json",
+    "uiux-design": "ai-harness/workflows/uiux-design.json",
+    "developer-tdd": "ai-harness/workflows/developer-tdd.json",
+    "library-contribution": "ai-harness/workflows/library-contribution.json"
+  },
+  "skills": {
+    "dev-tdd-plan": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/dev-tdd-plan/skill.json"
+    },
+    "dev-tdd-red": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/dev-tdd-red/skill.json"
+    },
+    "dev-tdd-green": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/dev-tdd-green/skill.json"
+    },
+    "dev-tdd-repair": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/dev-tdd-repair/skill.json"
+    },
+    "dev-tdd-refactor": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/dev-tdd-refactor/skill.json"
+    },
+    "dev-api-contract": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/dev-api-contract/skill.json"
+    },
+    "dev-test-diagnostics": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/dev-test-diagnostics/skill.json"
+    },
+    "git-branch-management": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/git-branch-management/skill.json"
+    },
+    "git-pull-request": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/git-pull-request/skill.json"
+    },
+    "git-conflict-analysis": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/git-conflict-analysis/skill.json"
+    },
+    "git-release-management": {
+      "version": "0.1.0",
+      "manifest": "ai-harness/skills/git-release-management/skill.json"
+    }
+  },
+  "policies": [
+    "ai-harness/policies/guardrails.json"
+  ],
+  "evals": [
+    "ai-harness/evals/http-create-404.json"
+  ],
+  "security": {
+    "downloadedCodeAutoExecuted": false,
+    "ATGVCoreEnforcesInvariants": true,
+    "pinCatalogGitSHA": true,
+    "pinPerRunSkillDigest": true
+  },
+  "capabilities": [
+    "sdlc-skill-composition",
+    "tdd-evidence",
+    "repair-strategy",
+    "versioned-skill-discovery",
+    "dry-run-plan",
+    "git-pr-contributions",
+    "github-actions-validation",
+    "local-skill-overrides"
+  ],
+  "status": "candidate-partial-extension-adapter",
+  "contracts": {
+    "run": "ai-harness/contracts/run.json",
+    "episode": "ai-harness/contracts/episode.json"
+  },
+  "tools": "ai-harness/tools/registry.json",
+  "context": "ai-harness/context/selection.json"
+}

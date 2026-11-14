@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "id": "atgv-harness-tools",
+  "runtime": "atgv-core",
+  "allowedToolIds": [
+    "read_approved_br",
+    "read_stack_catalog",
+    "read_project_source",
+    "write_isolated_worktree",
+    "run_locked_tests",
+    "run_build",
+    "start_local_preview",
+    "read_diagnostic_log",
+    "save_evidence"
+  ],
+  "requiresApproval": [
+    "publish_jira",
+    "push_repository",
+    "complete_delivery"
+  ],
+  "untrustedCatalogCanElevatePermissions": false,
+  "downloadedToolsExecutable": false,
+  "note": "Identifiers only; all implementations and permission enforcement live in the trusted extension."
+}
