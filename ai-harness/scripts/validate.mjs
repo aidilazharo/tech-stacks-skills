@@ -58,7 +58,7 @@ for (const [id,entry] of Object.entries(manifest.skills ?? {})) {
   assert(skill.execute === 'never', 'Skill execution must be disabled: '+id);
   assert(file(skill.entrypoint), 'Skill entrypoint missing: '+id);
   if (safe(skill.entrypoint) && existsSync(join(root,skill.entrypoint))) {
-    const content=readFileSync(join(root,skill.entrypoint),'utf8');
+    const content=readFileSync(join(root,skill.entrypoint),'utf8').replace(/\r\n?/g,'\n');
     assert(content.startsWith('---\n'), 'Expected skill frontmatter: '+id);
     assert(content.includes('name: '+id+'\n'), 'Skill name mismatch: '+id);
   }
