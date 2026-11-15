@@ -1,0 +1,131 @@
+name: Sync source main to destination PR
+
+on:
+  schedule:
+    # 00:00 UTC = 08:00 Asia/Kuala_Lumpur, Monday-Friday.
+    - cron: "0 0 * * 1-5"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: cross-repo-pr-sync
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    name: Skip unless both required secrets exist
+    runs-on: ubuntu-latest
+    outputs:
+      ready: ${{ steps.secrets.outputs.ready }}
+    steps:
+      - name: Check PAT and destination URL secrets
+        id: secrets
+        shell: bash
+        env:
+          TOKEN: ${{ secrets.SYNC_TARGET_TOKEN }}
+          DESTINATION_URL: ${{ secrets.SYNC_TARGET_REPO_URL }}
+        run: |
+          set -euo pipefail
+          echo "ready=false" >> "$GITHUB_OUTPUT"
+          if [[ -z "$TOKEN" || -z "$DESTINATION_URL" ]]; then
+            echo "::notice::Sync skipped: configure both SYNC_TARGET_TOKEN and SYNC_TARGET_REPO_URL as GitHub Actions secrets."
+            echo "Sync skipped because a required secret is missing." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          url="${DESTINATION_URL%/}"
+          url="${url%.git}"
+          if [[ ! "$url" =~ ^https://github[.]com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]; then
+            echo "::error::SYNC_TARGET_REPO_URL must be https://github.com/OWNER/REPO"
+            exit 1
+          fi
+          echo "ready=true" >> "$GITHUB_OUTPUT"
+
+  sync:
+    name: Create or update cross-repository PR
+    needs: preflight
+    if: needs.preflight.outputs.ready == 'true'
+    runs-on: ${{ vars.SYNC_RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout source main without persistent credentials
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: source
+          persist-credentials: false
+
+      - name: Mirror tracked source into dedicated destination branch and open PR
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TARGET_TOKEN }}
+          DESTINATION_URL: ${{ secrets.SYNC_TARGET_REPO_URL }}
+          SOURCE_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          url="${DESTINATION_URL%/}"
+          url="${url%.git}"
+          repo="${url#https://github.com/}"
+          branch="sync/aidilazharo-main"
+          title="chore(sync): update from ${SOURCE_REPO} main"
+
+          # Check destination access before cloning or changing any files.
+          if ! base="$(gh api "repos/${repo}" --jq '.default_branch')"; then
+            echo "::error::Destination unavailable to this PAT. Check repository access, SSO authorization and organizational IP allow lists. For IP restrictions use an approved self-hosted SYNC_RUNNER."
+            exit 1
+          fi
+          if [[ -z "$base" ]]; then
+            echo "::error::Destination has no default branch."
+            exit 1
+          fi
+
+          # Supply Git credentials through the process environment, not in the clone URL.
+          auth="$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w 0)"
+          export GIT_CONFIG_COUNT=1
+          export GIT_CONFIG_KEY_0="http.https://github.com/.extraheader"
+          export GIT_CONFIG_VALUE_0="AUTHORIZATION: basic ${auth}"
+          git clone --depth 1 --branch "$base" "https://github.com/${repo}.git" target
+          git -C target config user.name "github-actions[bot]"
+          git -C target config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C target checkout -b "$branch"
+
+          # Keep destination-owned GitHub Actions; do not sync local secrets/build outputs.
+          # Everything else is mirrored from the committed source main checkout.
+          rsync -a --delete \
+            --exclude '/.git/' \
+            --exclude '/.github/workflows/' \
+            --exclude '/.env' \
+            --exclude '/.env.*' \
+            --exclude '/node_modules/' \
+            --exclude '/dist/' \
+            source/ target/
+
+          git -C target add -A
+          if git -C target diff --cached --quiet; then
+            echo "Destination is already identical to the approved source snapshot (excluding protected paths)." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+
+          sha="$(git -C source rev-parse --short HEAD)"
+          git -C target commit -m "chore(sync): mirror ${SOURCE_REPO} main at ${sha}"
+          remote_sha="$(git -C target ls-remote origin "refs/heads/${branch}" | awk '{print $1}')"
+          if [[ -n "$remote_sha" ]]; then
+            git -C target push origin "HEAD:refs/heads/${branch}" \
+              "--force-with-lease=refs/heads/${branch}:${remote_sha}"
+          else
+            git -C target push origin "HEAD:refs/heads/${branch}"
+          fi
+
+          body="Automated weekday source synchronization from \`${SOURCE_REPO}:main\` at \`${sha}\`. Destination GitHub Actions and local environment files are deliberately excluded. Review additions, modifications and deletions before merging. No automatic merge."
+          number="$(gh pr list --repo "$repo" --head "$branch" --base "$base" --state open --json number --jq '.[0].number // empty')"
+          if [[ -n "$number" ]]; then
+            gh pr edit "$number" --repo "$repo" --title "$title" --body "$body"
+            echo "Updated existing PR #${number} in ${repo}." >> "$GITHUB_STEP_SUMMARY"
+          else
+            gh pr create --repo "$repo" --head "$branch" --base "$base" \
+              --title "$title" --body "$body"
+            echo "Opened sync PR in ${repo}." >> "$GITHUB_STEP_SUMMARY"
+          fi
