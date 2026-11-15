@@ -1,0 +1,41 @@
+.atgv-app{min-height:100vh;background:#f7f8fa;color:var(--qi-color-ink)}
+.atgv-header{background:white;border-bottom:1px solid #e6e9ec}
+.atgv-header-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.atgv-brand{display:flex;gap:14px;align-items:center;text-decoration:none;color:#25323d;font-weight:700}
+.atgv-brand img{width:102px;height:36px}.atgv-divider{height:24px;border-left:1px solid #dce1e6}
+.atgv-aia{font-size:20px;font-weight:900;color:#d31145}.atgv-brand-note{font-size:12px}
+.atgv-env{font-size:10px;letter-spacing:.1em;font-weight:800;border-radius:99px;background:#edf2f1;padding:9px 13px;white-space:nowrap}
+.atgv-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#168451;margin-right:7px}
+.atgv-main{padding-top:30px;padding-bottom:28px;max-width:1220px}
+.atgv-hero{background:white;border:1px solid #e5e9ed;border-radius:19px;padding:46px 48px;display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:24px;align-items:center;overflow:hidden}
+.atgv-eyebrow{font-size:10px;letter-spacing:.12em;font-weight:800;color:#a90c37;margin:0}
+.atgv-hero h1{font-size:clamp(30px,4vw,45px);letter-spacing:-.045em;line-height:1.13;max-width:650px;margin:15px 0}
+.atgv-intro{font-size:14px;color:#5d6b77;line-height:1.75;max-width:650px}
+.atgv-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}.atgv-actions .qi-btn{font-size:12px;text-decoration:none}
+.atgv-hero-art{height:224px;display:grid;place-items:center;position:relative}.atgv-ring{position:absolute;width:228px;height:228px;border-radius:50%;border:24px solid #ffe1e9;box-shadow:0 0 0 1px #f6becb inset;background:#fff1f5}
+.atgv-hero-mark{position:relative;width:118px;height:118px;border-radius:24px;background:#d31145;box-shadow:0 17px 33px #d3114540;color:white;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:28px;font-weight:900;transform:rotate(-8deg)}
+.atgv-hero-mark small{font-size:8px;letter-spacing:.04em;font-weight:700}
+.atgv-section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:33px 0 15px}.atgv-section-head h2{font-size:20px;margin:5px 0 0}.atgv-section-head>small{color:#798792}
+.atgv-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.atgv-stat{border:1px solid #e4e9ed;border-radius:12px;background:white;padding:18px;min-width:0;display:flex;flex-direction:column}
+.atgv-stat>span{display:flex;align-items:center;justify-content:space-between;gap:6px;color:#72808b;font-size:10px;letter-spacing:.04em;font-weight:800;margin-bottom:20px}
+.atgv-pill{font-size:10px;font-weight:700;padding:5px 9px;white-space:nowrap;letter-spacing:0;border-radius:99px}
+.atgv-pill.ok{color:#12683f;background:#e8f6ed}.atgv-pill.warn{color:#865c0e;background:#fff5e4}
+.atgv-stat strong{font-size:14px;font-weight:800;line-height:1.4}.atgv-stat code{margin-top:6px;color:#586978;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.atgv-stat>small{margin-top:17px;padding-top:13px;border-top:1px solid #edf0f2;color:#8a97a0;font-size:10px}
+.atgv-columns{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(270px,1fr);gap:16px;margin-top:23px}.atgv-primary,.atgv-secondary{display:flex;flex-direction:column;gap:16px;min-width:0}
+.atgv-panel{border:1px solid #e4e8ec;border-radius:13px;padding:25px;box-shadow:none}.atgv-panel h2{font-size:19px;margin:6px 0 0}.atgv-hint{font-size:12px;color:#71808b;line-height:1.65;margin:10px 0 20px}
+.atgv-commands{border:1px solid #e9edf0;border-radius:9px;overflow:hidden}.atgv-command{display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fbfcfd;border-bottom:1px solid #ecf0f2;padding:10px 14px}.atgv-command:last-child{border:0}
+.atgv-command>div{min-width:0}.atgv-command small{display:block;font-size:11px;color:#798690}.atgv-command code{display:block;font-size:12px;margin-top:4px;overflow-wrap:anywhere}
+.atgv-command button,.atgv-tasks button{border:1px solid #dfe5e9;border-radius:6px;background:white;padding:7px 11px;font-size:11px;cursor:pointer;font-weight:700}
+.atgv-task-input{display:flex;gap:9px;margin-top:6px}.atgv-task-input input{flex:1;min-width:0}.atgv-task-input button{white-space:nowrap}
+.atgv-tasks{list-style:none;margin:15px 0 0;padding:0}.atgv-tasks li{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border:1px solid #e8eef1;border-radius:7px;font-size:12px;margin-bottom:8px}
+.atgv-tasks small{color:#71808b}.atgv-empty{border:1px dashed #dce3e7;background:#f8fafb;border-radius:8px;text-align:center;color:#73818b;font-size:12px;padding:23px;margin-top:16px}
+.atgv-alert{color:#a80d35;background:#fff0f4;border-radius:7px;font-size:12px;padding:10px;margin-top:12px}
+.atgv-details{margin:16px 0 0}.atgv-details>div{display:flex;align-items:start;justify-content:space-between;gap:14px;border-bottom:1px solid #eef1f4;padding:10px 0;font-size:12px}.atgv-details>div:last-child{border:0}
+.atgv-details dt{color:#7a8994}.atgv-details dd{margin:0;text-align:right;font-weight:700;overflow-wrap:anywhere}.atgv-note{background:#fffdfd}.atgv-note ul{font-size:12px;color:#667581;line-height:1.8;padding-left:19px;margin:16px 0 0}.atgv-note li{margin-bottom:8px}
+.atgv-footer{padding-top:29px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:10px;color:#87949e}
+@media(max-width:1040px){.atgv-stats{grid-template-columns:repeat(2,minmax(0,1fr))}.atgv-hero{grid-template-columns:minmax(0,1fr) 190px}.atgv-ring{width:174px;height:174px}.atgv-hero-art{height:170px}}
+@media(max-width:760px){.atgv-hero{grid-template-columns:1fr;padding:28px 24px}.atgv-hero-art{display:none}.atgv-columns{grid-template-columns:1fr}.atgv-brand-note{display:none}}
+@media(max-width:510px){.atgv-stats{grid-template-columns:1fr}.atgv-hero h1{font-size:30px}.atgv-env{font-size:9px;padding:7px}.atgv-panel{padding:19px}.atgv-task-input{flex-direction:column}.atgv-section-head>small{display:none}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}

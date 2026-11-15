@@ -36,7 +36,7 @@ export async function makeApp(databaseUrl=process.env.DATABASE_URL||'file:./data
  created_at TEXT NOT NULL,
  updated_at TEXT NOT NULL)`);
  const db=drizzle(client);const app=express();app.use(express.json({limit:'24kb'}));
- app.get('/api/health',(_req,res)=>res.json({status:'ok',database:'sqlite'}));
+ app.get('/api/health',(_req,res)=>res.json({status:'ok',database:'sqlite',apiPort:Number(process.env.API_PORT||3001),instanceId:process.env.ATGV_INSTANCE_ID||null,startedAt:process.env.ATGV_STARTED_AT||null}));
  app.use('/api/docs',swaggerUi.serve,swaggerUi.setup(apiSpec));
  app.get('/api/openapi.json',(_req,res)=>res.json(apiSpec));
  app.get('/api/tasks',async(_req,res,next)=>{try{res.json(await db.select().from(tasks));}catch(e){next(e);}});
@@ -64,6 +64,12 @@ export async function makeApp(databaseUrl=process.env.DATABASE_URL||'file:./data
  return {app,client};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
- const {app}=await makeApp();const port=Number(process.env.API_PORT||3001);
- app.listen(port,'127.0.0.1',()=>console.log(`ATGV API http://127.0.0.1:${port}/api/docs`));
+ const {app,client}=await makeApp();const port=Number(process.env.API_PORT||3001);
+ if(!Number.isInteger(port)||port<1||port>65535)throw Error('Invalid API_PORT');
+ const server=app.listen(port,'127.0.0.1',()=>console.log(`ATGV API http://127.0.0.1:${port}/api/docs`));
+ server.on('error',error=>{console.error('ATGV API startup failed: '+error.message);void client.close().finally(()=>process.exit(1));});
+ let closing=false;
+ async function shutdown(){if(closing)return;closing=true;await new Promise(resolve=>server.close(resolve));await client.close().catch(console.error);}
+ process.once('SIGINT',()=>{void shutdown().finally(()=>process.exit());});
+ process.once('SIGTERM',()=>{void shutdown().finally(()=>process.exit());});
 }
