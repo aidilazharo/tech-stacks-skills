@@ -1,0 +1,48 @@
+name: Check enterprise repository access
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Weekdays 19:45 Asia/Kuala_Lumpur (11:45 UTC).
+    - cron: '45 11 * * 1-5'
+
+permissions:
+  contents: read
+
+jobs:
+  check-access:
+    name: Source to enterprise connectivity
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Verify source repository access
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/${GITHUB_REPOSITORY}" --jq '.full_name'
+          gh api "repos/${GITHUB_REPOSITORY}/branches/main" --jq '.name'
+          echo 'Source main is accessible.' >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Verify enterprise destination access
+        env:
+          GH_TOKEN: ${{ secrets.SYNC_TARGET_TOKEN }}
+          TARGET_URL: ${{ vars.SYNC_TARGET_REPO_URL || 'https://github.com/aiamalaysia/my-fow-technology-app-techassists-enterprise-skills' }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          if [[ -z "$GH_TOKEN" ]]; then
+            echo '::error::Set Actions secret SYNC_TARGET_TOKEN in the source repository.'
+            exit 1
+          fi
+          url="${TARGET_URL%/}"
+          url="${url%.git}"
+          if [[ ! "$url" =~ ^https://github[.]com/[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$ ]]; then
+            echo '::error::SYNC_TARGET_REPO_URL must be https://github.com/OWNER/REPO'
+            exit 1
+          fi
+          repo="${url#https://github.com/}"
+          gh api "repos/${repo}" --jq '.full_name'
+          gh api "repos/${repo}/branches/main" --jq '.name'
+          echo "Source can read enterprise destination ${repo}:main." >> "$GITHUB_STEP_SUMMARY"
