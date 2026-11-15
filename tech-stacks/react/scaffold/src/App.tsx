@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './qi.css';
 import './startup.css';
+import { ComponentShowcase } from './ComponentShowcase';
 type Health = { status: string; database?: string; apiPort?: number; startedAt?: string; instanceId?: string };
 type Task = { id: number; title: string; status: string };
 const commands = [['Install dependencies','npm install'],['Launch frontend and API','npm run dev'],['Run unit and API tests','npm test'],['Run browser tests','npm run test:e2e'],['Create production build','npm run build']];
@@ -69,7 +70,7 @@ export function App() {
     <div><p className="atgv-eyebrow">APPLICATION LAUNCHPAD / REACT + SQLITE</p>
      <h1>Your development environment, at a glance.</h1>
      <p className="atgv-intro">Review live service health, explore API documentation, run checks, and begin implementing approved business requirements.</p>
-     <div className="atgv-actions"><a href="/api/docs" target="_blank" rel="noreferrer" className="qi-btn qi-btn-primary">Open Swagger documentation</a><a href="/api/health" target="_blank" rel="noreferrer" className="qi-btn qi-btn-secondary">Inspect API health</a></div>
+     <div className="atgv-actions"><a href="/api/docs" target="_blank" rel="noreferrer" className="qi-btn qi-btn-primary">Open Swagger documentation</a><a href="/api/health" target="_blank" rel="noreferrer" className="qi-btn qi-btn-secondary">Inspect API health</a><a className="qi-btn qi-btn-secondary" href="#qi-components">Browse UI components</a></div>
     </div><div className="atgv-hero-art" aria-hidden="true"><div className="atgv-ring"/><div className="atgv-hero-mark">ATGV<small>BUILD / TEST / RUN</small></div></div>
    </section>
    <div className="atgv-section-head"><div><p className="atgv-eyebrow">SYSTEM OVERVIEW</p><h2>Service readiness</h2></div><small>Health refreshes every 10 seconds</small></div>
@@ -79,6 +80,7 @@ export function App() {
     <article className="atgv-stat"><span>DATABASE <b className={'atgv-pill '+(healthy&&health?.database==='sqlite'?'ok':'warn')}>{healthy&&health?.database==='sqlite'?'Connected':'Unverified'}</b></span><strong>SQLite / Drizzle</strong><code>Local database</code><small>Verified through the API</small></article>
     <article className="atgv-stat"><span>HEALTH STATUS <b className={'atgv-pill '+(healthy?'ok':'warn')}>{healthy?'Healthy':'Attention'}</b></span><strong>{healthy?'Core services ready':'API verification pending'}</strong><code>{healthy?'Status endpoint returned OK':(healthError||'Checking service')}</code><small>{health?.startedAt?'Started '+new Date(health.startedAt).toLocaleString():'Runtime check'}</small></article>
    </section>
+   <ComponentShowcase/>
    <div className="atgv-columns"><div className="atgv-primary">
     <section className="qi-card atgv-panel"><p className="atgv-eyebrow">QUICK START</p><h2>Developer commands</h2><p className="atgv-hint">Run these from the local application checkout.</p>
      <div className="atgv-commands">{commands.map(([label,command])=><div className="atgv-command" key={command}><div><small>{label}</small><code>{command}</code></div><button type="button" onClick={()=>void copy(command)} aria-label={'Copy '+command}>{copied===command?'Copied':'Copy'}</button></div>)}</div>

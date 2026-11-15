@@ -62,3 +62,5 @@ The React starter `src/App.test.tsx` now checks that the application mounts; it 
 ## Agent quality suite (1.1.11)
 
 `ai-harness/evals/agent-quality-suite.json` adds offline trace evaluation for Context, Tools, Loop, Governance, plus completion evidence, recovery, TDD integrity, traceability, handoff and instruction boundaries. Run `node --test ai-harness/tests/agent-quality.test.mjs`. These deterministic fixtures are **not** real AI inference benchmarks; see `ai-harness/README.md`.
+
+Catalog 1.1.14: React starter now includes an interactive Qi-inspired component reference (buttons, badges, cards, forms, tables, progress and dialogs). New generated projects receive it automatically; existing pristine catalog starters require verified migration through ATGV Save Stack. Edited application files are not overwritten. This is an independent starter, not an official AIA Qi distribution.
