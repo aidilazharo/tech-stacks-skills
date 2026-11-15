@@ -10,9 +10,13 @@ for(const item of manifest.assets){
  if(typeof item.path!=='string'||!item.path||item.path.startsWith('/')||item.path.includes('\\')||item.path.split('/').some(x=>!x||x==='.'||x==='..')||seen.has(item.path))throw Error('Unsafe or duplicate library path');
  seen.add(item.path);
  const file=path.join(base,'assets',...item.path.split('/')),stat=await lstat(file);
- if(stat.isSymbolicLink()||!stat.isFile()||stat.size!==item.bytes)throw Error('Invalid packaged webview library: '+item.path);
- const actual=crypto.createHash('sha256').update(await readFile(file)).digest('hex');
- if(actual!==item.sha256)throw Error('SHA-256 mismatch: '+item.path);
- total+=stat.size;
+ if(stat.isSymbolicLink()||!stat.isFile())throw Error('Invalid packaged webview library: '+item.path);
+ const raw=await readFile(file);
+ // Git on Windows may convert LF text assets (including license files) to CRLF.
+ // Accept only the exact manifest-pinned bytes or their LF-normalized equivalent.
+ const normalized=raw.includes(13)?Buffer.from(raw.toString('utf8').replace(/\r\n/g,'\n'),'utf8'):raw;
+ const valid=[raw,normalized].some(data=>data.length===item.bytes&&crypto.createHash('sha256').update(data).digest('hex')===item.sha256);
+ if(!valid)throw Error('SHA-256/length mismatch: '+item.path);
+ total+=item.bytes;
 }
 console.log(`PASS webview libraries: ${seen.size} integrity-checked files (${total} bytes)`);
