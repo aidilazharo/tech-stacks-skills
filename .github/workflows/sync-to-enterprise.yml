@@ -1,9 +1,7 @@
 name: Sync main to enterprise release PR
 
-# Weekdays at 20:00 Asia/Kuala_Lumpur (UTC+08:00, no DST).
+# Retained manual fallback; source-side weekday schedule disabled.
 on:
-  schedule:
-    - cron: '0 12 * * 1-5'
   workflow_dispatch:
 
 permissions:
