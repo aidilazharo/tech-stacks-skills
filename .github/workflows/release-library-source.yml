@@ -1,0 +1,93 @@
+name: Package SDLC Library source ZIP
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: catalog-source-main
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    name: Verify and publish complete Library source ZIP
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout Library
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Validate Library manifest and version
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s VERSION
+          test -s catalog.json
+          test -d roles
+          test -d tech-stacks
+          test -d ai-harness
+          node -e '
+            const fs=require("node:fs");
+            const version=fs.readFileSync("VERSION","utf8").trim();
+            const m=JSON.parse(fs.readFileSync("catalog.json","utf8"));
+            if(!/^\d+\.\d+\.\d+$/.test(version)||m.schema!==1||m.version!==version||
+               !Array.isArray(m.roles)||!m.roles.length||!Array.isArray(m.techStacks)||!m.techStacks.length)
+              throw Error("Library metadata does not match VERSION");
+          '
+
+      - name: Archive committed Library source
+        id: archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(tr -d '\r\n' < VERSION)"
+          filename="tech-stacks-skills-${version}-source.zip"
+          mkdir -p dist
+          git archive --format=zip --prefix="tech-stacks-skills-${version}/" -o "dist/${filename}" HEAD
+          unzip -tqq "dist/${filename}"
+          (cd dist && sha256sum "${filename}" > library-source.sha256)
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+          echo "filename=${filename}" >> "$GITHUB_OUTPUT"
+          {
+            echo "### SDLC Library v${version}"
+            echo "Complete source ZIP: ${filename}"
+            echo "Verified source commit: ${GITHUB_SHA}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload Library ZIP as build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: tech-stacks-skills-source-${{ steps.archive.outputs.version }}-${{ github.run_number }}
+          path: |
+            dist/${{ steps.archive.outputs.filename }}
+            dist/library-source.sha256
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Publish source archive release
+        shell: bash
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ steps.archive.outputs.version }}
+          FILE: ${{ steps.archive.outputs.filename }}
+          BUILD: ${{ github.run_number }}
+        run: |
+          set -euo pipefail
+          tag="v${VERSION}-source-build.${BUILD}"
+          if ! gh release view "$tag" >/dev/null 2>&1; then
+            gh release create "$tag" "dist/${FILE}" "dist/library-source.sha256" \
+              --target "$GITHUB_SHA" \
+              --title "SDLC Library v${VERSION} — source archive (build ${BUILD})" \
+              --notes "Full, committed SDLC Library source including technology stacks, role skills and AI harness. Verified ZIP and SHA-256 checksum." \
+              --prerelease --latest=false
+          else
+            gh release upload "$tag" "dist/${FILE}" "dist/library-source.sha256" --clobber
+          fi
