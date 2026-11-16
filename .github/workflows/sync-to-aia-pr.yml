@@ -1,9 +1,6 @@
 name: Sync source main to destination PR
 
 on:
-  schedule:
-    # 00:00 UTC = 08:00 Asia/Kuala_Lumpur, Monday-Friday.
-    - cron: "0 0 * * 1-5"
   workflow_dispatch:
 
 permissions:
