@@ -4,7 +4,7 @@ import './startup.css';
 import { ComponentShowcase } from './ComponentShowcase';
 type Health = { status: string; database?: string; apiPort?: number; startedAt?: string; instanceId?: string };
 type Task = { id: number; title: string; status: string };
-const commands = [['Install dependencies','npm install'],['Launch frontend and API','npm run dev'],['Run unit and API tests','npm test'],['Run browser tests','npm run test:e2e'],['Create production build','npm run build']];
+const commands = [['Install dependencies','npm ci --ignore-scripts'],['Launch frontend and API','npm run dev'],['Run unit and API tests','npm test'],['Run browser tests','npm run test:e2e'],['Create production build','npm run build']];
 const project=import.meta.env.VITE_ATGV_PROJECT||'React + SQLite starter';
 const branch=import.meta.env.VITE_ATGV_BRANCH||'Local checkout';
 const revision=import.meta.env.VITE_ATGV_REVISION||'Unspecified';

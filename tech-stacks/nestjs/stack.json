@@ -29,5 +29,5 @@
   "testCommand": "npm test",
   "buildCommand": "npm run build",
   "testApiCommand": "npm run test:api",
-  "installCommand": "npm install"
+  "installCommand": "npm ci --ignore-scripts"
 }

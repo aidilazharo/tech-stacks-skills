@@ -24,6 +24,9 @@ function walkFiles(folder, prefix = '') {
   const result = [];
   for (const dirent of readdirSync(folder, { withFileTypes: true })) {
     const rel = prefix ? prefix + '/' + dirent.name : dirent.name;
+    // Local validation may have installed or built a scaffold. Generated
+    // dependencies and output are not catalog source files.
+    if (!prefix && ['node_modules', 'dist', '.angular', 'coverage', 'test-results', 'playwright-report', 'data'].includes(dirent.name)) continue;
     if (!safeRelative(rel)) throw Error('Unsafe scaffold file path: ' + rel);
     if (dirent.isSymbolicLink()) throw Error('Symlink in catalog scaffold: ' + rel);
     if (dirent.isDirectory()) result.push(...walkFiles(join(folder, dirent.name), rel));

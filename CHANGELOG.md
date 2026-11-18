@@ -1,3 +1,10 @@
+## 1.1.17 — Verified starter builds and dependency updates
+
+- Upgrade Drizzle ORM and the test tooling; add npm lockfiles for reproducible starter installs.
+- Repair the NestJS TypeScript production build and verify React, Angular and NestJS tests and builds before publishing.
+- Validate every webview asset against its manifest and run catalog checks in the release workflow.
+- The upstream picomatch development-tool ReDoS advisory has no patched release; use trusted glob patterns and review updates when available.
+
 ## 1.1.16 — SortableJS moves to the verified SDLC Library
 
 - Publish the unmodified MIT-licensed SortableJS 1.15.7 browser build, license, and provenance notice in shared/libraries/webview/assets/sortablejs/.
