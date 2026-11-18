@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.16`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `1.1.17`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `tech-stacks/<id>/stack.json`: five stack descriptors
 - `tech-stacks/<id>/scaffold/`: runnable project starter, API, ORM and SQLite examples
@@ -39,7 +39,7 @@ The catalogue now includes **AIA Qi** and **Bootstrap v5.3**. Both offer a pinne
 
 ## Scaffold readiness · v1.1.3
 
-Use `node scripts/validate-catalog.mjs` for an offline structural check. See [`docs/STACK-READINESS.md`](docs/STACK-READINESS.md) for per-stack test/build instructions, npm cache permission handling and lockfile-generation guidance. The three npm-based starter projects contain real unit/API tests, with browser/E2E tests in the React and Angular scaffolds. Runtime compilation and dependency-resolution checks require access to the approved npm, Maven and NuGet registries and supported Node/Java/.NET runtimes.
+Use `node scripts/validate-catalog.mjs` for an offline structural check. See [`docs/STACK-READINESS.md`](docs/STACK-READINESS.md) for per-stack test/build instructions, npm cache permission handling and locked-install guidance. The three npm-based starter projects contain real unit/API tests, with browser/E2E tests in the React and Angular scaffolds. Runtime compilation and dependency-resolution checks require access to the approved npm, Maven and NuGet registries and supported Node/Java/.NET runtimes.
 
 ## Diagnosing a generated starter manifest (1.1.6)
 

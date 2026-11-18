@@ -21,4 +21,4 @@ The SQLite database is **local only** and is excluded from Git.
 - `npx playwright install chromium` — one-time browser setup
 - `npm run test:e2e` — Playwright smoke + axe-core accessibility audit
 - `npm run build` — compile scaffold
-- `npm_config_cache="$HOME/.cache/atgv-npm" npm install` — macOS/Linux fallback when the default npm cache is not writable
+- `npm_config_cache="$HOME/.cache/atgv-npm" npm ci --ignore-scripts` — macOS/Linux fallback when the default npm cache is not writable

@@ -33,5 +33,5 @@
   "buildCommand": "npm run build",
   "e2eCommand": "npm run test:e2e",
   "testApiCommand": "npm run test:api",
-  "installCommand": "npm install"
+  "installCommand": "npm ci --ignore-scripts"
 }

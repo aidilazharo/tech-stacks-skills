@@ -1,4 +1,13 @@
-# Catalog 1.1.6 — validation report
+# Catalog 1.1.17 — validation update
+
+Date: 2026-11-18
+
+- Catalog and webview asset validators pass, and 34 catalog, harness and starter static tests pass on Linux.
+- React, Angular and NestJS were installed from their committed lockfiles with `npm ci --ignore-scripts`; their tests and production builds pass.
+- `npm audit --omit=dev --audit-level=high` reports no production vulnerabilities in these three starters. An unpatched upstream picomatch advisory remains in their development tooling.
+- Live browser, .NET, Maven and native Windows tests were not performed for this update.
+
+# Catalog 1.1.6 — historical validation report
 
 Date: 2026-11-12
 

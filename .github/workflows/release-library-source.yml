@@ -3,18 +3,62 @@ name: Package SDLC Library source ZIP
 on:
   push:
     branches: [main]
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: catalog-source-main
   cancel-in-progress: false
 
 jobs:
+  verify-catalog:
+    name: Validate Library and asset integrity
+    runs-on: ${{ vars.ATGV_LINUX_RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node scripts/validate-catalog.mjs
+      - run: node scripts/validate-webview-libraries.mjs
+      - run: node --test tests/*.test.mjs ai-harness/tests/*.test.mjs tech-stacks/nestjs/scaffold/test/static.test.mjs
+
+  verify-starters:
+    name: Verify ${{ matrix.stack }} starter
+    runs-on: ${{ vars.ATGV_LINUX_RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        stack: [react, angular, nestjs]
+    defaults:
+      run:
+        working-directory: tech-stacks/${{ matrix.stack }}/scaffold
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npm audit --omit=dev --audit-level=high
+      - run: npm test
+      - run: npm run build
+
   archive:
     name: Verify and publish complete Library source ZIP
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: write
+    needs: [verify-catalog, verify-starters]
     runs-on: ${{ vars.ATGV_LINUX_RUNNER || 'ubuntu-latest' }}
     timeout-minutes: 12
     steps:

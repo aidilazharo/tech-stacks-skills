@@ -1,12 +1,12 @@
 # Technology-stack prerequisites & ATGV readiness
 
-Catalog version: **1.1.6**. Work in a **generated project's scaffold directory** when running npm commands, not the catalog root.
+Catalog version: **1.1.17**. Work in a **generated project's scaffold directory** when running npm commands, not the catalog root.
 
 | Stack | Prerequisite | Install | Test | Build | Run | Browser E2E |
 | --- | --- | --- | --- | --- | --- | --- |
-| React 19 | Node 22.22.3+, or supported 24/26 | `npm install` | `npm test` | `npm run build` | `npm run dev` | `npm run test:e2e` |
-| Angular 22 | Node ^22.22.3 / ^24.15 / ^26; TypeScript 6.0.x | `npm install` | `npm test` | `npm run build` | `npm run dev` | `npm run test:e2e` |
-| NestJS 11 | Node 22.12+ | `npm install` | `npm test` | `npm run build` | `npm run dev` | Not configured |
+| React 19 | Node 22.22.3+, or supported 24/26 | `npm ci --ignore-scripts` | `npm test` | `npm run build` | `npm run dev` | `npm run test:e2e` |
+| Angular 22 | Node ^22.22.3 / ^24.15 / ^26; TypeScript 6.0.x | `npm ci --ignore-scripts` | `npm test` | `npm run build` | `npm run dev` | `npm run test:e2e` |
+| NestJS 11 | Node 22.12+ | `npm ci --ignore-scripts` | `npm test` | `npm run build` | `npm run dev` | Not configured |
 | .NET 10 | .NET SDK 10 | `dotnet restore` | `dotnet test tests/Atgv.Tests/Atgv.Tests.csproj` | `dotnet build` | `dotnet run` | Not configured |
 | Spring Boot 3.5 | Java 25, Maven | `mvn dependency:resolve` | `mvn test` | `mvn package` | `mvn spring-boot:run` | Not configured |
 
@@ -16,7 +16,7 @@ ATGV may report **"Default npm cache is not writable; retrying with a private AT
 
 ```sh
 mkdir -p "$HOME/.cache/atgv-npm"
-npm_config_cache="$HOME/.cache/atgv-npm" npm install
+npm_config_cache="$HOME/.cache/atgv-npm" npm ci --ignore-scripts
 npm_config_cache="$HOME/.cache/atgv-npm" npm test
 ```
 
@@ -25,7 +25,7 @@ Windows PowerShell:
 ```powershell
 $env:npm_config_cache = Join-Path $HOME '.cache\atgv-npm'
 New-Item -ItemType Directory -Force -Path $env:npm_config_cache | Out-Null
-npm install
+npm ci --ignore-scripts
 npm test
 ```
 
@@ -33,16 +33,7 @@ The **catalog** cannot force a cache choice in a running VS Code extension. The 
 
 ## Lockfiles and secure reproducibility
 
-The release package has no npm lockfiles because the packaging environment could not reach the npm registry. Do **not** create hand-written/incomplete lockfiles. On an approved registry-connected machine, run within each npm scaffold (React, Angular, NestJS):
-
-```sh
-npm install --package-lock-only --ignore-scripts
-npm ci
-npm test
-npm run build
-```
-
-Commit the generated `package-lock.json` per scaffold. Afterwards prefer `npm ci` for identical CI installations. Lockfiles are project source that should be version controlled; never check in `node_modules` or `data/*.db`.
+The React, Angular and NestJS scaffolds include npm lockfiles. Use `npm ci --ignore-scripts` for reproducible installs; do not commit `node_modules` or generated database files. Update and review the lockfile when dependencies change.
 
 ## Browser readiness
 
