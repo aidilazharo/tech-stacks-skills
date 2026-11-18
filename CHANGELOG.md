@@ -1,3 +1,9 @@
+## 1.1.16 — SortableJS moves to the verified SDLC Library
+
+- Publish the unmodified MIT-licensed SortableJS 1.15.7 browser build, license, and provenance notice in shared/libraries/webview/assets/sortablejs/.
+- Update the trusted webview asset manifest to v1.0.1 with pinned SHA-256 and sizes. ATGV v0.4.13 can load these assets through its verified local Library cache, retaining native Kanban fallback when the asset is unavailable.
+- Preserve existing code editor, Quill, Gantt, tech stack, role skills, and design catalog resources.
+
 ## 1.1.12 — Verified webview libraries
 
 - Added CodeMirror, Quill and Frappe Gantt browser assets under shared/libraries/webview with a versioned SHA-256 manifest.
