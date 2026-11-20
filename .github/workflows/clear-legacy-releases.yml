@@ -28,3 +28,4 @@ jobs:
             count=$((count+1))
           done <<< "$tags"
           echo "Deleted $count legacy releases and their tags; preserved v0.0.0 baseline releases." >> "$GITHUB_STEP_SUMMARY"
+# Reset invocation: one-time deletion for version 0.0.0.
