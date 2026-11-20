@@ -12,5 +12,6 @@
     "write_worktree"
   ],
   "loadSkills": "as-needed",
-  "tracing": "required"
+  "tracing": "required",
+  "version": "0.0.0"
 }

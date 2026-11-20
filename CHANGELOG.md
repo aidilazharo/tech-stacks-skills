@@ -1,3 +1,10 @@
+## 0.0.0 — Clean version baseline (2026-11-21)
+
+- Reset the root SDLC Library version to `0.0.0` without deleting source history or changing runtime scaffolds.
+- Add independent `0.0.0` role-agent versions for every catalog role and five harness agent profiles.
+- Consolidate release notes into one overwritten `RELEASE.md` and remove obsolete release-note files and macOS metadata.
+- Preserve pinned libraries, starter lockfiles, tests, skills and source provenance.
+
 ## 1.1.17 — Verified starter builds and dependency updates
 
 - Upgrade Drizzle ORM and the test tooling; add npm lockfiles for reproducible starter installs.

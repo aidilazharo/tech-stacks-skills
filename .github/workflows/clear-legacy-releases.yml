@@ -1,0 +1,29 @@
+name: One-time release history reset to v0.0.0
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/clear-legacy-releases.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  remove-superseded-releases:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[reset-legacy-releases]')
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Delete all previous GitHub Releases and their release tags
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tags="$(gh api --paginate "repos/${GITHUB_REPOSITORY}/releases?per_page=100" --jq '.[].tag_name')"
+          count=0
+          while IFS= read -r tag; do
+            [[ -n "$tag" ]] || continue
+            case "$tag" in v0.0.0|v0.0.0-*) echo "Retaining fresh baseline $tag"; continue ;; esac
+            gh release delete "$tag" --yes --cleanup-tag
+            count=$((count+1))
+          done <<< "$tags"
+          echo "Deleted $count legacy releases and their tags; preserved v0.0.0 baseline releases." >> "$GITHUB_STEP_SUMMARY"

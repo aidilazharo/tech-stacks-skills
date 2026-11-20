@@ -1,6 +1,6 @@
 # Technology-stack prerequisites & ATGV readiness
 
-Catalog version: **1.1.17**. Work in a **generated project's scaffold directory** when running npm commands, not the catalog root.
+Catalog version: **0.0.0**. Work in a **generated project's scaffold directory** when running npm commands, not the catalog root.
 
 | Stack | Prerequisite | Install | Test | Build | Run | Browser E2E |
 | --- | --- | --- | --- | --- | --- | --- |

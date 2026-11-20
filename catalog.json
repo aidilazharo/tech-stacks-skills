@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "1.1.17",
+  "version": "0.0.0",
   "sourceBranch": "main",
   "roles": [
     "business-analyst",
@@ -75,5 +75,9 @@
   "webviewLibraries": {
     "manifest": "shared/libraries/webview/manifest.json",
     "version": "1.0.0"
+  },
+  "roleAgents": {
+    "manifest": "roles/agents.json",
+    "version": "0.0.0"
   }
 }
