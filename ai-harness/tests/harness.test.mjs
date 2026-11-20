@@ -61,7 +61,7 @@ test('Git Agent uses a draft PR and enforces human approval and protected main',
 
 test('every catalog role has independently versioned agent metadata and harness roles agree',()=>{
  const catalog=j('catalog.json'), registry=j(catalog.roleAgents.manifest), harness=j('ai-harness/manifest.json');
- assert.equal(catalog.version,'0.0.0');
+ assert.equal(catalog.version,readFileSync(join(root,'VERSION'),'utf8').trim());
  assert.equal(catalog.roleAgents.version,'0.0.0');
  assert.equal(Object.keys(registry.agents).length,18);
  for(const id of catalog.roles){
