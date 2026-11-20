@@ -4,6 +4,7 @@
 - Add independent `0.0.0` role-agent versions for every catalog role and five harness agent profiles.
 - Consolidate release notes into one overwritten `RELEASE.md` and remove obsolete release-note files and macOS metadata.
 - Preserve pinned libraries, starter lockfiles, tests, skills and source provenance.
+- Remove three unused documentation screenshots and correct their checksum index to keep the source archive lean.
 
 ## 1.1.17 — Verified starter builds and dependency updates
 

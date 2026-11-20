@@ -17,9 +17,6 @@ aaa35dc19e16a7f1e848b4ac355e0c65086d2e70d28b38c58e8e4fb05ec89c2e  ./docs/index.h
 19fd072f9974f7bcced2e036e67faa198579c2a59ec05ca6dd76b6efdfb546b8  ./examples/insurance-dashboard.html
 d19bbf318e22f05261a2155fc1e5aadf7d19d5ba14faa9d15382f7fa66c4bf35  ./js/qi.js
 2cb215d1e21ead73a2f80ecc1be7c277b63e30b3700b07bc4c979b9c436a5a84  ./package.json
-e0cc6a2afd909f194af5c37dfe80a5089e63148cc2a4dc487aaa73dec357a5fd  ./previews/component-guide.png
-4779ffa64e6ab6dd743bc854120bb9a18932124dadf3551aff00b5471297c4b2  ./previews/dashboard-desktop.png
-fb88dadb33ba70cc7a9d219372fc3f196b8624d1547f8792840acf6739ef3b5c  ./previews/dashboard-mobile.png
 50465ff2d5ba53782f22a358b0db988907af9c6f6af173a6841ad02d68a16c47  ./skills/qi-inspired-interface/SKILL.md
 1f10862310cafcad21d4f4f513ad30b61fe6c3b42e2c6f0c87f65dabf6cd104f  ./templates/new-page.html
 47ba45abf211d0bd1474d90d58880519ddd35d2f443df0f7b39e3d0df9404c46  ./tests/verify.js

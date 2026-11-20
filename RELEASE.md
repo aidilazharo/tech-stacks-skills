@@ -6,6 +6,7 @@
 - Add `roles/agents.json` as the version registry for all 18 role agents. Every role agent begins at `0.0.0` and may advance independently of the Library version.
 - Add explicit version fields to the five AI Harness agent descriptors.
 - Remove superseded numbered release notes and committed `.DS_Store` metadata.
+- Exclude three unreferenced design-preview screenshots (roughly 1.1 MiB) from source ZIP and catalog sync; retain CSS, component definitions and runnable examples.
 - Keep one `RELEASE.md` in the repository root; overwrite its contents for each subsequent release.
 
 ## Compatibility
