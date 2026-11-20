@@ -65,12 +65,12 @@ test('every catalog role has independently versioned agent metadata and harness 
  assert.equal(catalog.roleAgents.version,'0.0.0');
  assert.equal(Object.keys(registry.agents).length,18);
  for(const id of catalog.roles){
-   assert.match(registry.agents[id].version,/^\\d+\\.\\d+\\.\\d+$/);
+   assert.match(registry.agents[id].version,/^\d+\.\d+\.\d+$/);
    assert.equal(registry.agents[id].roleSkill,'roles/'+id+'/SKILL.md');
  }
  for(const [id,rel] of Object.entries(harness.agents)){
    const agent=j(rel);
-   assert.match(agent.version,/^\\d+\\.\\d+\\.\\d+$/);
+   assert.match(agent.version,/^\d+\.\d+\.\d+$/);
    if(registry.agents[id])assert.equal(agent.version,registry.agents[id].version);
  }
 });

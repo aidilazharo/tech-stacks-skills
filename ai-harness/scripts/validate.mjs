@@ -26,7 +26,7 @@ const roleAgentsRel = catalog.roleAgents?.manifest;
 assert(roleAgentsRel === 'roles/agents.json', 'Role agent versions manifest must be declared');
 if (roleAgentsRel && file(roleAgentsRel)) {
   const roleAgents = json(roleAgentsRel);
-  const semver = /^\\d+\\.\\d+\\.\\d+$/;
+  const semver = /^\d+\.\d+\.\d+$/;
   assert(roleAgents.schema === 1, 'Role agent manifest schema must be 1');
   assert(roleAgents.version === catalog.roleAgents.version, 'Role agent registry version mismatch');
   assert(new Set(catalog.roles).size === catalog.roles.length, 'Duplicate catalog role IDs');
