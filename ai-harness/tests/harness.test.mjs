@@ -58,3 +58,19 @@ test('Git Agent uses a draft PR and enforces human approval and protected main',
  assert.equal(flow.git.maintainerReviewRequired,true);
  assert.equal(flow.execution.catalogScriptsAutoExecute,false);
 });
+
+test('every catalog role has independently versioned agent metadata and harness roles agree',()=>{
+ const catalog=j('catalog.json'), registry=j(catalog.roleAgents.manifest), harness=j('ai-harness/manifest.json');
+ assert.equal(catalog.version,'0.0.0');
+ assert.equal(catalog.roleAgents.version,'0.0.0');
+ assert.equal(Object.keys(registry.agents).length,18);
+ for(const id of catalog.roles){
+   assert.match(registry.agents[id].version,/^\\d+\\.\\d+\\.\\d+$/);
+   assert.equal(registry.agents[id].roleSkill,'roles/'+id+'/SKILL.md');
+ }
+ for(const [id,rel] of Object.entries(harness.agents)){
+   const agent=j(rel);
+   assert.match(agent.version,/^\\d+\\.\\d+\\.\\d+$/);
+   if(registry.agents[id])assert.equal(agent.version,registry.agents[id].version);
+ }
+});

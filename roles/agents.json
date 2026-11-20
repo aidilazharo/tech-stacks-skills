@@ -1,0 +1,78 @@
+{
+  "schema": 1,
+  "version": "0.0.0",
+  "agents": {
+    "business-analyst": {
+      "version": "0.0.0",
+      "roleSkill": "roles/business-analyst/SKILL.md"
+    },
+    "project-manager": {
+      "version": "0.0.0",
+      "roleSkill": "roles/project-manager/SKILL.md"
+    },
+    "solution-architect": {
+      "version": "0.0.0",
+      "roleSkill": "roles/solution-architect/SKILL.md"
+    },
+    "software-developer": {
+      "version": "0.0.0",
+      "roleSkill": "roles/software-developer/SKILL.md"
+    },
+    "qa-engineer": {
+      "version": "0.0.0",
+      "roleSkill": "roles/qa-engineer/SKILL.md"
+    },
+    "product-owner": {
+      "version": "0.0.0",
+      "roleSkill": "roles/product-owner/SKILL.md"
+    },
+    "scrum-master": {
+      "version": "0.0.0",
+      "roleSkill": "roles/scrum-master/SKILL.md"
+    },
+    "ux-designer": {
+      "version": "0.0.0",
+      "roleSkill": "roles/ux-designer/SKILL.md"
+    },
+    "security-engineer": {
+      "version": "0.0.0",
+      "roleSkill": "roles/security-engineer/SKILL.md"
+    },
+    "data-engineer": {
+      "version": "0.0.0",
+      "roleSkill": "roles/data-engineer/SKILL.md"
+    },
+    "uat-tester": {
+      "version": "0.0.0",
+      "roleSkill": "roles/uat-tester/SKILL.md"
+    },
+    "technical-writer": {
+      "version": "0.0.0",
+      "roleSkill": "roles/technical-writer/SKILL.md"
+    },
+    "operations-support": {
+      "version": "0.0.0",
+      "roleSkill": "roles/operations-support/SKILL.md"
+    },
+    "release-manager": {
+      "version": "0.0.0",
+      "roleSkill": "roles/release-manager/SKILL.md"
+    },
+    "technical-lead": {
+      "version": "0.0.0",
+      "roleSkill": "roles/technical-lead/SKILL.md"
+    },
+    "business-owner": {
+      "version": "0.0.0",
+      "roleSkill": "roles/business-owner/SKILL.md"
+    },
+    "ai-ml-engineer": {
+      "version": "0.0.0",
+      "roleSkill": "roles/ai-ml-engineer/SKILL.md"
+    },
+    "compliance-officer": {
+      "version": "0.0.0",
+      "roleSkill": "roles/compliance-officer/SKILL.md"
+    }
+  }
+}

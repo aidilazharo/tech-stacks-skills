@@ -22,6 +22,26 @@ assert(manifest.schema === 1, 'Harness schema must be 1');
 assert(manifest.version === version, 'Harness version mismatch');
 assert(catalog.aiHarness?.manifest === 'ai-harness/manifest.json', 'Catalog harness reference missing');
 assert(catalog.aiHarness?.version === version, 'Catalog harness version mismatch');
+const roleAgentsRel = catalog.roleAgents?.manifest;
+assert(roleAgentsRel === 'roles/agents.json', 'Role agent versions manifest must be declared');
+if (roleAgentsRel && file(roleAgentsRel)) {
+  const roleAgents = json(roleAgentsRel);
+  const semver = /^\\d+\\.\\d+\\.\\d+$/;
+  assert(roleAgents.schema === 1, 'Role agent manifest schema must be 1');
+  assert(roleAgents.version === catalog.roleAgents.version, 'Role agent registry version mismatch');
+  assert(new Set(catalog.roles).size === catalog.roles.length, 'Duplicate catalog role IDs');
+  assert(Object.keys(roleAgents.agents || {}).length === catalog.roles.length, 'Role agent count must match catalog roles');
+  for (const id of catalog.roles) {
+    const agent = roleAgents.agents?.[id];
+    assert(Boolean(agent), 'Missing role agent version: ' + id);
+    if (!agent) continue;
+    assert(typeof agent.version === 'string' && semver.test(agent.version), 'Invalid role agent version: ' + id);
+    assert(agent.roleSkill === 'roles/' + id + '/SKILL.md', 'Wrong role skill path: ' + id);
+    file(agent.roleSkill);
+  }
+  for (const id of Object.keys(roleAgents.agents || {}))
+    assert(catalog.roles.includes(id), 'Unknown role agent ID: ' + id);
+}
 assert(manifest.runtime === 'atgv-core', 'Runtime must remain atgv-core');
 assert(manifest.security?.downloadedCodeAutoExecuted === false, 'Remote executable code must not auto-run');
 assert(manifest.security?.ATGVCoreEnforcesInvariants === true, 'ATGV core protection required');
@@ -30,6 +50,8 @@ for (const [id,rel] of Object.entries(manifest.agents ?? {})) {
   if (!file(rel)) continue;
   const agent = json(rel);
   assert(id === agent.id, 'Agent ID mismatch: ' + id);
+  assert(/^\d+\.\d+\.\d+$/.test(String(agent.version || '')), 'Invalid Harness agent version: ' + id);
+  if (catalog.roles.includes(id)) assert(agent.version === json('roles/agents.json').agents[id]?.version, 'Harness/role agent version mismatch: ' + id);
   assert(file(agent.roleSkill), 'Agent role skill missing: ' + id);
   for (const wf of agent.workflows || []) assert(manifest.workflows?.[wf], 'Unknown workflow: ' + wf);
 }

@@ -25,5 +25,6 @@
     "change_branch_protection",
     "secrets_access",
     "run_untrusted_code_as_privileged"
-  ]
+  ],
+  "version": "0.0.0"
 }
