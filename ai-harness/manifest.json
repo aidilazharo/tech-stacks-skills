@@ -80,7 +80,8 @@
     }
   },
   "policies": [
-    "ai-harness/policies/guardrails.json"
+    "ai-harness/policies/guardrails.json",
+    "ai-harness/policies/role-expertise-handoff.json"
   ],
   "evals": [
     "ai-harness/evals/http-create-404.json",
@@ -104,7 +105,8 @@
     "agent-quality-evaluation-trace-contract",
     "role-context-for-all-18-catalog-agents",
     "read-only-project-snapshot",
-    "verified-next-action-navigation"
+    "verified-next-action-navigation",
+    "explicit-cross-role-verified-skill-handoff"
   ],
   "status": "candidate-partial-extension-adapter",
   "contracts": {
