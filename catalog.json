@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.0.1",
+  "version": "0.0.2",
   "sourceBranch": "main",
   "roles": [
     "business-analyst",
@@ -82,6 +82,7 @@
   },
   "decisionMemory": {
     "manifest": ".memory/manifest.json",
-    "schema": 1
+    "schema": 1,
+    "distribution": "source-only"
   }
 }

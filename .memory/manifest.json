@@ -66,5 +66,15 @@
     "precedence": "current explicit user requests, approvals and safety constraints override historical decisions",
     "secrets": "never store credentials or personal data",
     "maxCategoryBytes": 32768
+  },
+  "releasePackaging": {
+    "sourceOnly": true,
+    "excludeDirectory": ".memory",
+    "artifactTypes": [
+      "VSIX",
+      "extension-source-zip",
+      "library-source-zip"
+    ],
+    "verifyArchive": true
   }
 }

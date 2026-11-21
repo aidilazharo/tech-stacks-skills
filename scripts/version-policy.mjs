@@ -1,8 +1,6 @@
-import {readFileSync} from 'node:fs';
-import {fileURLToPath} from 'node:url';
-const root=fileURLToPath(new URL('../',import.meta.url));
 const VERSION=/^(0|[1-9][0-9]?)\.(0|[1-9][0-9]?)\.(0|[1-9][0-9]?)$/;
-const policy=JSON.parse(readFileSync(new URL('../.memory/versioning.json',import.meta.url),'utf8'));
+// Runtime-safe copy of the source-only .memory/versioning.json policy.
+const policy=Object.freeze({schema:1,initialVersion:'0.0.0',maxVersion:'99.99.99'});
 export function parts(value){
  if(typeof value!=='string'||!VERSION.test(value))throw Error('Version must be canonical MAJOR.MINOR.PATCH in 0..99.');
  const n=value.split('.').map(Number);if(n.some(x=>x>99))throw Error('Version exceeds 99.99.99.');return n;

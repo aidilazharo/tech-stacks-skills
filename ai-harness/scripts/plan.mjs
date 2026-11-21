@@ -4,7 +4,9 @@ import { dirname, resolve, join } from 'node:path';
 const root=resolve(dirname(fileURLToPath(import.meta.url)),'..','..');
 const harness=JSON.parse(readFileSync(join(root,'ai-harness/manifest.json'),'utf8'));
 const selected=process.argv[2] ?? 'developer-tdd';
-const memoryIndex=JSON.parse(readFileSync(join(root,'.memory/manifest.json'),'utf8'));
+// Release archives omit .memory; a source checkout can still read its decisions.
+let memoryIndex={categories:[]};
+try {memoryIndex=JSON.parse(readFileSync(join(root,'.memory/manifest.json'),'utf8'));}catch(error){if(error?.code!=='ENOENT')throw error;}
 function decisionsFor(text){
  const query=String(text||'').toLowerCase(),entries=[];
  for(const entry of memoryIndex.categories){

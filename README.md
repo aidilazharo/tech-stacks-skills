@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.1`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.2`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `.memory/`: curated, categorized JSON decision records (version rules, release policy, workflow policies)
 - `roles/agents.json`: independent SemVer for each of 18 role agents (all initialize at `0.0.0`)
@@ -68,3 +68,5 @@ The React starter `src/App.test.tsx` now checks that the application mounts; it 
 `ai-harness/evals/agent-quality-suite.json` adds offline trace evaluation for Context, Tools, Loop, Governance, plus completion evidence, recovery, TDD integrity, traceability, handoff and instruction boundaries. Run `node --test ai-harness/tests/agent-quality.test.mjs`. These deterministic fixtures are **not** real AI inference benchmarks; see `ai-harness/README.md`.
 
 Catalog 1.1.14: React starter now includes an interactive Qi-inspired component reference (buttons, badges, cards, forms, tables, progress and dialogs). New generated projects receive it automatically; existing pristine catalog starters require verified migration through ATGV Save Stack. Edited application files are not overwritten. This is an independent starter, not an official AIA Qi distribution.
+
+**Decision memory distribution:** `.memory` stays in the source repository and is excluded from release ZIPs. Runtime tools function when this directory is absent.
