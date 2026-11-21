@@ -1,0 +1,246 @@
+{
+  "schema": 1,
+  "id": "atgv-role-next-actions",
+  "version": "0.1.0",
+  "kind": "read-only-navigation",
+  "requiresCurrentProject": true,
+  "alwaysShowVerifiedAction": true,
+  "neverAuthorizeRemoteWrites": true,
+  "fallbackWhenNoEvidence": "Open the selected role's workflow and inspect its next pending step; report if project evidence is unavailable.",
+  "roles": {
+    "business-analyst": {
+      "label": "Resume Business Requirements",
+      "route": "discovery",
+      "target": "discoveryView",
+      "reason": "Review incomplete BRs, source documents and discovery checkpoints",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "project-manager": {
+      "label": "Review Project Delivery",
+      "route": "role-workspace",
+      "target": "pmDailyCockpit",
+      "reason": "Review active Jira items, ownership and blockers",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "solution-architect": {
+      "label": "Review Architecture",
+      "route": "role-workspace",
+      "target": "architectBootstrap",
+      "reason": "Review approved requirements, stack prerequisites and dependencies",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "software-developer": {
+      "label": "Continue Development",
+      "route": "role-workspace",
+      "target": "developerTaskDashboard",
+      "reason": "Resume assigned Jira work and confirm recorded branch status",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "qa-engineer": {
+      "label": "Review QA Work",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Check test coverage against approved Acceptance Criteria",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "product-owner": {
+      "label": "Review Product Backlog",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Prioritize verified backlog items and unresolved decisions",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "scrum-master": {
+      "label": "Review Sprint Work",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Review sprint impediments and team dependencies",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "ux-designer": {
+      "label": "Continue UI/UX Design",
+      "route": "role-workspace",
+      "target": "uxDesignWorkspace",
+      "reason": "Resume assigned user flow, prototype or handoff",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "security-engineer": {
+      "label": "Review Security Work",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Review threats, controls and open security evidence",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "data-engineer": {
+      "label": "Review Data Work",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Check schema, data quality, lineage and migration dependencies",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "uat-tester": {
+      "label": "Review UAT Work",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Review business scenarios, defects and sign-off evidence",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "technical-writer": {
+      "label": "Review Documentation",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Identify documentation gaps and review-ready changes",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "operations-support": {
+      "label": "Review Operations",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Review service readiness and outstanding incidents",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "release-manager": {
+      "label": "Review Release Readiness",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Verify release gates, artifacts and rollback evidence",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "technical-lead": {
+      "label": "Review Technical Work",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Review implementation quality and unresolved PR decisions",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "business-owner": {
+      "label": "Review Approval Work",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Review business value and outstanding approval evidence",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "ai-ml-engineer": {
+      "label": "Review AI/ML Work",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Review model quality, data and monitoring evidence",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    },
+    "compliance-officer": {
+      "label": "Review Compliance",
+      "route": "role-workspace",
+      "target": "roleStepFlow",
+      "reason": "Review risk, control evidence and policy exceptions",
+      "evidence": [
+        "active_project",
+        "role_tasks",
+        "shared_project_activity",
+        "jira_assigned_work"
+      ],
+      "requiresConfirmationForWrites": true
+    }
+  }
+}

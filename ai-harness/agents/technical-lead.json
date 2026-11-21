@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "technical-lead",
+  "label": "Technical Lead",
+  "roleSkill": "roles/technical-lead/SKILL.md",
+  "workflows": [],
+  "permissions": [
+    "read_br",
+    "read_catalog"
+  ],
+  "loadSkills": "as-needed",
+  "tracing": "required",
+  "version": "0.0.1",
+  "projectContext": "ai-harness/context/project-snapshot.json",
+  "nextActionId": "technical-lead",
+  "navigationOnly": true
+}

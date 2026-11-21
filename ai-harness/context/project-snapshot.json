@@ -1,0 +1,71 @@
+{
+  "schema": 1,
+  "id": "atgv-project-snapshot-contract",
+  "version": "0.1.0",
+  "scope": "active-project-only",
+  "requiredFields": [
+    "projectId",
+    "roleId",
+    "roleName",
+    "checkedAt",
+    "sourceAvailability",
+    "roleWork",
+    "verifiedAction"
+  ],
+  "optionalFields": [
+    "jiraProjectKey",
+    "confluenceSpaceKey",
+    "approvedRequirements",
+    "incompleteRequirements",
+    "assignedJira",
+    "inProgressJira",
+    "recentRoleActivity",
+    "dependencies",
+    "risks",
+    "sourceRevisions",
+    "ragReferences"
+  ],
+  "provenance": {
+    "requiredPerRecord": [
+      "source",
+      "sourceId",
+      "updatedAt"
+    ],
+    "preferred": [
+      "revision",
+      "actorId"
+    ]
+  },
+  "authority": {
+    "businessRequirements": "approved BR source",
+    "jira": "live Jira issue state",
+    "developmentStart": "recorded ATGV development activity",
+    "sharedUpdates": "Confluence project activity metadata",
+    "documents": "versioned document source"
+  },
+  "freshness": {
+    "alwaysRecheckOnProjectOpen": true,
+    "checkBeforeAdvice": true,
+    "unavailableIsUnknownNotEmpty": true,
+    "rejectCrossProjectData": true
+  },
+  "privacy": {
+    "neverInclude": [
+      "secrets",
+      "PAT",
+      "tokens",
+      "credentials",
+      "raw_unapproved_documents"
+    ],
+    "requireProviderConsentForSharedEvidence": true,
+    "redactPII": true,
+    "untrustedRemoteText": true
+  },
+  "behavior": {
+    "selectRelevantEvidencePerRole": true,
+    "avoidDumpingEntireProjectIntoModel": true,
+    "showOneVerifiedNextActionImmediately": true,
+    "neverGenerateExecutableButtonFromModel": true,
+    "neverClaimUnverifiedCompletion": true
+  }
+}

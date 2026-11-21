@@ -72,3 +72,7 @@ Catalog 1.1.14: React starter now includes an interactive Qi-inspired component 
 **Decision memory distribution:** `.memory` stays in the source repository and is excluded from release ZIPs. Runtime tools function when this directory is absent.
 
 **AI source memory:** The `.memory` JSON files are consulted from Git source checkouts before AI writes or updates code, not from distributed Library ZIPs. Extension runtime error logs are unified under `.atgv/src/error-logs`; the library supplies coding guidance, not another runtime log store.
+
+## Role-aware AI navigation (Library 0.0.5)
+
+Every catalog role is registered in `ai-harness/manifest.json` and points to its individual `roles/<role>/SKILL.md`. The shared, active-project-only context contract is `ai-harness/context/project-snapshot.json`; approved BRs, live Jira issues and Confluence activity metadata remain authoritative at their own sources. The role navigation registry `ai-harness/actions/role-next-actions.json` provides one read-only next-step link for all 18 roles. These files are declarations, not executable code: the ATGV extension must load, validate, permission-check and render actions. Do not trust model text to choose executable commands. Provider sharing of project evidence requires consent.

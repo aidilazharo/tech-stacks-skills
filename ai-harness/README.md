@@ -50,3 +50,7 @@ node --test ai-harness/tests/agent-quality.test.mjs
 ```
 
 The fixture tests are intentionally synthetic. Passing them proves the **evaluator detects the designed conditions**, not that a real AI agent satisfies them. The ATGV trusted runtime must emit verified traces, retain test evidence and pin catalog/skill/model versions before the UI can report live agent quality. No downloaded catalog scripts are auto-executed by the extension.
+
+## All-role project awareness and actions
+
+ATGV Core owns all data access, consent and navigation. At harness start, select the active project and role, verify source freshness, load that role's SKILL.md, retrieve only relevant project evidence using the project-snapshot contract, and show its verified navigation button immediately. The model may describe a suggested step, but cannot invent a button route, mutate approved decisions, or execute a remote write. If Jira or Confluence is unavailable, mark its state as unknown and direct the user to the saved local role workflow. Library metadata alone does not implement these runtime behaviors; it must be consumed by the extension.

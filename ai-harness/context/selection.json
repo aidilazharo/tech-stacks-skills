@@ -11,10 +11,19 @@
     "last_passing_checkpoint",
     "recent_failures",
     "selected_skill_versions",
-    "repository_decisions"
+    "repository_decisions",
+    "active_project",
+    "role_work",
+    "shared_project_activity",
+    "jira_assigned_work",
+    "source_revisions"
   ],
   "priority": [
+    "active_project",
     "approved_br",
+    "role_work",
+    "shared_project_activity",
+    "jira_assigned_work",
     "locked_tests",
     "approved_stack",
     "current_failure",
@@ -34,5 +43,7 @@
     "acceptedOnly": true,
     "maxChars": 3000,
     "precedence": "lower-than-current-instructions-and-approvals"
-  }
+  },
+  "projectSnapshot": "ai-harness/context/project-snapshot.json",
+  "nextActions": "ai-harness/actions/role-next-actions.json"
 }

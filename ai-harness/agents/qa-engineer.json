@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "id": "qa-engineer",
+  "label": "Qa Engineer",
+  "roleSkill": "roles/qa-engineer/SKILL.md",
+  "workflows": [],
+  "permissions": [
+    "read_br",
+    "read_catalog"
+  ],
+  "loadSkills": "as-needed",
+  "tracing": "required",
+  "version": "0.0.1",
+  "projectContext": "ai-harness/context/project-snapshot.json",
+  "nextActionId": "qa-engineer",
+  "navigationOnly": true
+}

@@ -68,12 +68,33 @@ assert(manifest.runtime === 'atgv-core', 'Runtime must remain atgv-core');
 assert(manifest.security?.downloadedCodeAutoExecuted === false, 'Remote executable code must not auto-run');
 assert(manifest.security?.ATGVCoreEnforcesInvariants === true, 'ATGV core protection required');
 assert(manifest.security?.pinPerRunSkillDigest === true, 'Run skill digest pinning required');
+assert(manifest.projectContext === 'ai-harness/context/project-snapshot.json','Project snapshot contract missing');
+assert(manifest.nextActions === 'ai-harness/actions/role-next-actions.json','Next actions manifest missing');
+if(file(manifest.projectContext)&&file(manifest.nextActions)){
+ const snapshot=json(manifest.projectContext),routes=json(manifest.nextActions);
+ assert(snapshot.scope==='active-project-only','Project snapshot must stay scoped');
+ assert(snapshot.privacy?.requireProviderConsentForSharedEvidence===true,'Shared evidence consent required');
+ assert(snapshot.behavior?.neverGenerateExecutableButtonFromModel===true,'Actions cannot come from model output');
+ assert(routes.alwaysShowVerifiedAction===true&&routes.neverAuthorizeRemoteWrites===true,'Navigation policy must be read-only');
+ for(const id of catalog.roles){
+  const route=routes.roles?.[id];
+  assert(Boolean(route),'Missing navigation for '+id);
+  if(route){assert(['discovery','role-workspace'].includes(route.route),'Unsafe navigation route for '+id);
+   assert(route.requiresConfirmationForWrites===true,'Write approval missing for '+id);}
+  assert(Boolean(manifest.agents?.[id]),'Missing harness role agent: '+id);
+ }
+}
 for (const [id,rel] of Object.entries(manifest.agents ?? {})) {
   if (!file(rel)) continue;
   const agent = json(rel);
   assert(id === agent.id, 'Agent ID mismatch: ' + id);
   assert(/^\d+\.\d+\.\d+$/.test(String(agent.version || '')), 'Invalid Harness agent version: ' + id);
   if (catalog.roles.includes(id)) assert(agent.version === json('roles/agents.json').agents[id]?.version, 'Harness/role agent version mismatch: ' + id);
+  if(catalog.roles.includes(id)){
+   assert(agent.projectContext===manifest.projectContext,'Missing project context for '+id);
+   assert(agent.nextActionId===id,'Incorrect next-action ID: '+id);
+   assert(agent.navigationOnly===true,'Navigation actions must remain read-only: '+id);
+  }
   assert(file(agent.roleSkill), 'Agent role skill missing: ' + id);
   for (const wf of agent.workflows || []) assert(manifest.workflows?.[wf], 'Unknown workflow: ' + wf);
 }

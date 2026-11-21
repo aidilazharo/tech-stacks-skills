@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "id": "atgv-sdlc-ai-harness",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "compatibleCatalogSchema": 1,
   "runtime": "atgv-core",
   "entrypoint": "ai-harness/manifest.json",
@@ -10,7 +10,21 @@
     "solution-architect": "ai-harness/agents/solution-architect.json",
     "ux-designer": "ai-harness/agents/ux-designer.json",
     "software-developer": "ai-harness/agents/software-developer.json",
-    "git-agent": "ai-harness/agents/git-agent.json"
+    "git-agent": "ai-harness/agents/git-agent.json",
+    "project-manager": "ai-harness/agents/project-manager.json",
+    "qa-engineer": "ai-harness/agents/qa-engineer.json",
+    "product-owner": "ai-harness/agents/product-owner.json",
+    "scrum-master": "ai-harness/agents/scrum-master.json",
+    "security-engineer": "ai-harness/agents/security-engineer.json",
+    "data-engineer": "ai-harness/agents/data-engineer.json",
+    "uat-tester": "ai-harness/agents/uat-tester.json",
+    "technical-writer": "ai-harness/agents/technical-writer.json",
+    "operations-support": "ai-harness/agents/operations-support.json",
+    "release-manager": "ai-harness/agents/release-manager.json",
+    "technical-lead": "ai-harness/agents/technical-lead.json",
+    "business-owner": "ai-harness/agents/business-owner.json",
+    "ai-ml-engineer": "ai-harness/agents/ai-ml-engineer.json",
+    "compliance-officer": "ai-harness/agents/compliance-officer.json"
   },
   "workflows": {
     "ba-requirements": "ai-harness/workflows/ba-requirements.json",
@@ -87,7 +101,10 @@
     "git-pr-contributions",
     "github-actions-validation",
     "local-skill-overrides",
-    "agent-quality-evaluation-trace-contract"
+    "agent-quality-evaluation-trace-contract",
+    "role-context-for-all-18-catalog-agents",
+    "read-only-project-snapshot",
+    "verified-next-action-navigation"
   ],
   "status": "candidate-partial-extension-adapter",
   "contracts": {
@@ -96,5 +113,7 @@
     "agentQualityTrace": "ai-harness/contracts/agent-quality-trace.json"
   },
   "tools": "ai-harness/tools/registry.json",
-  "context": "ai-harness/context/selection.json"
+  "context": "ai-harness/context/selection.json",
+  "nextActions": "ai-harness/actions/role-next-actions.json",
+  "projectContext": "ai-harness/context/project-snapshot.json"
 }

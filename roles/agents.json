@@ -1,78 +1,114 @@
 {
   "schema": 1,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "agents": {
     "business-analyst": {
-      "version": "0.0.0",
-      "roleSkill": "roles/business-analyst/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/business-analyst/SKILL.md",
+      "nextActionId": "business-analyst",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "project-manager": {
-      "version": "0.0.0",
-      "roleSkill": "roles/project-manager/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/project-manager/SKILL.md",
+      "nextActionId": "project-manager",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "solution-architect": {
-      "version": "0.0.0",
-      "roleSkill": "roles/solution-architect/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/solution-architect/SKILL.md",
+      "nextActionId": "solution-architect",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "software-developer": {
-      "version": "0.0.0",
-      "roleSkill": "roles/software-developer/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/software-developer/SKILL.md",
+      "nextActionId": "software-developer",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "qa-engineer": {
-      "version": "0.0.0",
-      "roleSkill": "roles/qa-engineer/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/qa-engineer/SKILL.md",
+      "nextActionId": "qa-engineer",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "product-owner": {
-      "version": "0.0.0",
-      "roleSkill": "roles/product-owner/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/product-owner/SKILL.md",
+      "nextActionId": "product-owner",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "scrum-master": {
-      "version": "0.0.0",
-      "roleSkill": "roles/scrum-master/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/scrum-master/SKILL.md",
+      "nextActionId": "scrum-master",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "ux-designer": {
-      "version": "0.0.0",
-      "roleSkill": "roles/ux-designer/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/ux-designer/SKILL.md",
+      "nextActionId": "ux-designer",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "security-engineer": {
-      "version": "0.0.0",
-      "roleSkill": "roles/security-engineer/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/security-engineer/SKILL.md",
+      "nextActionId": "security-engineer",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "data-engineer": {
-      "version": "0.0.0",
-      "roleSkill": "roles/data-engineer/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/data-engineer/SKILL.md",
+      "nextActionId": "data-engineer",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "uat-tester": {
-      "version": "0.0.0",
-      "roleSkill": "roles/uat-tester/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/uat-tester/SKILL.md",
+      "nextActionId": "uat-tester",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "technical-writer": {
-      "version": "0.0.0",
-      "roleSkill": "roles/technical-writer/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/technical-writer/SKILL.md",
+      "nextActionId": "technical-writer",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "operations-support": {
-      "version": "0.0.0",
-      "roleSkill": "roles/operations-support/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/operations-support/SKILL.md",
+      "nextActionId": "operations-support",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "release-manager": {
-      "version": "0.0.0",
-      "roleSkill": "roles/release-manager/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/release-manager/SKILL.md",
+      "nextActionId": "release-manager",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "technical-lead": {
-      "version": "0.0.0",
-      "roleSkill": "roles/technical-lead/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/technical-lead/SKILL.md",
+      "nextActionId": "technical-lead",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "business-owner": {
-      "version": "0.0.0",
-      "roleSkill": "roles/business-owner/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/business-owner/SKILL.md",
+      "nextActionId": "business-owner",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "ai-ml-engineer": {
-      "version": "0.0.0",
-      "roleSkill": "roles/ai-ml-engineer/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/ai-ml-engineer/SKILL.md",
+      "nextActionId": "ai-ml-engineer",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     },
     "compliance-officer": {
-      "version": "0.0.0",
-      "roleSkill": "roles/compliance-officer/SKILL.md"
+      "version": "0.0.1",
+      "roleSkill": "roles/compliance-officer/SKILL.md",
+      "nextActionId": "compliance-officer",
+      "projectContextContract": "ai-harness/context/project-snapshot.json"
     }
   }
 }
