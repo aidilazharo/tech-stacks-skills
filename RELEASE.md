@@ -1,13 +1,14 @@
-# ATGV SDLC Library v0.0.4
+# ATGV SDLC Library v0.0.5
 
 ## Changes
 
-- Clarify `.memory` as source-only AI coding guidance and add AGENTS.md for developers and AI coding agents.
-- Record unified ATGV errors at `.atgv/src/error-logs` and source checkouts under `.atgv/src/extension` and `.atgv/src/library`.
-- Record read/write PAT verification and idle noon review as accepted development rules.
-- Keep `.memory` excluded from Library release archives, with extracted ZIP checks and prior approval gates intact.
-- Retain one overwritten RELEASE.md and exact incremental versioning.
+- Register all 18 role agents explicitly in the AI Harness using versioned role skill manifests.
+- Introduce the active-project-only, provenance-aware project snapshot contract and read-only next-step navigation manifest.
+- Require a verified navigation action for every role while preserving approval, privacy and source authority boundaries.
+- Extend catalog and Harness validators, role-version metadata and tests.
+- No remote write permission added and no downloaded catalog scripts auto-executed.
+- Keep .memory as source-only developer guidance excluded from release artifacts.
 
-## Verification
+## Validation
 
-- Catalog validation, AI Harness and starter tests, release archive extraction and source-only memory checks.
+- Run catalog and Harness validation, role quality checks and release-archive verification before merging and publishing.

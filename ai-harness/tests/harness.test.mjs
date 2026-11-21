@@ -20,7 +20,7 @@ test('developer workflow protects TDD and preview',()=>{
 test('read-only plan reflects manifest and TDD workflow',()=>{
  const raw=execFileSync(process.execPath,[join(root,'ai-harness/scripts/plan.mjs'),'developer-tdd'],{encoding:'utf8'});
  const plan=JSON.parse(raw);assert.equal(plan.kind,'read-only-harness-plan');
- assert.equal(plan.harness.version,'0.3.0');assert.ok(plan.steps.includes('verify'));
+ assert.equal(plan.harness.version,'0.3.1');assert.ok(plan.steps.includes('verify'));
 });
 test('404 evaluation requires real endpoint checks and preserves locked tests',()=>{
  const e=j('ai-harness/evals/http-create-404.json');
@@ -62,7 +62,7 @@ test('Git Agent uses a draft PR and enforces human approval and protected main',
 test('every catalog role has independently versioned agent metadata and harness roles agree',()=>{
  const catalog=j('catalog.json'), registry=j(catalog.roleAgents.manifest), harness=j('ai-harness/manifest.json');
  assert.equal(catalog.version,readFileSync(join(root,'VERSION'),'utf8').trim());
- assert.equal(catalog.roleAgents.version,'0.0.0');
+ assert.equal(catalog.roleAgents.version,'0.0.1');
  assert.equal(Object.keys(registry.agents).length,18);
  for(const id of catalog.roles){
    assert.match(registry.agents[id].version,/^\d+\.\d+\.\d+$/);
@@ -72,5 +72,24 @@ test('every catalog role has independently versioned agent metadata and harness 
    const agent=j(rel);
    assert.match(agent.version,/^\d+\.\d+\.\d+$/);
    if(registry.agents[id])assert.equal(agent.version,registry.agents[id].version);
+ }
+});
+
+test('all 18 registered agents use current project snapshot and verified navigation contracts',()=>{
+ const manifest=j('ai-harness/manifest.json');
+ const catalog=j('catalog.json');
+ const actions=j(manifest.nextActions),context=j(manifest.projectContext);
+ assert.equal(context.scope,'active-project-only');
+ assert.equal(context.privacy.requireProviderConsentForSharedEvidence,true);
+ assert.equal(context.behavior.neverGenerateExecutableButtonFromModel,true);
+ assert.equal(actions.neverAuthorizeRemoteWrites,true);
+ for(const id of catalog.roles){
+   const agent=j(manifest.agents[id]);
+   assert.equal(agent.id,id);
+   assert.equal(agent.projectContext,manifest.projectContext);
+   assert.equal(agent.nextActionId,id);
+   assert.equal(agent.navigationOnly,true);
+   assert.equal(actions.roles[id].requiresConfirmationForWrites,true);
+   assert.ok(['role-workspace','discovery'].includes(actions.roles[id].route));
  }
 });
