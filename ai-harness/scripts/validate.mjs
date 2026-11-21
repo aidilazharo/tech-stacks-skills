@@ -22,6 +22,27 @@ assert(manifest.schema === 1, 'Harness schema must be 1');
 assert(manifest.version === version, 'Harness version mismatch');
 assert(catalog.aiHarness?.manifest === 'ai-harness/manifest.json', 'Catalog harness reference missing');
 assert(catalog.aiHarness?.version === version, 'Catalog harness version mismatch');
+const memoryIndexRel=catalog.decisionMemory?.manifest;
+assert(memoryIndexRel==='.memory/manifest.json','Catalog decision-memory index is missing');
+if(memoryIndexRel&&file(memoryIndexRel)){
+ const index=json(memoryIndexRel),seen=new Set();
+ assert(index.schema===1&&index.kind==='atgv-decision-memory','Decision-memory manifest invalid');
+ assert(Array.isArray(index.categories)&&index.categories.length>=10,'Decision-memory categories missing');
+ for(const entry of index.categories||[]){
+  const id=entry.id;
+  assert(typeof id==='string'&&/^[a-z][a-z0-9-]+$/.test(id),'Invalid decision category');
+  assert(!seen.has(id),'Duplicate decision category: '+id);seen.add(id);
+  assert(entry.path==='.memory/'+id+'.json','Invalid category path: '+id);
+  if(!file(entry.path))continue;
+  const category=json(entry.path);
+  assert(category.schema===1&&category.category===id,'Category schema mismatch: '+id);
+  assert(Array.isArray(category.keywords)&&Array.isArray(category.decisions),'Category arrays missing: '+id);
+  for(const decision of category.decisions||[])assert(decision.status==='accepted'&&typeof decision.decision==='string'&&decision.decision.length<=500,'Invalid curated decision: '+id);
+ }
+ const v=json('.memory/versioning.json');
+ assert(v.initialVersion==='0.0.0'&&v.maxVersion==='99.99.99'&&v.strategy==='single-step-base-100-carry','Memory version limits invalid');
+}
+
 const roleAgentsRel = catalog.roleAgents?.manifest;
 assert(roleAgentsRel === 'roles/agents.json', 'Role agent versions manifest must be declared');
 if (roleAgentsRel && file(roleAgentsRel)) {

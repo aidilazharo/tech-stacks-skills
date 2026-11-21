@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "category": "security",
+  "keywords": [
+    "security",
+    "permission",
+    "token",
+    "secret"
+  ],
+  "decisions": []
+}

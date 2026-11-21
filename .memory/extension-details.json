@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "category": "extension-details",
+  "keywords": [
+    "extension",
+    "description",
+    "details",
+    "marketplace"
+  ],
+  "decisions": [
+    {
+      "id": "META-0001",
+      "status": "accepted",
+      "decision": "The VS Code extension description stays empty unless the user explicitly requests description text."
+    }
+  ]
+}

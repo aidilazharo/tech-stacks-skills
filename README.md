@@ -5,8 +5,9 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.0`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.1`
 - `roles/<id>/SKILL.md`: 18 role skills
+- `.memory/`: curated, categorized JSON decision records (version rules, release policy, workflow policies)
 - `roles/agents.json`: independent SemVer for each of 18 role agents (all initialize at `0.0.0`)
 - `tech-stacks/<id>/stack.json`: five stack descriptors
 - `tech-stacks/<id>/scaffold/`: runnable project starter, API, ORM and SQLite examples
