@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "category": "role-boundaries",
+  "status": "accepted",
+  "keywords": [
+    "role",
+    "skills",
+    "expertise",
+    "agent",
+    "harness",
+    "my work",
+    "chat",
+    "switch role",
+    "ui/ux",
+    "cross-role",
+    "routing",
+    "handoff",
+    "button",
+    "next action"
+  ],
+  "policy": {
+    "authority": "The currently selected ATGV role determines AI agent persona, permitted role deliverables, model instructions, role skill resources and associated UI workflows, even when the same Jira account has several roles.",
+    "sourceOfSkills": "Load role expertise and workflow guidance from the active trusted SDLC Catalog role/SKILL.md and agent/harness definitions. Fall back to bounded built-in role profiles if unavailable; do not execute arbitrary catalog scripts.",
+    "distinguish": "Explain, evaluate, review and coordinate other roles' work from the CURRENT role's perspective. For an explicit request to CREATE/EDIT/GENERATE/IMPLEMENT a deliverable belonging exclusively to a different role, request switching roles instead of creating that artifact in the wrong role.",
+    "routing": "Classify the intended deliverable conservatively against all 18 role expertise definitions. Do not route purely on ambiguous nouns or questions about cross-role dependencies; if multiple roles apply, identify the ambiguity and ask which deliverable to handle.",
+    "ui": "Offer an explicit button labeled 'Switch to <Target Role>' plus a short reason. Never auto-switch, never silently assign the user another role, never impersonate another agent and never bypass enabled-role or permission checks. If the role is disabled/unavailable, show 'Open Role Settings' and explain that a permitted user must enable it first.",
+    "continuity": "Preserve active project and original user request when navigating; keep role-specific AI contexts isolated and do not copy confidential chat history between roles without consent.",
+    "safeOperations": "All generated advice is read-only unless the user separately approves the target workflow. Keep repository/Jira/Confluence mutations subject to independently verified permissions and user confirmation.",
+    "fallback": "If AI, RAG or the role catalog is unavailable, still show a deterministic, role-appropriate What to do next button or safe fallback workspace link. Never show a nonworking control.",
+    "tests": "Cover each of the 18 roles, same-role requests, foreign-role deliverables, informational cross-role questions, ambiguous multi-role asks, disabled roles, user-confirmed switches, no silent role changes and persistent next-action buttons."
+  },
+  "roles": {
+    "business-analyst": {
+      "expertise": [
+        "Stakeholder discovery",
+        "BRD and functional requirements",
+        "user stories and acceptance criteria",
+        "requirements traceability"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "solution-architect": {
+      "expertise": [
+        "Architecture diagrams",
+        "ADR",
+        "API/integration design",
+        "technology-stack decisions",
+        "non-functional architecture"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "ux-designer": {
+      "expertise": [
+        "User journeys",
+        "wireframes",
+        "interface mockups",
+        "interactive prototypes",
+        "accessibility and design handoff"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "software-developer": {
+      "expertise": [
+        "Application source code",
+        "frontend/backend implementation",
+        "API implementation",
+        "unit-test code",
+        "bug fixes"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "project-manager": {
+      "expertise": [
+        "Project delivery planning",
+        "timelines and milestones",
+        "resource/dependency coordination",
+        "RAID",
+        "project recovery"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "qa-engineer": {
+      "expertise": [
+        "QA strategy",
+        "test cases and automation",
+        "regression/integration/system tests",
+        "defect triage",
+        "test coverage"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "uat-tester": {
+      "expertise": [
+        "Business acceptance scenarios",
+        "UAT scripts and execution evidence",
+        "business acceptance reports"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "product-owner": {
+      "expertise": [
+        "Product strategy",
+        "backlog prioritization",
+        "outcome and value management",
+        "product roadmap"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "scrum-master": {
+      "expertise": [
+        "Scrum ceremonies",
+        "sprint facilitation",
+        "impediments",
+        "retrospectives",
+        "flow improvements"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "security-engineer": {
+      "expertise": [
+        "Threat modelling",
+        "security assurance",
+        "vulnerability assessment",
+        "secure SDLC controls"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "data-engineer": {
+      "expertise": [
+        "Data models and schemas",
+        "data pipelines",
+        "ETL/ELT",
+        "database migration",
+        "data quality"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "technical-writer": {
+      "expertise": [
+        "API documentation",
+        "user guides",
+        "developer manuals",
+        "release documentation"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "operations-support": {
+      "expertise": [
+        "Incident handling",
+        "monitoring and alerts",
+        "production runbooks",
+        "root-cause follow-up"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "release-manager": {
+      "expertise": [
+        "CI/CD and deployment planning",
+        "release gates",
+        "rollback",
+        "production rollout"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "technical-lead": {
+      "expertise": [
+        "Engineering standards",
+        "code review",
+        "technical leadership",
+        "technology trade-off decisions"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "business-owner": {
+      "expertise": [
+        "Business outcome approvals",
+        "investment decisions",
+        "stakeholder decisions",
+        "risk acceptance"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "ai-ml-engineer": {
+      "expertise": [
+        "Machine-learning design",
+        "training/evaluation",
+        "MLOps",
+        "model risk/fairness/drift"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    },
+    "compliance-officer": {
+      "expertise": [
+        "Regulatory control mapping",
+        "compliance evidence",
+        "audit readiness",
+        "policy exceptions"
+      ],
+      "ownership": "These are typical deliverables, not an absolute restriction on answering related questions."
+    }
+  },
+  "examples": [
+    {
+      "activeRole": "project-manager",
+      "request": "Create the project's UI design mockup",
+      "action": "recommend_switch",
+      "targetRole": "ux-designer",
+      "button": "Switch to UI/UX Designer"
+    },
+    {
+      "activeRole": "project-manager",
+      "request": "Review UX dependencies affecting the schedule",
+      "action": "answer_in_current_role"
+    },
+    {
+      "activeRole": "ux-designer",
+      "request": "Write the backend API implementation",
+      "action": "recommend_switch",
+      "targetRole": "software-developer",
+      "button": "Switch to Developer"
+    },
+    {
+      "activeRole": "software-developer",
+      "request": "Explain the architecture tradeoffs for this API",
+      "action": "answer_in_current_role"
+    },
+    {
+      "activeRole": "project-manager",
+      "request": "Create the technical architecture diagram",
+      "action": "recommend_switch",
+      "targetRole": "solution-architect",
+      "button": "Switch to Solution Architect"
+    }
+  ]
+}
