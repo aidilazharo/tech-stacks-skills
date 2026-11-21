@@ -231,5 +231,32 @@
       "targetRole": "solution-architect",
       "button": "Switch to Solution Architect"
     }
+  ],
+  "decisions": [
+    {
+      "id": "ROLE-0001",
+      "status": "accepted",
+      "decision": "ATGV has exactly 18 specialist SDLC agents. Each selected role must use its own verified catalog roles/<role>/SKILL.md and purpose-specific expertise rather than a generic cross-role persona. Read the full role-boundaries.json mapping before writing or revising role AI, harness definitions or chat actions."
+    },
+    {
+      "id": "ROLE-0002",
+      "status": "accepted",
+      "decision": "A user can ask explanatory questions about other teams, dependencies, risks or progress without leaving their current role. Only an explicit request to create, update, generate or implement an exclusive deliverable of another specialist triggers role handoff. Ambiguous multi-role asks should be clarified."
+    },
+    {
+      "id": "ROLE-0003",
+      "status": "accepted",
+      "decision": "When a foreign-role artifact is requested, explain which specialist owns it and show a working user-clickable Switch to <Target Role> button. Never auto-switch, assign roles, impersonate other agents or bypass selected-role guards. Disabled specialist roles must lead to Role Settings, not auto-enablement."
+    },
+    {
+      "id": "ROLE-0004",
+      "status": "accepted",
+      "decision": "Keep the user's active project and original request as a draft during a user-approved specialist switch; do not forward private chat history without consent. Never turn cross-role advice into unapproved Jira, Confluence, GitHub or file changes."
+    },
+    {
+      "id": "ROLE-0005",
+      "status": "accepted",
+      "decision": "For every one of the 18 roles, keep a deterministic What to do next button visibly available while AI is thinking, offline or unavailable. Validate all 18 ownership mappings, informational exceptions, foreign artifacts, enabled-role checks, explicit switch interactions and memory release exclusion."
+    }
   ]
 }
