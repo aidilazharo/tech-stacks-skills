@@ -11,7 +11,12 @@
     "error",
     "maintenance",
     "PAT",
-    "coding"
+    "coding",
+    "18 roles",
+    "role skill",
+    "role switch",
+    "expertise",
+    "handoff"
   ],
   "decisions": [
     {
@@ -23,6 +28,11 @@
       "id": "AGENT-0002",
       "status": "accepted",
       "decision": "Automatic repairs must be idle-only during local 12:00–12:59, use verified GitHub write credentials, run tests and open PRs without auto-merge."
+    },
+    {
+      "id": "AGENT-0003",
+      "status": "accepted",
+      "decision": "All 18 SDLC agents and harness definitions must honor their own trusted role SKILL.md and .memory/role-boundaries.json. When another role must create/modify an exclusive deliverable, request a user-confirmed role switch; never auto-switch, assign new roles, bypass permissions or claim other roles' approvals. Cross-role explanatory questions and dependency reviews remain in the selected role."
     }
   ]
 }

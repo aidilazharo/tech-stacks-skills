@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "id": "atgv-role-expertise-handoff",
+  "version": "0.1.0",
+  "kind": "declarative-role-routing",
+  "status": "catalog-contract",
+  "description": "All 18 role-specific agents must use their own pinned skills; requests to produce another role's deliverable require a user-clickable switch. The extension core enforces identity, allowed roles and read-only handoff.",
+  "authoritativeSources": [
+    "ai-harness/manifest.json",
+    "roles/<role-id>/SKILL.md",
+    "ai-harness/context/project-snapshot.json"
+  ],
+  "activeRoleIsAuthority": true,
+  "neverAutoSwitch": true,
+  "switchRequiresUserClick": true,
+  "checksEnabledRoles": true,
+  "answerCrossRoleInformationalQuestionsInCurrentRole": true,
+  "routeForeignRoleArtifactCreation": true,
+  "preserveUserRequestAsDraft": true,
+  "neverForwardPrivateChatHistoryWithoutConsent": true,
+  "neverAutoEnableRoles": true,
+  "neverAssumeApproval": true,
+  "alwaysShowNextActionButton": true,
+  "failureFallback": "Current role may provide informational advice and a verified navigation button; do not fabricate a specialist deliverable.",
+  "roles": {
+    "business-analyst": {
+      "roleSkill": "roles/business-analyst/SKILL.md",
+      "expertise": [
+        "Stakeholder discovery",
+        "BRD and functional requirements",
+        "user stories and acceptance criteria",
+        "requirements traceability"
+      ]
+    },
+    "solution-architect": {
+      "roleSkill": "roles/solution-architect/SKILL.md",
+      "expertise": [
+        "Architecture diagrams",
+        "ADR",
+        "API/integration design",
+        "technology-stack decisions",
+        "non-functional architecture"
+      ]
+    },
+    "ux-designer": {
+      "roleSkill": "roles/ux-designer/SKILL.md",
+      "expertise": [
+        "User journeys",
+        "wireframes",
+        "interface mockups",
+        "interactive prototypes",
+        "accessibility and design handoff"
+      ]
+    },
+    "software-developer": {
+      "roleSkill": "roles/software-developer/SKILL.md",
+      "expertise": [
+        "Application source code",
+        "frontend/backend implementation",
+        "API implementation",
+        "unit-test code",
+        "bug fixes"
+      ]
+    },
+    "project-manager": {
+      "roleSkill": "roles/project-manager/SKILL.md",
+      "expertise": [
+        "Project delivery planning",
+        "timelines and milestones",
+        "resource/dependency coordination",
+        "RAID",
+        "project recovery"
+      ]
+    },
+    "qa-engineer": {
+      "roleSkill": "roles/qa-engineer/SKILL.md",
+      "expertise": [
+        "QA strategy",
+        "test cases and automation",
+        "regression/integration/system tests",
+        "defect triage",
+        "test coverage"
+      ]
+    },
+    "uat-tester": {
+      "roleSkill": "roles/uat-tester/SKILL.md",
+      "expertise": [
+        "Business acceptance scenarios",
+        "UAT scripts and execution evidence",
+        "business acceptance reports"
+      ]
+    },
+    "product-owner": {
+      "roleSkill": "roles/product-owner/SKILL.md",
+      "expertise": [
+        "Product strategy",
+        "backlog prioritization",
+        "outcome and value management",
+        "product roadmap"
+      ]
+    },
+    "scrum-master": {
+      "roleSkill": "roles/scrum-master/SKILL.md",
+      "expertise": [
+        "Scrum ceremonies",
+        "sprint facilitation",
+        "impediments",
+        "retrospectives",
+        "flow improvements"
+      ]
+    },
+    "security-engineer": {
+      "roleSkill": "roles/security-engineer/SKILL.md",
+      "expertise": [
+        "Threat modelling",
+        "security assurance",
+        "vulnerability assessment",
+        "secure SDLC controls"
+      ]
+    },
+    "data-engineer": {
+      "roleSkill": "roles/data-engineer/SKILL.md",
+      "expertise": [
+        "Data models and schemas",
+        "data pipelines",
+        "ETL/ELT",
+        "database migration",
+        "data quality"
+      ]
+    },
+    "technical-writer": {
+      "roleSkill": "roles/technical-writer/SKILL.md",
+      "expertise": [
+        "API documentation",
+        "user guides",
+        "developer manuals",
+        "release documentation"
+      ]
+    },
+    "operations-support": {
+      "roleSkill": "roles/operations-support/SKILL.md",
+      "expertise": [
+        "Incident handling",
+        "monitoring and alerts",
+        "production runbooks",
+        "root-cause follow-up"
+      ]
+    },
+    "release-manager": {
+      "roleSkill": "roles/release-manager/SKILL.md",
+      "expertise": [
+        "CI/CD and deployment planning",
+        "release gates",
+        "rollback",
+        "production rollout"
+      ]
+    },
+    "technical-lead": {
+      "roleSkill": "roles/technical-lead/SKILL.md",
+      "expertise": [
+        "Engineering standards",
+        "code review",
+        "technical leadership",
+        "technology trade-off decisions"
+      ]
+    },
+    "business-owner": {
+      "roleSkill": "roles/business-owner/SKILL.md",
+      "expertise": [
+        "Business outcome approvals",
+        "investment decisions",
+        "stakeholder decisions",
+        "risk acceptance"
+      ]
+    },
+    "ai-ml-engineer": {
+      "roleSkill": "roles/ai-ml-engineer/SKILL.md",
+      "expertise": [
+        "Machine-learning design",
+        "training/evaluation",
+        "MLOps",
+        "model risk/fairness/drift"
+      ]
+    },
+    "compliance-officer": {
+      "roleSkill": "roles/compliance-officer/SKILL.md",
+      "expertise": [
+        "Regulatory control mapping",
+        "compliance evidence",
+        "audit readiness",
+        "policy exceptions"
+      ]
+    }
+  }
+}
