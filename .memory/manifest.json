@@ -49,6 +49,10 @@
       "path": ".memory/ai-agents.json"
     },
     {
+      "id": "role-boundaries",
+      "path": ".memory/role-boundaries.json"
+    },
+    {
       "id": "workspace",
       "path": ".memory/workspace.json"
     },
