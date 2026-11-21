@@ -1,0 +1,15 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {join} from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=fileURLToPath(new URL('../',import.meta.url));
+const version=String(process.argv[2]||'');
+if(!/^[0-9]+\.[0-9]+\.[0-9]+$/.test(version))throw Error('Provide version MAJOR.MINOR.PATCH');
+const file=join(root,'catalog.json');
+const catalog=JSON.parse(readFileSync(file,'utf8'));
+catalog.version=version;
+writeFileSync(file,JSON.stringify(catalog,null,2)+'\n');
+writeFileSync(join(root,'VERSION'),version+'\n');
+const readme=join(root,'README.md');
+writeFileSync(readme,readFileSync(readme,'utf8').replace(/catalog `[0-9]+\.[0-9]+\.[0-9]+`/,'catalog `'+version+'`'));
+writeFileSync(join(root,'RELEASE.md'),'# ATGV SDLC Library v'+version+'\n\n## Changes\n\n- Record reviewed changes.\n');
+console.log('Updated Library version and overwritten RELEASE.md to '+version);

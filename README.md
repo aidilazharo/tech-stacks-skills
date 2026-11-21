@@ -18,6 +18,8 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Publish an update
 
+Use `node scripts/set-version.mjs 0.0.1` (with the approved new number) before every release. It updates catalog metadata and overwrites the single `RELEASE.md`; replace the placeholder with actual reviewed changes before merging.
+
 1. Review all stack and design files and CI changes in a GitHub pull request.
 2. Merge approved changes to **main** and update the semantic `VERSION` and `catalog.json` version.
 3. In ATGV Settings or Solution Architect My Work, click **Check Updates**, then **Pull & Update**.
