@@ -101,6 +101,11 @@ jobs:
             exit 1
           fi
           echo "Verified: no .memory directory in release ZIP" >> "$GITHUB_STEP_SUMMARY"
+          extracted="$(mktemp -d)"
+          trap 'rm -rf "$extracted"' EXIT
+          unzip -q "dist/${filename}" -d "$extracted"
+          (cd "$extracted/tech-stacks-skills-${version}" && node --test tests/*.test.mjs ai-harness/tests/*.test.mjs tech-stacks/nestjs/scaffold/test/static.test.mjs)
+          echo "Verified: extracted ZIP tests passed without .memory" >> "$GITHUB_STEP_SUMMARY"
           (cd dist && sha256sum "${filename}" > library-source.sha256)
           echo "version=${version}" >> "$GITHUB_OUTPUT"
           echo "filename=${filename}" >> "$GITHUB_OUTPUT"

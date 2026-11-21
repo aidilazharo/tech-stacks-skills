@@ -1,6 +1,6 @@
 import {test} from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync,existsSync} from 'node:fs';
 import {join} from 'node:path';
 import {fileURLToPath} from 'node:url';
 import {nextVersion,requireIncrement,parts} from '../scripts/version-policy.mjs';
@@ -20,16 +20,24 @@ test('decision memory categories are JSON, curated, and synced via catalog',()=>
  assert.equal(catalog.version,readFileSync(join(root,'VERSION'),'utf8').trim());
  assert.equal(catalog.decisionMemory.distribution,'source-only');
  assert.equal(catalog.decisionMemory.manifest,'.memory/manifest.json');
- const manifest=JSON.parse(readFileSync(join(root,'.memory/manifest.json'),'utf8'));
- assert.ok(manifest.categories.length>=10);
- for(const item of manifest.categories){const entry=JSON.parse(readFileSync(join(root,item.path),'utf8'));assert.equal(entry.category,item.id);}
+ if(existsSync(join(root,'.memory/manifest.json'))){
+  const manifest=JSON.parse(readFileSync(join(root,'.memory/manifest.json'),'utf8'));
+  assert.ok(manifest.categories.length>=10);
+  for(const item of manifest.categories){const entry=JSON.parse(readFileSync(join(root,item.path),'utf8'));assert.equal(entry.category,item.id);}
+ }else{
+  assert.equal(catalog.decisionMemory.distribution,'source-only');
+  assert.equal(existsSync(join(root,'.memory')),false);
+ }
 });
 
 test('source-only decision memory matches archive export policy',()=>{
  const attrs=readFileSync(join(root,'.gitattributes'),'utf8');
  assert.match(attrs,/^\.memory export-ignore$/m);
- const memory=JSON.parse(readFileSync(join(root,'.memory/release-management.json'),'utf8'));
- assert.ok(memory.decisions.some(x=>x.id==='RELEASE-0002'&&x.status==='accepted'));
+ if(existsSync(join(root,'.memory/release-management.json'))){
+  const memory=JSON.parse(readFileSync(join(root,'.memory/release-management.json'),'utf8'));
+  assert.ok(memory.decisions.some(x=>x.id==='RELEASE-0002'&&x.status==='accepted'));
+  assert.ok(memory.decisions.some(x=>x.id==='RELEASE-0003'&&x.status==='accepted'));
+ }else assert.equal(existsSync(join(root,'.memory')),false);
  const catalog=JSON.parse(readFileSync(join(root,'catalog.json'),'utf8'));
  assert.equal(catalog.decisionMemory.distribution,'source-only');
 });

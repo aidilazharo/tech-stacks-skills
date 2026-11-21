@@ -21,6 +21,11 @@
       "id": "RELEASE-0002",
       "status": "accepted",
       "decision": "Keep .memory JSON decision files in source Git repositories only. Exclude the complete .memory directory from extension VSIX, extension source ZIP, library source ZIP, public releases and downloadable build artifacts. Validate each archive before publication."
+    },
+    {
+      "id": "RELEASE-0003",
+      "status": "accepted",
+      "decision": "Release verification must execute memory-sensitive tests against the extracted distribution ZIP with .memory absent; checkout-only decisions may be asserted only when the source .memory directory exists."
     }
   ]
 }
