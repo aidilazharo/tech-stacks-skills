@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.4`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.6`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `.memory/`: curated, categorized JSON decision records (version rules, release policy, workflow policies)
 - `roles/agents.json`: independent SemVer for each of 18 role agents (all initialize at `0.0.0`)
@@ -76,3 +76,7 @@ Catalog 1.1.14: React starter now includes an interactive Qi-inspired component 
 ## Role-aware AI navigation (Library 0.0.5)
 
 Every catalog role is registered in `ai-harness/manifest.json` and points to its individual `roles/<role>/SKILL.md`. The shared, active-project-only context contract is `ai-harness/context/project-snapshot.json`; approved BRs, live Jira issues and Confluence activity metadata remain authoritative at their own sources. The role navigation registry `ai-harness/actions/role-next-actions.json` provides one read-only next-step link for all 18 roles. These files are declarations, not executable code: the ATGV extension must load, validate, permission-check and render actions. Do not trust model text to choose executable commands. Provider sharing of project evidence requires consent.
+
+## All 18 specialist roles and explicit handoffs (Library 0.0.6)
+
+The source-only `.memory/role-boundaries.json` and distributable `ai-harness/policies/role-expertise-handoff.json` declare each agent's role expertise and verified role-SKILL.md. ATGV may explain cross-role dependencies from the currently selected role but must recommend a user-clickable role switch before producing another specialist's deliverable. The role remains unchanged until the user clicks; a disabled role leads to settings, never automatic assignment. The original request remains a draft and the persistent What to do next button stays visible even when AI is offline. Runtime enforcement belongs to the extension core.
