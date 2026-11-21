@@ -1,13 +1,13 @@
-# ATGV SDLC Library v0.0.3
+# ATGV SDLC Library v0.0.4
 
 ## Changes
 
-- Keep `.memory` solely in Git source, excluded from all distribution archives.
-- Make decision-memory tests pass in both Git checkouts and extracted archives without `.memory`.
-- Add extracted-source ZIP regression tests to publication checks.
-- Record the archive-test decision as RELEASE-0003.
-- Maintain strictly increasing version numbers and one overwritten RELEASE.md.
+- Clarify `.memory` as source-only AI coding guidance and add AGENTS.md for developers and AI coding agents.
+- Record unified ATGV errors at `.atgv/src/error-logs` and source checkouts under `.atgv/src/extension` and `.atgv/src/library`.
+- Record read/write PAT verification and idle noon review as accepted development rules.
+- Keep `.memory` excluded from Library release archives, with extracted ZIP checks and prior approval gates intact.
+- Retain one overwritten RELEASE.md and exact incremental versioning.
 
 ## Verification
 
-- Library catalog, AI Harness, three stack builds and the extracted source archive test suite.
+- Catalog validation, AI Harness and starter tests, release archive extraction and source-only memory checks.

@@ -76,5 +76,6 @@
       "library-source-zip"
     ],
     "verifyArchive": true
-  }
+  },
+  "purpose": "Source-only guidance for AI writing, updating and reviewing extension or Library source code. The running extension stores sanitized unified errors under .atgv/src/error-logs. Never bundle .memory in the Library ZIP."
 }

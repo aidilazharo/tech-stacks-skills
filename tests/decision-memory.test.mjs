@@ -41,3 +41,14 @@ test('source-only decision memory matches archive export policy',()=>{
  const catalog=JSON.parse(readFileSync(join(root,'catalog.json'),'utf8'));
  assert.equal(catalog.decisionMemory.distribution,'source-only');
 });
+
+test('source-only AI coding guidance points to unified runtime error location',()=>{
+ const readme=readFileSync(join(root,'AGENTS.md'),'utf8');
+ assert.match(readme,/\.atgv\/src\/error-logs/);
+ if(existsSync(join(root,'.memory/manifest.json'))){
+  const manifest=JSON.parse(readFileSync(join(root,'.memory/manifest.json'),'utf8'));
+  assert.match(manifest.purpose,/source-only/i);
+  const workspace=JSON.parse(readFileSync(join(root,'.memory/workspace.json'),'utf8'));
+  assert.ok(workspace.decisions.some(x=>x.status==='accepted'&&x.decision.includes('.atgv/src/error-logs')));
+ }
+});
