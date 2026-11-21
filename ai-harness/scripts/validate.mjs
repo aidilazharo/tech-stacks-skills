@@ -24,7 +24,8 @@ assert(catalog.aiHarness?.manifest === 'ai-harness/manifest.json', 'Catalog harn
 assert(catalog.aiHarness?.version === version, 'Catalog harness version mismatch');
 const memoryIndexRel=catalog.decisionMemory?.manifest;
 assert(memoryIndexRel==='.memory/manifest.json','Catalog decision-memory index is missing');
-if(memoryIndexRel&&file(memoryIndexRel)){
+assert(catalog.decisionMemory?.distribution==='source-only','Decision memory must remain source-only');
+if(memoryIndexRel&&existsSync(join(root,memoryIndexRel))&&file(memoryIndexRel)){
  const index=json(memoryIndexRel),seen=new Set();
  assert(index.schema===1&&index.kind==='atgv-decision-memory','Decision-memory manifest invalid');
  assert(Array.isArray(index.categories)&&index.categories.length>=10,'Decision-memory categories missing');

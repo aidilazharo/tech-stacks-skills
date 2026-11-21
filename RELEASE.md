@@ -1,12 +1,13 @@
-# ATGV SDLC Library v0.0.1
+# ATGV SDLC Library v0.0.2
 
 ## Changes
 
-- Add 14 structured decision-memory JSON categories, including the immutable version-increment policy.
-- Validate repository memory and surface relevant accepted decisions in read-only Harness planning.
-- Enforce exact incremental version sequence `0.0.0`, `0.0.1`, ... `99.99.99`; disallow skipping, downgrading, reuse and overflow.
-- Overwrite the single RELEASE.md on every subsequent release.
+- Record the source-only `.memory` release policy in decision memory.
+- Exclude `.memory/` from GitHub source ZIPs using `git archive` export-ignore attributes.
+- Verify that release ZIPs have no `.memory` entries before publication.
+- Support running the version-policy module and harness planner without bundled decision memory.
+- Preserve one overwritten RELEASE.md and exact incremental versions.
 
 ## Validation
 
-- Library catalog and Harness checks; new version and memory tests.
+- Catalog, Harness, starters and archive-exclusion CI checks.

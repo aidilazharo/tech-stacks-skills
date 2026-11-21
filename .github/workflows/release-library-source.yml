@@ -96,6 +96,11 @@ jobs:
           mkdir -p dist
           git archive --format=zip --prefix="tech-stacks-skills-${version}/" -o "dist/${filename}" HEAD
           unzip -tqq "dist/${filename}"
+          if unzip -Z1 "dist/${filename}" | grep -E '(^|/)\.memory(/|$)'; then
+            echo "ERROR: .memory must not be included in Library release artifacts" >&2
+            exit 1
+          fi
+          echo "Verified: no .memory directory in release ZIP" >> "$GITHUB_STEP_SUMMARY"
           (cd dist && sha256sum "${filename}" > library-source.sha256)
           echo "version=${version}" >> "$GITHUB_OUTPUT"
           echo "filename=${filename}" >> "$GITHUB_OUTPUT"
