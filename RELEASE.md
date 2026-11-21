@@ -1,13 +1,13 @@
-# ATGV SDLC Library v0.0.2
+# ATGV SDLC Library v0.0.3
 
 ## Changes
 
-- Record the source-only `.memory` release policy in decision memory.
-- Exclude `.memory/` from GitHub source ZIPs using `git archive` export-ignore attributes.
-- Verify that release ZIPs have no `.memory` entries before publication.
-- Support running the version-policy module and harness planner without bundled decision memory.
-- Preserve one overwritten RELEASE.md and exact incremental versions.
+- Keep `.memory` solely in Git source, excluded from all distribution archives.
+- Make decision-memory tests pass in both Git checkouts and extracted archives without `.memory`.
+- Add extracted-source ZIP regression tests to publication checks.
+- Record the archive-test decision as RELEASE-0003.
+- Maintain strictly increasing version numbers and one overwritten RELEASE.md.
 
-## Validation
+## Verification
 
-- Catalog, Harness, starters and archive-exclusion CI checks.
+- Library catalog, AI Harness, three stack builds and the extracted source archive test suite.
