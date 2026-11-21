@@ -1,14 +1,12 @@
-# ATGV SDLC Library v0.0.0
+# ATGV SDLC Library v0.0.1
 
-## Release reset
+## Changes
 
-- Restart the Library release version sequence at `0.0.0` while retaining all source history and currently supported stacks, skills and design assets.
-- Add `roles/agents.json` as the version registry for all 18 role agents. Every role agent begins at `0.0.0` and may advance independently of the Library version.
-- Add explicit version fields to the five AI Harness agent descriptors.
-- Remove superseded numbered release notes and committed `.DS_Store` metadata.
-- Exclude three unreferenced design-preview screenshots (roughly 1.1 MiB) from source ZIP and catalog sync; retain CSS, component definitions and runnable examples.
-- Keep one `RELEASE.md` in the repository root; overwrite its contents for each subsequent release.
+- Add 14 structured decision-memory JSON categories, including the immutable version-increment policy.
+- Validate repository memory and surface relevant accepted decisions in read-only Harness planning.
+- Enforce exact incremental version sequence `0.0.0`, `0.0.1`, ... `99.99.99`; disallow skipping, downgrading, reuse and overflow.
+- Overwrite the single RELEASE.md on every subsequent release.
 
-## Compatibility
+## Validation
 
-The version reset does not migrate pinned catalog versions on existing installations. Existing installs may require explicit approval to adopt the new baseline.
+- Library catalog and Harness checks; new version and memory tests.

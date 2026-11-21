@@ -10,7 +10,8 @@
     "current_diff",
     "last_passing_checkpoint",
     "recent_failures",
-    "selected_skill_versions"
+    "selected_skill_versions",
+    "repository_decisions"
   ],
   "priority": [
     "approved_br",
@@ -18,7 +19,8 @@
     "approved_stack",
     "current_failure",
     "current_diff",
-    "skill_guidance"
+    "skill_guidance",
+    "repository_decisions"
   ],
   "neverInclude": [
     "plaintext_tokens",
@@ -26,5 +28,11 @@
     "unapproved_private_documents"
   ],
   "strategy": "minimal-relevant-context",
-  "notes": "ATGV core decides actual access, redaction and token budget."
+  "notes": "ATGV core decides actual access, redaction and token budget.",
+  "memory": {
+    "manifest": ".memory/manifest.json",
+    "acceptedOnly": true,
+    "maxChars": 3000,
+    "precedence": "lower-than-current-instructions-and-approvals"
+  }
 }

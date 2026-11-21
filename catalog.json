@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "sourceBranch": "main",
   "roles": [
     "business-analyst",
@@ -79,5 +79,9 @@
   "roleAgents": {
     "manifest": "roles/agents.json",
     "version": "0.0.0"
+  },
+  "decisionMemory": {
+    "manifest": ".memory/manifest.json",
+    "schema": 1
   }
 }

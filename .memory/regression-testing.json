@@ -1,0 +1,11 @@
+{
+  "schema": 1,
+  "category": "regression-testing",
+  "keywords": [
+    "regression",
+    "ci",
+    "quality",
+    "test"
+  ],
+  "decisions": []
+}

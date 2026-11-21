@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "category": "versioning",
+  "keywords": [
+    "version",
+    "release",
+    "increment",
+    "semver",
+    "tag"
+  ],
+  "decisions": [
+    {
+      "id": "VERSION-0001",
+      "status": "accepted",
+      "decision": "The first release is 0.0.0. Every subsequent release increments by exactly one patch unit, carrying at 99 to the next minor or major. The maximum is 99.99.99; skip, rollback and reuse are forbidden."
+    }
+  ],
+  "initialVersion": "0.0.0",
+  "maxVersion": "99.99.99",
+  "strategy": "single-step-base-100-carry"
+}

@@ -1,0 +1,12 @@
+{
+  "schema": 1,
+  "category": "jira",
+  "keywords": [
+    "jira",
+    "epic",
+    "story",
+    "publish",
+    "issue"
+  ],
+  "decisions": []
+}
