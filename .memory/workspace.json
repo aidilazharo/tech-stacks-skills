@@ -5,7 +5,24 @@
     "workspace",
     "github",
     "branch",
-    "pull"
+    "pull",
+    "AI",
+    "source",
+    "error",
+    "maintenance",
+    "PAT",
+    "coding"
   ],
-  "decisions": []
+  "decisions": [
+    {
+      "id": "WORKSPACE-0001",
+      "status": "accepted",
+      "decision": "The ATGV workspace must retain its existing .atgv contents while managing source checkouts in .atgv/src/extension and .atgv/src/library, and all sanitized extension/runtime error evidence in .atgv/src/error-logs."
+    },
+    {
+      "id": "WORKSPACE-0002",
+      "status": "accepted",
+      "decision": "The automatic coding agent reads .atgv/src/error-logs; delete only evidence verified as already reported on GitHub and preserve pending and submitted fix diagnostics."
+    }
+  ]
 }

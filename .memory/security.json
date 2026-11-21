@@ -5,7 +5,19 @@
     "security",
     "permission",
     "token",
-    "secret"
+    "secret",
+    "AI",
+    "source",
+    "error",
+    "maintenance",
+    "PAT",
+    "coding"
   ],
-  "decisions": []
+  "decisions": [
+    {
+      "id": "SECURITY-0001",
+      "status": "accepted",
+      "decision": "Confirm GitHub PAT read and actual write permission with a temporary branch create/delete before unattended repairs. Disable automatic improvement for read-only credentials, retain logs, and never print or persist PAT values."
+    }
+  ]
 }

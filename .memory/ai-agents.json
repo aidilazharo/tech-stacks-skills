@@ -5,7 +5,24 @@
     "agent",
     "copilot",
     "ai",
-    "memory"
+    "memory",
+    "AI",
+    "source",
+    "error",
+    "maintenance",
+    "PAT",
+    "coding"
   ],
-  "decisions": []
+  "decisions": [
+    {
+      "id": "AGENT-0001",
+      "status": "accepted",
+      "decision": "Before AI modifies source code, read relevant accepted .memory decisions from the target repository's verified Git checkout; do not rely on .memory being present in a published ZIP or VSIX."
+    },
+    {
+      "id": "AGENT-0002",
+      "status": "accepted",
+      "decision": "Automatic repairs must be idle-only during local 12:00–12:59, use verified GitHub write credentials, run tests and open PRs without auto-merge."
+    }
+  ]
 }

@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.3`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.4`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `.memory/`: curated, categorized JSON decision records (version rules, release policy, workflow policies)
 - `roles/agents.json`: independent SemVer for each of 18 role agents (all initialize at `0.0.0`)
@@ -70,3 +70,5 @@ The React starter `src/App.test.tsx` now checks that the application mounts; it 
 Catalog 1.1.14: React starter now includes an interactive Qi-inspired component reference (buttons, badges, cards, forms, tables, progress and dialogs). New generated projects receive it automatically; existing pristine catalog starters require verified migration through ATGV Save Stack. Edited application files are not overwritten. This is an independent starter, not an official AIA Qi distribution.
 
 **Decision memory distribution:** `.memory` stays in the source repository and is excluded from release ZIPs. Runtime tools function when this directory is absent.
+
+**AI source memory:** The `.memory` JSON files are consulted from Git source checkouts before AI writes or updates code, not from distributed Library ZIPs. Extension runtime error logs are unified under `.atgv/src/error-logs`; the library supplies coding guidance, not another runtime log store.
