@@ -1,0 +1,6 @@
+role: software-developer
+responsibilities:
+  - "Implement reviewed code and unit tests."
+skills:
+  - software-developer
+approvalRequired: true

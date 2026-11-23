@@ -1,0 +1,3 @@
+id: release-approval
+stages: [build, test, security-review, approved, deployed]
+requiresExplicitApproval: true
