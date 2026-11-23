@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "version": "0.0.6",
+  "version": "0.0.7",
   "sourceBranch": "main",
   "roles": [
     "business-analyst",
@@ -84,5 +84,12 @@
     "manifest": ".memory/manifest.json",
     "schema": 1,
     "distribution": "source-only"
+  },
+  "workspaceDefaults": {
+    "sdlc": "sdlc",
+    "templates": "templates",
+    "distribution": "git-tracked",
+    "projectSpecificFiles": "remain-in-project",
+    "allowRemoteExecution": false
   }
 }

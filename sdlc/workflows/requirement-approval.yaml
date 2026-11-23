@@ -1,0 +1,3 @@
+id: requirement-approval
+stages: [draft, review, approved]
+requiresExplicitApproval: true

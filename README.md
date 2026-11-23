@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.6`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.7`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `.memory/`: curated, categorized JSON decision records (version rules, release policy, workflow policies)
 - `roles/agents.json`: independent SemVer for each of 18 role agents (all initialize at `0.0.0`)
@@ -80,3 +80,7 @@ Every catalog role is registered in `ai-harness/manifest.json` and points to its
 ## All 18 specialist roles and explicit handoffs (Library 0.0.6)
 
 The source-only `.memory/role-boundaries.json` and distributable `ai-harness/policies/role-expertise-handoff.json` declare each agent's role expertise and verified role-SKILL.md. ATGV may explain cross-role dependencies from the currently selected role but must recommend a user-clickable role switch before producing another specialist's deliverable. The role remains unchanged until the user clicks; a disabled role leads to settings, never automatic assignment. The original request remains a draft and the persistent What to do next button stays visible even when AI is offline. Runtime enforcement belongs to the extension core.
+
+## Shared workspace defaults · v0.0.7
+
+The Library is **itself the GitHub repository checkout** at `<workspace>/.atgv/library/` (never `library/repository/`). `sdlc/` contains six reusable lifecycle processes, five reference role configurations and two approval workflows; `templates/` contains 14 reusable document templates. These assets are version-controlled, read as data, and must not be copied into the clean Library checkout by the VS Code extension. Projects own their runtime state, approvals, generated documents and overrides. The extension may use safe offline fallbacks before initial Library setup. See `docs/WORKSPACE-LIBRARY.md`.
