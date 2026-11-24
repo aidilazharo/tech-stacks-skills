@@ -176,6 +176,9 @@ jobs:
                           break
                       # Always read page 1 again after deletion; no shifting-page omissions.
                       for run_id in ids:
+                          live = api("/actions/runs/" + str(run_id), missing=True)
+                          if not live or live.get("status") != "completed":
+                              continue
                           outcome = api("/actions/runs/" + str(run_id),
                                         method="DELETE", missing=True)
                           if outcome:
