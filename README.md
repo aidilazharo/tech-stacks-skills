@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.7`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.8`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `.memory/`: curated, categorized JSON decision records (version rules, release policy, workflow policies)
 - `roles/agents.json`: independent SemVer for each of 18 role agents (all initialize at `0.0.0`)
@@ -84,3 +84,7 @@ The source-only `.memory/role-boundaries.json` and distributable `ai-harness/pol
 ## Shared workspace defaults · v0.0.7
 
 The Library is **itself the GitHub repository checkout** at `<workspace>/.atgv/library/` (never `library/repository/`). `sdlc/` contains six reusable lifecycle processes, five reference role configurations and two approval workflows; `templates/` contains 14 reusable document templates. These assets are version-controlled, read as data, and must not be copied into the clean Library checkout by the VS Code extension. Projects own their runtime state, approvals, generated documents and overrides. The extension may use safe offline fallbacks before initial Library setup. See `docs/WORKSPACE-LIBRARY.md`.
+
+## AIA Malaysia distribution
+
+The development repository runs all CI, synchronization and release publication. After verified source release, `sync-to-aiamalaysia.yml` creates a versioned PR in `aiamalaysia/my-fow-technology-app-techassists-enterprise-skills`. The scheduled or manual `publish-aiamalaysia-release.yml` checks merged PRs before publishing the ZIP and checksum via GitHub API. Configure an organization-approved `AIAMALAYSIA_PAT` repository Actions secret with Contents and Pull requests write access. Both workflows provide manual dry runs. Destination Actions remain disabled; its GitHub workflows and destination-only files are preserved.

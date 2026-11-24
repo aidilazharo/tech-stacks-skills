@@ -28,6 +28,8 @@ jobs:
           node-version: '24'
       - run: node scripts/validate-catalog.mjs
       - run: node scripts/validate-webview-libraries.mjs
+      - name: Test AIA Malaysia Library distribution automation
+        run: PYTHONDONTWRITEBYTECODE=1 python3 -m unittest discover -s scripts -p 'test_aiamalaysia_sync.py'
       - run: node --test tests/*.test.mjs ai-harness/tests/*.test.mjs tech-stacks/nestjs/scaffold/test/static.test.mjs
 
   verify-starters:

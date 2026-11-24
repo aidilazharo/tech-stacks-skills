@@ -1,13 +1,14 @@
-# ATGV SDLC Library v0.0.7
+# ATGV SDLC Library v0.0.8
 
 ## Changes
 
-- Publish six shared SDLC processes, five reference role definitions and two approval workflows under `sdlc/`.
-- Publish 14 shared document templates under `templates/` at the Git checkout root.
-- Define `.atgv/library/` as the checked-out GitHub Library itself; no nested `repository/` directory.
-- Version reusable defaults independently of per-project progress, drafts, project memory and approval history.
-- Keep Library content declarative; never execute downloaded scripts in the privileged extension runtime.
+- Add development-hosted automatic source synchronization and PR creation to the approved AIA Malaysia Library repository.
+- Pin synchronization to a verified main revision and matching Library source release; validate VERSION and catalog.json.
+- Protect destination .git, .github, action manifests and destination-only files; never force-push or write directly to main.
+- After an approved destination PR is merged, verify the source projection and publish the Library source ZIP and SHA-256 checksum via GitHub API.
+- Preserve release identity, verify uploaded draft assets and prevent overwrites and downgrades.
+- Provide scheduled publication checks and manual dry-run controls. AIA Malaysia GitHub Actions remain disabled.
 
 ## Verification
 
-`node scripts/validate-catalog.mjs` and `node --test tests/*.test.mjs` plus harness checks; verify Git checkout remains clean after ATGV initialization.
+Local Git overlay, version, asset and checksum tests run with the existing Library catalog, harness and starter checks. Live destination synchronization requires the approved AIAMALAYSIA_PAT secret and repository permissions.

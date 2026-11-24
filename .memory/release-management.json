@@ -26,6 +26,11 @@
       "id": "RELEASE-0003",
       "status": "accepted",
       "decision": "Release verification must execute memory-sensitive tests against the extracted distribution ZIP with .memory absent; checkout-only decisions may be asserted only when the source .memory directory exists."
+    },
+    {
+      "id": "RELEASE-0004",
+      "status": "accepted",
+      "decision": "Run AIA Malaysia Library distribution automation exclusively in the development repository. Sync verified source through versioned PRs, protect destination GitHub workflows, and publish the verified Library ZIP and checksum through GitHub API only after the destination PR merges and source projection matches. Never force-push, overwrite releases or downgrade."
     }
   ]
 }

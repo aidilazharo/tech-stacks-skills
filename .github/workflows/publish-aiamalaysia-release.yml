@@ -1,0 +1,49 @@
+name: Publish SDLC Library release to AIA Malaysia
+
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: Verify merged source and release without publishing
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: atgv-aiamalaysia-library-distribution
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: github.repository == 'aidilazharo/tech-stacks-skills' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check destination credential
+        env:
+          DEST_TOKEN: ${{ secrets.AIAMALAYSIA_PAT }}
+        run: test -n "$DEST_TOKEN" || { echo "::error::Configure the approved AIAMALAYSIA_PAT repository secret."; exit 1; }
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: source
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/checkout@v4
+        with:
+          repository: aiamalaysia/my-fow-technology-app-techassists-enterprise-skills
+          ref: main
+          path: destination
+          fetch-depth: 0
+          token: ${{ secrets.AIAMALAYSIA_PAT }}
+      - name: Verify merged PR and publish approved release
+        env:
+          SOURCE_TOKEN: ${{ github.token }}
+          DEST_TOKEN: ${{ secrets.AIAMALAYSIA_PAT }}
+          DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+        run: python3 source/scripts/aiamalaysia-sync.py publish

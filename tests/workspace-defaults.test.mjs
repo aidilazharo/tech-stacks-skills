@@ -1,13 +1,15 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs/promises';
-import path from 'node:path';
+import {parts} from '../scripts/version-policy.mjs';
 const root=new URL('../',import.meta.url);
 const read=async file=>fs.readFile(new URL(file,root),'utf8');
-test('Library v0.0.7 exposes git-tracked shared defaults without executable templates',async()=>{
+test('Library exposes git-tracked shared defaults without executable templates',async()=>{
  const catalog=JSON.parse(await read('catalog.json'));
  const version=(await read('VERSION')).trim();
- assert.equal(version,'0.0.7');assert.equal(catalog.version,version);
+ const [major,minor,patch]=parts(version);
+ assert.ok(major*10000+minor*100+patch>=7,'Shared defaults require Library v0.0.7 or later');
+ assert.equal(catalog.version,version);
  assert.equal(catalog.workspaceDefaults.sdlc,'sdlc');
  assert.equal(catalog.workspaceDefaults.templates,'templates');
  assert.equal(catalog.workspaceDefaults.allowRemoteExecution,false);
