@@ -1,0 +1,38 @@
+name: Windows offline technology stack packages
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'tech-stacks/**'
+      - 'VERSION'
+      - 'scripts/build-windows-offline-stacks.ps1'
+      - '.github/workflows/windows-offline-stacks.yml'
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: windows-2025
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          architecture: x64
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - name: Build and validate offline packages
+        shell: pwsh
+        run: ./scripts/build-windows-offline-stacks.ps1 -OutputDirectory "$env:RUNNER_TEMP/offline-dist"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: atgv-library-windows-x64-offline-stacks
+          path: ${{ runner.temp }}/offline-dist/*
+          if-no-files-found: error
+          retention-days: 30
