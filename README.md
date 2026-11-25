@@ -5,7 +5,7 @@ The VS Code extension ships no hardcoded technology scaffold, role skill, or des
 
 ## Layout
 
-- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.10`
+- `catalog.json`, `VERSION`: schema and manifest, catalog `0.0.11`
 - `roles/<id>/SKILL.md`: 18 role skills
 - `.memory/`: curated, categorized JSON decision records (version rules, release policy, workflow policies)
 - `roles/agents.json`: independent SemVer for each of 18 role agents (all initialize at `0.0.0`)
@@ -88,3 +88,15 @@ The Library is **itself the GitHub repository checkout** at `<workspace>/.atgv/l
 ## AIA Malaysia distribution
 
 The development repository runs all CI, synchronization and release publication. After verified source release, `sync-to-aiamalaysia.yml` creates a versioned PR in `aiamalaysia/my-fow-technology-app-techassists-enterprise-skills`. The scheduled or manual `publish-aiamalaysia-release.yml` checks merged PRs before publishing the ZIP and checksum via GitHub API. Configure an organization-approved `AIAMALAYSIA_PAT` repository Actions secret with Contents and Pull requests write access. Both workflows provide manual dry runs. Destination Actions remain disabled; its GitHub workflows and destination-only files are preserved.
+
+## Windows x64 offline stack packages (v0.0.11)
+
+The five stack dependency packages are built separately from the source catalog to preserve its size limit. Run the Windows offline technology stack packages workflow or run `scripts/build-windows-offline-stacks.ps1` using PowerShell 7 on an approved online Windows x64 build machine with Node 24, npm, .NET 10, Java 25 and Maven.
+
+Download the workflow artifact, then import each stack ZIP and its adjacent SHA-256 file with:
+
+```powershell
+./scripts/import-windows-offline-stack.ps1 -Workspace 'C:\\ATGV' -Archive 'C:\\Downloads\\react-windows-x64-0.0.11.zip'
+```
+
+ATGV v0.1.33+ automatically uses the imported packages at `.atgv/offline/windows-x64/<stack>` for new single-stack Windows x64 starters from Library v0.0.11 onward. Packages must match the scaffold manifests. npm stacks reuse the prepared node_modules without npm install or npm ci. .NET uses a local NuGet feed, and Spring Boot uses Maven offline mode. Missing or mismatched packages block startup instead of causing online fallback. Host runtimes/SDKs and optional browser binaries remain prerequisites; React's optional Playwright/axe setup is not in its core pack. Existing older starters and other platforms retain their current behavior. The build and import scripts are provided as explicit user tools, not auto-executed Library code.
