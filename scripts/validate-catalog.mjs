@@ -92,9 +92,9 @@ for (const id of catalog.techStacks ?? []) {
       if (/Testing Library/i.test(unit)) assert(Boolean(all['@testing-library/react']), `${id}: missing @testing-library/react`);
     }
     if (cfg.e2e?.includes('Playwright')) {
-      assert(Boolean(dev['@playwright/test']), `${id}: missing Playwright dependency`);
+      assert(Boolean(dev['@playwright/test'] || pkg.atgvOptionalBrowserTests?.['@playwright/test']), `${id}: missing Playwright dependency`);
       assert(paths.has(`${scaffold}/e2e/smoke.spec.ts`), `${id}: missing Playwright smoke test`);
-      assert(Boolean(dev['@axe-core/playwright']), `${id}: missing axe-core Playwright dependency`);
+      assert(Boolean(dev['@axe-core/playwright'] || pkg.atgvOptionalBrowserTests?.['@axe-core/playwright']), `${id}: missing axe-core Playwright dependency`);
     }
     if (!paths.has(`${scaffold}/package-lock.json`)) warnings.push(`${id}: npm lockfile absent (generate via approved registry before npm ci)`);
   }

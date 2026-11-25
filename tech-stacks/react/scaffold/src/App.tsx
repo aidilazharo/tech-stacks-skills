@@ -4,7 +4,7 @@ import './startup.css';
 import { ComponentShowcase } from './ComponentShowcase';
 type Health = { status: string; database?: string; apiPort?: number; startedAt?: string; instanceId?: string };
 type Task = { id: number; title: string; status: string };
-const commands = [['Install dependencies','npm ci --ignore-scripts'],['Launch frontend and API','npm run dev'],['Run unit and API tests','npm test'],['Run browser tests','npm run test:e2e'],['Create production build','npm run build']];
+const commands = [['Install dependencies','npm ci --ignore-scripts'],['Launch frontend and API','npm run dev'],['Run unit and API tests','npm test'],['Optional browser setup','npm run test:e2e:setup'],['Run browser tests','npm run test:e2e'],['Create production build','npm run build']];
 const project=import.meta.env.VITE_ATGV_PROJECT||'React + SQLite starter';
 const branch=import.meta.env.VITE_ATGV_BRANCH||'Local checkout';
 const revision=import.meta.env.VITE_ATGV_REVISION||'Unspecified';
@@ -59,7 +59,7 @@ export function App() {
  }
  const apiPort=health?.apiPort||Number(import.meta.env.VITE_ATGV_API_PORT||3001);
  const healthy=health?.status==='ok';
- const frontend=window.location.origin;
+ const frontend=typeof window==='undefined'?'Local preview':window.location.origin;
  return <div className="atgv-app" data-atgv-startup="react-sqlite">
   <header className="atgv-header"><div className="qi-container atgv-header-inner">
    <a href="/" className="atgv-brand" aria-label="ATGV application home"><img src="/atgv-mark.svg" alt="ATGV" width="102" height="36"/><span className="atgv-divider"/><span className="atgv-aia">AIA</span><span className="atgv-brand-note">Qi-inspired developer workspace</span></a>

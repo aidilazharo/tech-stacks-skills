@@ -15,9 +15,10 @@
 
 The SQLite database is **local only** and is excluded from Git.
 
-## Catalog 1.1.3 test commands
+## Minimum startup and optional browser tests
 
-- `npm test` — Vitest UI unit + Node SQLite API tests
+- `npm test` — Node React render smoke + Node SQLite API tests
+- `npm run test:e2e:setup` — optional pinned browser-test tooling (not required for startup)
 - `npx playwright install chromium` — one-time browser setup
 - `npm run test:e2e` — Playwright smoke + axe-core accessibility audit
 - `npm run build` — compile scaffold

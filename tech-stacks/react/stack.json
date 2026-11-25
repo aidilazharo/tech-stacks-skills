@@ -9,17 +9,16 @@
   "framework": "React 19",
   "buildTool": "Vite",
   "unit": [
-    "Vitest",
-    "React Testing Library"
+    "Node test runner (React server-render smoke)"
   ],
   "integration": [
     "Node test runner (SQLite API)",
-    "axe-core (browser accessibility)"
+    "axe-core (optional browser accessibility)"
   ],
   "e2e": [
     "Playwright"
   ],
-  "notes": "TypeScript + Vite scaffold with Vitest/Testing Library, Node API integration, Playwright/axe browser checks. Browser binaries must be installed separately.",
+  "notes": "Minimum runnable TypeScript + Vite scaffold. Node React render and SQLite API checks require no DOM emulation or browser binaries. Playwright/axe is an explicit optional setup.",
   "templateRepository": "https://github.com/aidilazharo/tech-stacks-skills/tree/main/tech-stacks/react/scaffold",
   "scaffold": "scaffold/",
   "accessManual": "manual.md",

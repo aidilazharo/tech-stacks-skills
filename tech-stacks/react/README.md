@@ -1,28 +1,22 @@
-# React 19 + TypeScript 5.9 — ATGV runnable scaffold
+# React 19 + TypeScript — ATGV runnable scaffold
 
-This scaffold is supplied by the catalog and copied to a **project** branch by ATGV. Install packages in the generated project directory, **not** in the catalog root.
+Install in the generated project, not the catalog root. Use a supported Node version from package.json and an organization-approved npm registry.
 
 ```sh
 npm ci --ignore-scripts
-npm run db:migrate
 npm test
 npm run build
 npm run dev
 ```
-Browser E2E + axe accessibility checks require a browser install once per machine:
+
+The base install includes React, Vite, TypeScript, Express, Drizzle, SQLite, Swagger and the existing cross-platform frontend/API launcher. Node's built-in test runner checks real React rendering and SQLite CRUD. No jsdom, XML parser, Vitest, or Testing Library is required.
+
+Optional browser interactions and accessibility (not required by Save Stack):
 ```sh
+npm run test:e2e:setup
 npx playwright install chromium
 npm run test:e2e
 ```
+The setup installs the pinned browser test tools without changing the starter manifest or lock. Re-run setup after a clean npm ci if needed. Browser downloads and all packages remain subject to organizational security policy.
 
-**macOS/Linux npm cache permission fallback (no sudo):**
-```sh
-mkdir -p "$HOME/.cache/atgv-npm"
-npm_config_cache="$HOME/.cache/atgv-npm" npm ci --ignore-scripts
-```
-
-For Windows PowerShell, use `$env:npm_config_cache = Join-Path $HOME '.cache\atgv-npm'` before `npm ci --ignore-scripts`.
-See `../../docs/STACK-READINESS.md` for preflight checks, Node constraints, and locked-install guidance.
-The initial SQLite schema is an idempotent example rather than a production migration system.
-
-Catalog 1.1.14: React starter now includes an interactive Qi-inspired component reference (buttons, badges, cards, forms, tables, progress and dialogs). New generated projects receive it automatically; existing pristine catalog starters require verified migration through ATGV Save Stack. Edited application files are not overwritten. This is an independent starter, not an official AIA Qi distribution.
+Existing edited application files are not overwritten; use ATGV's verified scaffold migration or review changes manually. On Windows close processes locking node_modules before retrying an install. See ../../docs/STACK-READINESS.md.

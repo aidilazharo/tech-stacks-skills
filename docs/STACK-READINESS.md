@@ -37,7 +37,7 @@ The React, Angular and NestJS scaffolds include npm lockfiles. Use `npm ci --ign
 
 ## Browser readiness
 
-React and Angular implement separate UI, API and browser checks. One-time browser installation:
+React and Angular implement separate UI, API and browser checks. React browser-test packages are opt-in: run `npm run test:e2e:setup` in the React project before installing Chromium. React's mandatory `npm test` uses the Node test runner, not jsdom. One-time browser installation:
 
 ```sh
 npx playwright install chromium
