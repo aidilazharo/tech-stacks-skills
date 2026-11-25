@@ -2,6 +2,7 @@ import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 import hashlib
 import subprocess
 
@@ -40,6 +41,16 @@ class SyncTests(unittest.TestCase):
                          ["tech-stacks-skills-0.0.8-source.zip", "library-source.sha256"])
         with self.assertRaises(RuntimeError):
             sync.version_key("v0.0.8-build.99")
+
+    def test_digest_without_file_digest(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            file = Path(tmp) / "file.zip"
+            with patch.object(hashlib, "file_digest", create=True,
+                              side_effect=AssertionError("requires Python 3.11")):
+                for data in (b"", b"example", bytes(range(256)) * 9000):
+                    with self.subTest(size=len(data)):
+                        file.write_bytes(data)
+                        self.assertEqual(sync.digest(file), hashlib.sha256(data).hexdigest())
 
     def test_checksum(self):
         with tempfile.TemporaryDirectory() as tmp:

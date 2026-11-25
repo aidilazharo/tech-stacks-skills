@@ -255,8 +255,12 @@ def sync():
 
 
 def digest(path):
+    # Streaming SHA-256 also works on macOS system Python 3.9.
+    checksum = hashlib.sha256()
     with open(path, "rb") as stream:
-        return hashlib.file_digest(stream, "sha256").hexdigest()
+        for chunk in iter(lambda: stream.read(1024 * 1024), b""):
+            checksum.update(chunk)
+    return checksum.hexdigest()
 
 
 def verify_checksum(folder, checksum, filename):
