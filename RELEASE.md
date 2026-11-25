@@ -1,7 +1,6 @@
-# ATGV SDLC Library v0.0.10
+# ATGV SDLC Library v0.0.11
 
-- Reduce mandatory React starter dependencies: remove jsdom, xmlchars/saxes chain, Vitest and Testing Library; move Playwright/axe to explicit pinned optional setup.
-- Retain React/Vite/TypeScript, Express, Drizzle, SQLite, Swagger and the existing cross-platform launcher; replace mandatory DOM tests with real React render and SQLite API tests using Node's test runner.
-- Keep interactive browser checks in optional Playwright suite; fix stale smoke heading and add health/UI interaction coverage.
-- Prune the existing npm lockfile to the remaining dependency graph and update metadata and instructions. No registry bypass or security policy changes.
-- Structural source and lock checks completed; live npm install, compile and Windows server validation still required.
+- Add Windows x64 offline dependency package builder for React, Angular, NestJS, .NET and Spring Boot.
+- Include per-stack installed-module inventories and SHA-256 checksums; add a local package importer and Windows artifact workflow.
+- Preserve the source catalog size limit and existing stack manifests. Host runtimes and optional browser binaries remain separate prerequisites.
+- Package publication and Windows build/test verification are pending; no dependency binaries are committed in this source revision.
