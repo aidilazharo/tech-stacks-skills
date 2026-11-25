@@ -1,6 +1,7 @@
 # Build all five Windows x64 offline dependency packages on an approved online machine.
 [CmdletBinding()]
-param([string]$OutputDirectory = (Join-Path $PSScriptRoot '..\offline-dist'))
+param([string]$OutputDirectory = (Join-Path $PSScriptRoot '..\offline-dist'),
+ [ValidateSet('react','angular','nestjs','dotnet','spring-boot')][string[]]$Stack = @('react','angular','nestjs','dotnet','spring-boot'))
 $ErrorActionPreference = 'Stop'
 function Run([string]$Exe,[string[]]$ArgList) {
   & $Exe @ArgList
@@ -18,7 +19,7 @@ $oldNuget=$env:NUGET_PACKAGES
 $oldOffline=$env:npm_config_offline
 $oldBrowsers=$env:PLAYWRIGHT_BROWSERS_PATH
 try {
- foreach($id in @('react','angular','nestjs','dotnet','spring-boot')){
+ foreach($id in $Stack){
   $work=Join-Path $temp "work-$id"
   $pack=Join-Path $temp $id
   New-Item -ItemType Directory $work,$pack | Out-Null
