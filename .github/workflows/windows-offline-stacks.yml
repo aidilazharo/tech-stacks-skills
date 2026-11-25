@@ -10,10 +10,19 @@ on:
       - '.github/workflows/windows-offline-stacks.yml'
 permissions:
   contents: read
+concurrency:
+  group: offline-windows-stacks-main
+  cancel-in-progress: true
 jobs:
   build:
+    if: github.ref == 'refs/heads/main'
+    name: Windows x64 - ${{ matrix.stack }}
     runs-on: windows-2025
     timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        stack: [react, angular, nestjs, dotnet, spring-boot]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -21,18 +30,56 @@ jobs:
           node-version: '24'
           architecture: x64
       - uses: actions/setup-dotnet@v4
+        if: matrix.stack == 'dotnet'
         with:
           dotnet-version: '10.0.x'
       - uses: actions/setup-java@v4
+        if: matrix.stack == 'spring-boot'
         with:
           distribution: temurin
           java-version: '25'
-      - name: Build and validate offline packages
+      - name: Build and validate offline package
         shell: pwsh
-        run: ./scripts/build-windows-offline-stacks.ps1 -OutputDirectory "$env:RUNNER_TEMP/offline-dist"
+        run: ./scripts/build-windows-offline-stacks.ps1 -Stack "${{ matrix.stack }}" -OutputDirectory "$env:RUNNER_TEMP/offline-dist"
       - uses: actions/upload-artifact@v4
         with:
-          name: atgv-library-windows-x64-offline-stacks
+          name: atgv-offline-${{ matrix.stack }}-windows-x64
           path: ${{ runner.temp }}/offline-dist/*
           if-no-files-found: error
           retention-days: 30
+  publish:
+    name: Publish five verified offline packages
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: atgv-offline-*-windows-x64
+          merge-multiple: true
+          path: offline-dist
+      - name: Verify and publish versioned offline packages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          version="$(tr -d '\r\n' < VERSION)"
+          [[ "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]
+          tag="offline-windows-v$version"
+          assets=()
+          cd offline-dist
+          for stack in react angular nestjs dotnet spring-boot; do
+            file="$stack-windows-x64-$version.zip"
+            test -s "$file"
+            test -s "$file.sha256"
+            sha256sum -c "$file.sha256"
+            assets+=("$file" "$file.sha256")
+          done
+          if gh release view "$tag" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            gh release upload "$tag" "${assets[@]}" --clobber --repo "$GITHUB_REPOSITORY"
+          else
+            gh release create "$tag" "${assets[@]}" --target "$GITHUB_SHA" --title "ATGV Library Windows x64 offline modules v$version" --notes "Five Windows x64 dependency archives, built and validated on GitHub-hosted Windows runners. Host SDKs/runtimes and optional browser binaries are separate." --latest=false --repo "$GITHUB_REPOSITORY"
+          fi
