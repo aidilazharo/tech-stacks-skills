@@ -23,3 +23,9 @@ test('unreferenced design previews and Finder metadata are absent',()=>{
  const checksums=readFileSync(join(root,'shared/design-systems/aia-qi/kit/SHA256SUMS.txt'),'utf8');
  assert.doesNotMatch(checksums,/\.\/previews\//);
 });
+
+
+test('obsolete validation snapshot and generated npm inventory stay out of source',()=>{
+ for(const p of ['VALIDATION-REPORT.md','docs/windows-x64-npm-dependencies.csv'])assert.equal(existsSync(join(root,p)),false,p);
+ for(const stack of ['react','angular','nestjs'])assert.ok(existsSync(join(root,'tech-stacks',stack,'scaffold','package-lock.json')),stack);
+});

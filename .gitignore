@@ -11,3 +11,13 @@ node_modules/
 **/coverage/
 **/test-results/
 **/playwright-report/
+
+# Generated local artifacts (not part of the source Library)
+/offline-dist/
+/dist/
+/docs/windows-x64-npm-dependencies.csv
+Thumbs.db
+__pycache__/
+*.pyc
+*.tmp
+*.bak
