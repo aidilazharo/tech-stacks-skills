@@ -141,9 +141,10 @@ jobs:
           if ! gh release view "$tag" >/dev/null 2>&1; then
             gh release create "$tag" "dist/${FILE}" "dist/library-source.sha256" \
               --target "$GITHUB_SHA" \
-              --title "SDLC Library v${VERSION} — source archive (build ${BUILD})" \
+              --title "SDLC Library v${VERSION}" \
               --notes "Full, committed SDLC Library source including technology stacks, role skills and AI harness. Verified ZIP and SHA-256 checksum." \
-              --prerelease --latest=false
+              --latest
           else
             gh release upload "$tag" "dist/${FILE}" "dist/library-source.sha256" --clobber
+            gh release edit "$tag" --title "SDLC Library v${VERSION}" --draft=false --prerelease=false --latest
           fi
