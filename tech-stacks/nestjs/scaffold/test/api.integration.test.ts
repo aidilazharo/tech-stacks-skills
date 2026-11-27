@@ -1,5 +1,6 @@
 import { beforeAll, afterAll, describe, it, expect } from 'vitest';
-import { mkdtempSync, rmSync } from 'node:fs';
+import { mkdtempSync } from 'node:fs';
+import { rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import request from 'supertest';
@@ -23,10 +24,15 @@ describe('NestJS HTTP / SQLite integration', () => {
     await app.init();
   });
   afterAll(async () => {
-    if (app) await app.close();
-    if (client) client.close();
-    rmSync(folder, { recursive: true, force: true });
-  });
+    try {
+      if (app) await app.close();
+    } finally {
+      if (client) client.close();
+    }
+    // Windows can retain a native SQLite handle briefly after client.close().
+    // Yield to the event loop and use bounded filesystem retries, not a skipped assertion.
+    await rm(folder, { recursive: true, force: true, maxRetries: 10, retryDelay: 150 });
+  }, 30000);
   it('accepts a valid task and returns it over HTTP', async () => {
     const api = request(app.getHttpServer());
     await api.get('/api/health').expect(200);
